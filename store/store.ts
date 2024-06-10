@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import centralDataSlice from './slices/centralDataSlice';
 
 const store = configureStore({
-    reducers:{
+    reducer:{
         centralDataSlice: centralDataSlice
     },
 })
