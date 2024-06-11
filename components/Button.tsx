@@ -7,12 +7,14 @@ interface ButtonProps {
   endIcon?: ReactNode;
   startIcon?: ReactNode;
   onClick?: (() => void) | ((event: any) => void);
+  className?: string;
 }
 
 const Button = (props: ButtonProps) => {
-  const { label, variant, endIcon, startIcon, onClick } = props;
+  const { label, variant, endIcon, startIcon, onClick, className } = props;
   return (
     <MuiButton
+      className={className}
       variant={variant}
       endIcon={endIcon}
       startIcon={startIcon}
