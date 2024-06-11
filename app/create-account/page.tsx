@@ -8,37 +8,29 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import Link from "next/link";
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import DeliveryDiningRoundedIcon from "@mui/icons-material/DeliveryDiningRounded";
 import StoreMallDirectoryRoundedIcon from "@mui/icons-material/StoreMallDirectoryRounded";
 import Button from "@/components/Button";
-import { Credentials, USER_TYPES, UserType } from "../../utilities/constants";
+import { USER_TYPES, UserType } from "../../utilities/constants";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  updateCredentials,
-  updateUserType,
-} from "@/store/slices/centralDataSlice";
-import TextField from "@/components/TextField";
-import styles from "../../styles/LoginPage.module.css";
+import { updateUserType } from "@/store/slices/centralDataSlice";
+import styles from "../../styles/CreateAccount.module.css";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
+import Customer from "@/components/pages/create-account/Customer";
+import Hotel from "@/components/pages/create-account/Hotel";
+import DeliveryAgent from "@/components/pages/create-account/DeliveryAgent";
+import Link from "next/link";
 
-const LoginPage = () => {
+const CreateAccount = () => {
   const dispatch = useDispatch();
   const userType: UserType = useSelector(
     (state: any) => state.centralDataSlice.userType
   );
-  const credentials: Credentials = useSelector(
-    (state: any) => state.centralDataSlice.credentials
-  );
-
-  const onChangeHandler = (event: any, type: string) => {
-    dispatch(updateCredentials({ ...credentials, [type]: event.target.value }));
-  };
 
   return (
     <Box className="flex justify-center items-center h-screen">
-      <Card className={`${styles.loginCard} rounded-xl`}>
+      <Card className={`${styles.createAccountCard} rounded-xl`}>
         <CardContent>
           <Typography className="text-center mb-4 text-xl font-bold">
             Food Parcel
@@ -67,30 +59,18 @@ const LoginPage = () => {
               icon={<DeliveryDiningRoundedIcon />}
             />
           </BottomNavigation>
-          <TextField
-            label="User name"
-            fullWidth
-            className="mb-4"
-            value={credentials.userName}
-            onChange={(event) => onChangeHandler(event, "userName")}
-          />
-          <TextField
-            type="password"
-            label="Password"
-            fullWidth
-            className="mb-4"
-            value={credentials.password}
-            onChange={(event) => onChangeHandler(event, "password")}
-          />
-          <Box className="flex justify-between">
+          {userType === USER_TYPES.customer && <Customer />}
+          {userType === USER_TYPES.hotel && <Hotel />}
+          {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}
+          <Box className="flex justify-between mt-3">
             <Typography className="text-sm self-center">
-              Don&apos;t have an account ?{" "}
-              <Link href="/create-account" className="underline">
-                Create
+              Already have an account ?{" "}
+              <Link href="/login" className="underline">
+                Login
               </Link>
             </Typography>
             <Button
-              label="Login"
+              label="Create"
               variant="outlined"
               endIcon={<EastRoundedIcon />}
             />
@@ -101,4 +81,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default CreateAccount;
