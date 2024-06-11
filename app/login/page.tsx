@@ -17,6 +17,8 @@ import { USER_TYPES, UserType } from "../../utilities/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { updateUserType } from "@/store/slices/centralDataSlice";
 import TextField from "@/components/TextField";
+import styles from "../../styles/LoginPage.module.css";
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
 
 const LoginPage = () => {
   const userType: UserType = useSelector((state: any) => state.centralDataSlice.userType);
@@ -24,7 +26,7 @@ const LoginPage = () => {
 
   return (
     <Box className="flex justify-center items-center h-screen">
-      <Card className="rounded-xl">
+      <Card className={`${styles.loginCard} rounded-xl`}>
         <CardContent>
           <Typography className="text-center mb-4 text-xl font-bold">
             Food Parcel
@@ -62,9 +64,9 @@ const LoginPage = () => {
           />
           <Box className="flex justify-between">
             <Typography className="text-sm self-center">
-              Don&apos;t have an account ? <Link href="">Create</Link>
+              Don&apos;t have an account ? <Link href="" className="underline">Create</Link>
             </Typography>
-            <Button label="Login" variant="outlined" />
+            <Button label="Login" variant="outlined" endIcon={<EastRoundedIcon />}/>
           </Box>
         </CardContent>
       </Card>
