@@ -13,7 +13,42 @@ body {
   background: linear-gradient(
       to bottom,
       transparent,
-      #FFBF78
+      #ffbf78
     )
-    #FFBF78;
+    #90b274;
+}
+
+.MuiBottomNavigationAction-root {
+  border-radius: 20px;
+}
+
+.MuiBottomNavigationAction-root.Mui-selected {
+  color: #FF7D29;
+}
+
+.MuiTouchRipple-root {
+  color: #FF7D29;
+}
+
+.MuiButton-outlined {
+  border-radius: 20px;
+  text-transform: capitalize;
+  color: #FF7D29;
+  border-color: #FF7D29;
+}
+
+.MuiButton-outlined:hover {
+  border-color: #FF7D29;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-radius: 50px;
+}
+
+.MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #74c85d;
+}
+
+.MuiInputLabel-root.Mui-focused {
+  color: #74c85d;
 }
