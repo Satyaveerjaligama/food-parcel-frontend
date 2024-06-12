@@ -5,8 +5,8 @@ import {
   CustomerDetails,
   HotelDetails,
   DeliveryAgentDetails,
-} from "@/utilities/constants";
-import { createSlice } from "@reduxjs/toolkit";
+} from '@/utilities/constants';
+import { createSlice } from '@reduxjs/toolkit';
 
 interface CentralSliceInitialState {
   userType: UserType;
@@ -19,42 +19,42 @@ interface CentralSliceInitialState {
 const initialState: CentralSliceInitialState = {
   userType: USER_TYPES.customer,
   credentials: {
-    userName: "",
-    password: "",
+    userName: '',
+    password: '',
   },
   customerDetails: {
-    fullName: "",
-    emailId: "",
-    phoneNumber: "",
-    password: "",
-    reEnteredPassword: "",
+    fullName: '',
+    emailId: '',
+    phoneNumber: '',
+    password: '',
+    reEnteredPassword: '',
   },
   hotelDetails: {
-    hotelName: "",
-    address: "",
-    pincode: "",
-    emailId: "",
-    phoneNumber: "",
-    gstNumber: "",
-    fssaiNumber: "",
-    password: "",
-    reEnteredPassword: "",
+    hotelName: '',
+    address: '',
+    pincode: '',
+    emailId: '',
+    phoneNumber: '',
+    gstNumber: '',
+    fssaiNumber: '',
+    password: '',
+    reEnteredPassword: '',
   },
   deliveryAgentDetails: {
-    fullName: "",
-    emailId: "",
-    phoneNumber: "",
-    aadhaarNumber: "",
-    vehicleModel: "",
-    vehicleNumber: "",
-    address: "",
-    password: "",
-    reEnteredPassword: "",
+    fullName: '',
+    emailId: '',
+    phoneNumber: '',
+    aadhaarNumber: '',
+    vehicleModel: '',
+    vehicleNumber: '',
+    address: '',
+    password: '',
+    reEnteredPassword: '',
   },
 };
 
 const centralSlice = createSlice({
-  name: "centralData",
+  name: 'centralData',
   initialState: initialState,
   reducers: {
     updateUserType: (state, action) => {

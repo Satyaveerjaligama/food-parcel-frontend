@@ -1,5 +1,6 @@
-"use client";
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+import React from 'react';
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -7,22 +8,22 @@ import {
   Card,
   CardContent,
   Typography,
-} from "@mui/material";
-import Link from "next/link";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import DeliveryDiningRoundedIcon from "@mui/icons-material/DeliveryDiningRounded";
-import StoreMallDirectoryRoundedIcon from "@mui/icons-material/StoreMallDirectoryRounded";
-import Button from "@/components/Button";
-import { Credentials, USER_TYPES, UserType } from "../../utilities/constants";
-import { useSelector, useDispatch } from "react-redux";
+} from '@mui/material';
+import Link from 'next/link';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
+import StoreMallDirectoryRoundedIcon from '@mui/icons-material/StoreMallDirectoryRounded';
+import Button from '@/components/Button';
+import { Credentials, USER_TYPES, UserType } from '@/utilities/constants';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   updateCredentials,
   updateUserType,
-} from "@/store/slices/centralDataSlice";
-import TextField from "@/components/TextField";
-import styles from "../../styles/LoginPage.module.css";
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import { pacifico } from "../../utilities/fonts";
+} from '@/store/slices/centralDataSlice';
+import TextField from '@/components/TextField';
+import styles from '../../styles/LoginPage.module.css';
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import { pacifico } from '../../utilities/fonts';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -75,7 +76,7 @@ const LoginPage = () => {
             fullWidth
             className="mb-4"
             value={credentials.userName}
-            onChange={(event) => onChangeHandler(event, "userName")}
+            onChange={(event) => onChangeHandler(event, 'userName')}
           />
           <TextField
             type="password"
@@ -83,11 +84,11 @@ const LoginPage = () => {
             fullWidth
             className="mb-4"
             value={credentials.password}
-            onChange={(event) => onChangeHandler(event, "password")}
+            onChange={(event) => onChangeHandler(event, 'password')}
           />
           <Box className="flex justify-between">
             <Typography className="text-sm self-center">
-              Don&apos;t have an account ?{" "}
+              Don&apos;t have an account ?{' '}
               <Link href="/create-account" className="underline">
                 Create
               </Link>

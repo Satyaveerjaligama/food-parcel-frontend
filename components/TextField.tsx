@@ -1,5 +1,6 @@
-import { TextField as MuiTextField, TextFieldVariants } from "@mui/material";
-import { HTMLInputTypeAttribute } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { TextField as MuiTextField, TextFieldVariants } from '@mui/material';
+import { HTMLInputTypeAttribute } from 'react';
 
 interface TextFieldProps {
     type?: HTMLInputTypeAttribute; 
@@ -14,20 +15,20 @@ interface TextFieldProps {
 }
 
 const TextField = (props: TextFieldProps) => {
-    const {type, className, label, size, variant, value, fullWidth, disabled, onChange} = props
-    return (
-        <MuiTextField
-            type={type}
-            className={className}
-            label={label}
-            size={size}
-            variant={variant}
-            value={value}
-            fullWidth={fullWidth}
-            disabled={disabled}
-            onChange={onChange}
-        />
-    )
-}
+  const {type, className, label, size, variant, value, fullWidth, disabled, onChange} = props;
+  return (
+    <MuiTextField
+      type={type}
+      className={className}
+      label={label}
+      size={size}
+      variant={variant}
+      value={value}
+      fullWidth={fullWidth}
+      disabled={disabled}
+      onChange={onChange}
+    />
+  );
+};
 
 export default TextField;

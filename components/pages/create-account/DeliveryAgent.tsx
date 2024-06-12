@@ -1,9 +1,10 @@
-import TextField from "@/components/TextField";
-import { updateDeliveryAgentDetails } from "@/store/slices/centralDataSlice";
-import { DeliveryAgentDetails } from "@/utilities/constants";
-import { Box } from "@mui/material";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import TextField from '@/components/TextField';
+import { updateDeliveryAgentDetails } from '@/store/slices/centralDataSlice';
+import { DeliveryAgentDetails } from '@/utilities/constants';
+import { Box } from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const DeliveryAgent = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const DeliveryAgent = () => {
         fullWidth
         className="mb-4"
         value={deliveryAgentDetails.fullName}
-        onChange={(event) => onChangeHandler(event, "fullName")}
+        onChange={(event) => onChangeHandler(event, 'fullName')}
       />
       <TextField
         label="Email Id"
@@ -36,7 +37,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.emailId}
-        onChange={(event) => onChangeHandler(event, "emailId")}
+        onChange={(event) => onChangeHandler(event, 'emailId')}
       />
       <TextField
         label="Phone number"
@@ -44,7 +45,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.phoneNumber}
-        onChange={(event) => onChangeHandler(event, "phoneNumber")}
+        onChange={(event) => onChangeHandler(event, 'phoneNumber')}
       />
       <TextField
         label="Aadhaar number"
@@ -52,7 +53,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.aadhaarNumber}
-        onChange={(event) => onChangeHandler(event, "aadhaarNumber")}
+        onChange={(event) => onChangeHandler(event, 'aadhaarNumber')}
       />
       <TextField
         label="Vehicle model"
@@ -60,7 +61,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.vehicleModel}
-        onChange={(event) => onChangeHandler(event, "vehicleModel")}
+        onChange={(event) => onChangeHandler(event, 'vehicleModel')}
       />
       <TextField
         label="Vehicle number"
@@ -68,7 +69,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.vehicleNumber}
-        onChange={(event) => onChangeHandler(event, "vehicleNumber")}
+        onChange={(event) => onChangeHandler(event, 'vehicleNumber')}
       />
       <TextField
         label="Address"
@@ -76,7 +77,7 @@ const DeliveryAgent = () => {
         size="small"
         className="mb-4"
         value={deliveryAgentDetails.address}
-        onChange={(event) => onChangeHandler(event, "address")}
+        onChange={(event) => onChangeHandler(event, 'address')}
       />
       <TextField
         type="password"
@@ -85,7 +86,7 @@ const DeliveryAgent = () => {
         fullWidth
         className="mb-4"
         value={deliveryAgentDetails.password}
-        onChange={(event) => onChangeHandler(event, "password")}
+        onChange={(event) => onChangeHandler(event, 'password')}
       />
       <TextField
         type="password"
@@ -94,7 +95,7 @@ const DeliveryAgent = () => {
         fullWidth
         className="mb-4"
         value={deliveryAgentDetails.reEnteredPassword}
-        onChange={(event) => onChangeHandler(event, "reEnteredPassword")}
+        onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
       />
     </Box>
   );

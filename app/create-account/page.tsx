@@ -1,5 +1,6 @@
-"use client";
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client';
+import React from 'react';
 import {
   BottomNavigation,
   BottomNavigationAction,
@@ -7,21 +8,21 @@ import {
   Card,
   CardContent,
   Typography,
-} from "@mui/material";
-import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import DeliveryDiningRoundedIcon from "@mui/icons-material/DeliveryDiningRounded";
-import StoreMallDirectoryRoundedIcon from "@mui/icons-material/StoreMallDirectoryRounded";
-import Button from "@/components/Button";
-import { USER_TYPES, UserType } from "../../utilities/constants";
-import { useSelector, useDispatch } from "react-redux";
-import { updateUserType } from "@/store/slices/centralDataSlice";
-import styles from "../../styles/CreateAccount.module.css";
-import EastRoundedIcon from "@mui/icons-material/EastRounded";
-import Customer from "@/components/pages/create-account/Customer";
-import Hotel from "@/components/pages/create-account/Hotel";
-import DeliveryAgent from "@/components/pages/create-account/DeliveryAgent";
-import Link from "next/link";
-import { pacifico } from "@/utilities/fonts";
+} from '@mui/material';
+import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
+import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
+import StoreMallDirectoryRoundedIcon from '@mui/icons-material/StoreMallDirectoryRounded';
+import Button from '@/components/Button';
+import { USER_TYPES, UserType } from '@/utilities/constants';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUserType } from '@/store/slices/centralDataSlice';
+import styles from '../../styles/CreateAccount.module.css';
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import Customer from '@/components/pages/create-account/Customer';
+import Hotel from '@/components/pages/create-account/Hotel';
+import DeliveryAgent from '@/components/pages/create-account/DeliveryAgent';
+import Link from 'next/link';
+import { pacifico } from '@/utilities/fonts';
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
@@ -67,7 +68,7 @@ const CreateAccount = () => {
           {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}
           <Box className="flex justify-between mt-3">
             <Typography className="text-sm self-center">
-              Already have an account ?{" "}
+              Already have an account ?{' '}
               <Link href="/login" className="underline">
                 Login
               </Link>
