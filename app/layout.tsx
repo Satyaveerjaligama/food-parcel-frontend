@@ -1,9 +1,15 @@
-'use client'
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "../components/providers/ReduxProvider";
+import { alexandria } from "@/utilities/fonts";
+import { ThemeProvider, createTheme } from "@mui/material";
 
-const inter = Inter({ subsets: ["latin"] });
+const theme = createTheme({
+  typography: {
+    fontFamily: `${alexandria.style.fontFamily}`,
+  },
+});
 
 export default function RootLayout({
   children,
@@ -12,10 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
+      <body className={alexandria.className}>
+        <ThemeProvider theme={theme}>
+          <ReduxProvider>{children}</ReduxProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
