@@ -71,7 +71,7 @@ const LoginPage = () => {
             />
           </BottomNavigation>
           <TextField
-            label="User name"
+            label="Email id or phone number"
             fullWidth
             className="mb-4"
             value={credentials.userName}

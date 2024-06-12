@@ -36,7 +36,7 @@ const Customer = () => {
         onChange={(event) => onChangeHandler(event, "emailId")}
       />
       <TextField
-        label="Phone Number"
+        label="Phone number"
         fullWidth
         size="small"
         className="mb-4"

@@ -1,15 +1,8 @@
 "use client";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "../components/providers/ReduxProvider";
-import { alexandria } from "@/utilities/fonts";
 import { ThemeProvider, createTheme } from "@mui/material";
-
-const theme = createTheme({
-  typography: {
-    fontFamily: `${alexandria.style.fontFamily}`,
-  },
-});
+import theme from "@/styles/theme";
 
 export default function RootLayout({
   children,
