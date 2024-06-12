@@ -21,6 +21,7 @@ import Customer from "@/components/pages/create-account/Customer";
 import Hotel from "@/components/pages/create-account/Hotel";
 import DeliveryAgent from "@/components/pages/create-account/DeliveryAgent";
 import Link from "next/link";
+import { pacifico } from "@/utilities/fonts";
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,9 @@ const CreateAccount = () => {
     <Box className="flex justify-center items-center h-screen">
       <Card className={`${styles.createAccountCard} rounded-xl`}>
         <CardContent>
-          <Typography className="text-center mb-4 text-xl font-bold">
+          <Typography
+            className={`text-center mb-4 text-2xl ${pacifico.className}`}
+          >
             Food Parcel
           </Typography>
           <BottomNavigation

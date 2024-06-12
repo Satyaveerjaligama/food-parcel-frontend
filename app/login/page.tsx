@@ -22,6 +22,7 @@ import {
 import TextField from "@/components/TextField";
 import styles from "../../styles/LoginPage.module.css";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
+import { pacifico } from "../../utilities/fonts";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,9 @@ const LoginPage = () => {
     <Box className="flex justify-center items-center h-screen">
       <Card className={`${styles.loginCard} rounded-xl`}>
         <CardContent>
-          <Typography className="text-center mb-4 text-xl font-bold">
+          <Typography
+            className={`text-center mb-4 text-2xl ${pacifico.className}`}
+          >
             Food Parcel
           </Typography>
           <BottomNavigation
