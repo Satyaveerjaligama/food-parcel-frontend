@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={alexandria.className}>
+      <body>
         <ThemeProvider theme={theme}>
           <ReduxProvider>{children}</ReduxProvider>
         </ThemeProvider>
