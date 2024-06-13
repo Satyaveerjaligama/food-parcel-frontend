@@ -1,5 +1,5 @@
-import { alexandria } from "@/utilities/fonts";
-import { createTheme } from "@mui/material";
+import { alexandria } from '@/utilities/fonts';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   typography: {

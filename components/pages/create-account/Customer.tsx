@@ -1,9 +1,10 @@
-import TextField from "@/components/TextField";
-import { updateCustomerDetails } from "@/store/slices/centralDataSlice";
-import { CustomerDetails } from "@/utilities/constants";
-import { Box } from "@mui/material";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import TextField from '@/components/TextField';
+import { updateCustomerDetails } from '@/store/slices/centralDataSlice';
+import { CustomerDetails } from '@/utilities/constants';
+import { Box } from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Customer = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Customer = () => {
         fullWidth
         className="mb-4"
         value={customerDetails.fullName}
-        onChange={(event) => onChangeHandler(event, "fullName")}
+        onChange={(event) => onChangeHandler(event, 'fullName')}
       />
       <TextField
         label="Email id"
@@ -33,7 +34,7 @@ const Customer = () => {
         size="small"
         className="mb-4"
         value={customerDetails.emailId}
-        onChange={(event) => onChangeHandler(event, "emailId")}
+        onChange={(event) => onChangeHandler(event, 'emailId')}
       />
       <TextField
         label="Phone number"
@@ -41,7 +42,7 @@ const Customer = () => {
         size="small"
         className="mb-4"
         value={customerDetails.phoneNumber}
-        onChange={(event) => onChangeHandler(event, "phoneNumber")}
+        onChange={(event) => onChangeHandler(event, 'phoneNumber')}
       />
       <TextField
         type="password"
@@ -50,7 +51,7 @@ const Customer = () => {
         fullWidth
         className="mb-4"
         value={customerDetails.password}
-        onChange={(event) => onChangeHandler(event, "password")}
+        onChange={(event) => onChangeHandler(event, 'password')}
       />
       <TextField
         type="password"
@@ -59,7 +60,7 @@ const Customer = () => {
         fullWidth
         className="mb-4"
         value={customerDetails.reEnteredPassword}
-        onChange={(event) => onChangeHandler(event, "reEnteredPassword")}
+        onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
       />
     </Box>
   );

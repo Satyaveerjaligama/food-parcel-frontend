@@ -1,9 +1,10 @@
-import TextField from "@/components/TextField";
-import { updateHotelDetails } from "@/store/slices/centralDataSlice";
-import { HotelDetails } from "@/utilities/constants";
-import { Box } from "@mui/material";
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import TextField from '@/components/TextField';
+import { updateHotelDetails } from '@/store/slices/centralDataSlice';
+import { HotelDetails } from '@/utilities/constants';
+import { Box } from '@mui/material';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Hotel = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const Hotel = () => {
         fullWidth
         className="mb-4"
         value={hotelDetails.hotelName}
-        onChange={(event) => onChangeHandler(event, "hotelName")}
+        onChange={(event) => onChangeHandler(event, 'hotelName')}
       />
       <TextField
         label="Address"
@@ -33,7 +34,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.address}
-        onChange={(event) => onChangeHandler(event, "address")}
+        onChange={(event) => onChangeHandler(event, 'address')}
       />
       <TextField
         label="Pincode"
@@ -41,7 +42,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.pincode}
-        onChange={(event) => onChangeHandler(event, "pincode")}
+        onChange={(event) => onChangeHandler(event, 'pincode')}
       />
       <TextField
         label="Email id"
@@ -49,7 +50,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.emailId}
-        onChange={(event) => onChangeHandler(event, "emailId")}
+        onChange={(event) => onChangeHandler(event, 'emailId')}
       />
       <TextField
         label="Phone number"
@@ -57,7 +58,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.phoneNumber}
-        onChange={(event) => onChangeHandler(event, "phoneNumber")}
+        onChange={(event) => onChangeHandler(event, 'phoneNumber')}
       />
       <TextField
         label="GST number"
@@ -65,7 +66,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.gstNumber}
-        onChange={(event) => onChangeHandler(event, "gstNumber")}
+        onChange={(event) => onChangeHandler(event, 'gstNumber')}
       />
       <TextField
         label="FSSAI license number"
@@ -73,7 +74,7 @@ const Hotel = () => {
         size="small"
         className="mb-4"
         value={hotelDetails.fssaiNumber}
-        onChange={(event) => onChangeHandler(event, "fssaiNumber")}
+        onChange={(event) => onChangeHandler(event, 'fssaiNumber')}
       />
       <TextField
         type="password"
@@ -82,7 +83,7 @@ const Hotel = () => {
         fullWidth
         className="mb-4"
         value={hotelDetails.password}
-        onChange={(event) => onChangeHandler(event, "password")}
+        onChange={(event) => onChangeHandler(event, 'password')}
       />
       <TextField
         type="password"
@@ -91,7 +92,7 @@ const Hotel = () => {
         fullWidth
         className="mb-4"
         value={hotelDetails.reEnteredPassword}
-        onChange={(event) => onChangeHandler(event, "reEnteredPassword")}
+        onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
       />
     </Box>
   );
