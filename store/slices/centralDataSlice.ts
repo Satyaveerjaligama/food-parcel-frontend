@@ -48,6 +48,7 @@ const initialState: CentralSliceInitialState = {
     vehicleModel: '',
     vehicleNumber: '',
     address: '',
+    availabilityPincode: '',
     password: '',
     reEnteredPassword: '',
   },

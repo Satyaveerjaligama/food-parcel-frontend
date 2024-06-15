@@ -13,7 +13,7 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
 import StoreMallDirectoryRoundedIcon from '@mui/icons-material/StoreMallDirectoryRounded';
 import Button from '@/components/Button';
-import { USER_TYPES, UserType } from '@/utilities/constants';
+import { PRODUCT_NAME, USER_TYPES, UserType } from '@/utilities/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUserType } from '@/store/slices/centralDataSlice';
 import styles from '../../styles/CreateAccount.module.css';
@@ -23,12 +23,18 @@ import Hotel from '@/components/pages/create-account/Hotel';
 import DeliveryAgent from '@/components/pages/create-account/DeliveryAgent';
 import Link from 'next/link';
 import { pacifico } from '@/utilities/fonts';
+import register from '@/thunks/registerThunk';
+import { AppDispatch } from '@/store/store';
 
 const CreateAccount = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const userType: UserType = useSelector(
     (state: any) => state.centralDataSlice.userType
   );
+
+  const registerBtnClick = () => {
+    dispatch(register());
+  };
 
   return (
     <Box className="flex justify-center items-center h-screen">
@@ -37,7 +43,7 @@ const CreateAccount = () => {
           <Typography
             className={`text-center mb-4 text-2xl ${pacifico.className}`}
           >
-            Food Parcel
+            {PRODUCT_NAME}
           </Typography>
           <BottomNavigation
             className="mb-4"
@@ -74,9 +80,10 @@ const CreateAccount = () => {
               </Link>
             </Typography>
             <Button
-              label="Create"
+              label="Register"
               variant="outlined"
               endIcon={<EastRoundedIcon />}
+              onClick={registerBtnClick}
             />
           </Box>
         </CardContent>

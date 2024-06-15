@@ -39,6 +39,15 @@ export interface DeliveryAgentDetails {
   vehicleModel: string;
   vehicleNumber: string;
   address: string;
+  availabilityPincode: string;
   password: string;
   reEnteredPassword: string;
 }
+
+export const API_ENDPOINTS:{[key: UserType]: string} = {
+  customer: 'customer',
+  hotel: 'hotel',
+  deliveryAgent: 'delivery-agent',
+};
+
+export const PRODUCT_NAME = 'Food Parcel';
