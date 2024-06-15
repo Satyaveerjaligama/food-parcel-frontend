@@ -80,6 +80,14 @@ const DeliveryAgent = () => {
         onChange={(event) => onChangeHandler(event, 'address')}
       />
       <TextField
+        label="Pincode of delivery location"
+        fullWidth
+        size="small"
+        className="mb-4"
+        value={deliveryAgentDetails.availabilityPincode}
+        onChange={(event) => onChangeHandler(event, 'availabilityPincode')}
+      />
+      <TextField
         type="password"
         label="Password"
         size="small"

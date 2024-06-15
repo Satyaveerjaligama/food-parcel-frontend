@@ -14,7 +14,7 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
 import StoreMallDirectoryRoundedIcon from '@mui/icons-material/StoreMallDirectoryRounded';
 import Button from '@/components/Button';
-import { Credentials, USER_TYPES, UserType } from '@/utilities/constants';
+import { Credentials, PRODUCT_NAME, USER_TYPES, UserType } from '@/utilities/constants';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   updateCredentials,
@@ -45,7 +45,7 @@ const LoginPage = () => {
           <Typography
             className={`text-center mb-4 text-2xl ${pacifico.className}`}
           >
-            Food Parcel
+            {PRODUCT_NAME}
           </Typography>
           <BottomNavigation
             className="mb-4"
