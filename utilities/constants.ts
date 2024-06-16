@@ -7,7 +7,7 @@ export const USER_TYPES = {
 export type UserType = (typeof USER_TYPES)[keyof typeof USER_TYPES];
 
 export interface Credentials {
-  userName: string;
+  emailId: string;
   password: string;
 }
 

@@ -19,7 +19,7 @@ interface CentralSliceInitialState {
 const initialState: CentralSliceInitialState = {
   userType: USER_TYPES.customer,
   credentials: {
-    userName: '',
+    emailId: '',
     password: '',
   },
   customerDetails: {
