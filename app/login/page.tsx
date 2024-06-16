@@ -24,9 +24,11 @@ import TextField from '@/components/TextField';
 import styles from '../../styles/LoginPage.module.css';
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import { pacifico } from '../../utilities/fonts';
+import { login } from '@/thunks/loginThunk';
+import { AppDispatch } from '@/store/store';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const userType: UserType = useSelector(
     (state: any) => state.centralDataSlice.userType
   );
@@ -36,6 +38,10 @@ const LoginPage = () => {
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(updateCredentials({ ...credentials, [type]: event.target.value }));
+  };
+
+  const loginBtnClick = () => {
+    dispatch(login());
   };
 
   return (
@@ -75,8 +81,8 @@ const LoginPage = () => {
             label="Email id or phone number"
             fullWidth
             className="mb-4"
-            value={credentials.userName}
-            onChange={(event) => onChangeHandler(event, 'userName')}
+            value={credentials.emailId}
+            onChange={(event) => onChangeHandler(event, 'emailId')}
           />
           <TextField
             type="password"
@@ -97,6 +103,7 @@ const LoginPage = () => {
               label="Login"
               variant="outlined"
               endIcon={<EastRoundedIcon />}
+              onClick={loginBtnClick}
             />
           </Box>
         </CardContent>
