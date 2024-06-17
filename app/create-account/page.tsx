@@ -26,15 +26,17 @@ import { pacifico } from '@/utilities/fonts';
 import register from '@/thunks/registerThunk';
 import { AppDispatch } from '@/store/store';
 import Loader from '@/components/Loader';
+import { useRouter } from 'next/navigation';
 
 const CreateAccount = () => {
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const userType: UserType = useSelector(
     (state: any) => state.centralDataSlice.userType
   );
 
   const registerBtnClick = () => {
-    dispatch(register());
+    dispatch(register({router}));
   };
 
   return (
