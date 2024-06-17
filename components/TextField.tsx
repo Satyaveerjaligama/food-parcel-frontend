@@ -12,10 +12,11 @@ interface TextFieldProps {
     fullWidth?: boolean;
     disabled?: boolean;
     onChange?: (event: object) => void;
+    placeholder ?: string;
 }
 
 const TextField = (props: TextFieldProps) => {
-  const {type, className, label, size, variant, value, fullWidth, disabled, onChange} = props;
+  const {type, className, label, size, variant, value, fullWidth, disabled, onChange, placeholder} = props;
   return (
     <MuiTextField
       type={type}
@@ -27,6 +28,7 @@ const TextField = (props: TextFieldProps) => {
       fullWidth={fullWidth}
       disabled={disabled}
       onChange={onChange}
+      placeholder={placeholder}
     />
   );
 };

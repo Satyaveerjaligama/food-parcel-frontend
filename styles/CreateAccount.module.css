@@ -1,3 +1,7 @@
 .createAccountCard {
   width: 35%;
 }
+
+.pageBackground {
+  background: linear-gradient(to bottom, transparent, #ffbf78) #90b274;
+}

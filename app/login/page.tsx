@@ -57,7 +57,7 @@ const LoginPage = () => {
     <React.Fragment>
       <Loader />
       <Snackbar />
-      <Box className="flex justify-center items-center h-screen">
+      <Box className={`flex justify-center items-center h-screen ${styles.pageBackground}`}>
         <Card className={`${styles.loginCard} rounded-xl`}>
           <CardContent>
             <Typography
