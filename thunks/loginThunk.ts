@@ -1,3 +1,4 @@
+import { setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { API_ENDPOINTS } from '@/utilities/constants';
 import {createAsyncThunk} from '@reduxjs/toolkit';
@@ -15,9 +16,12 @@ export const login = createAsyncThunk('login', async(_, thunkAPI: any)=>{
     data: credentials,
   };
 
-  try {
-    await axios(payload);
-  } catch(err) {
+  thunkAPI.dispatch(setLoader(true));
+  await axios(payload).then((res)=>{
+    console.log(res);
+    // redirect to home page
+  }).catch((err)=>{
     console.log(err);
-  }
+  });
+  thunkAPI.dispatch(setLoader(false));
 });

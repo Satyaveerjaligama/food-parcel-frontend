@@ -25,6 +25,7 @@ import Link from 'next/link';
 import { pacifico } from '@/utilities/fonts';
 import register from '@/thunks/registerThunk';
 import { AppDispatch } from '@/store/store';
+import Loader from '@/components/Loader';
 
 const CreateAccount = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,58 +38,61 @@ const CreateAccount = () => {
   };
 
   return (
-    <Box className="flex justify-center items-center h-screen">
-      <Card className={`${styles.createAccountCard} rounded-xl`}>
-        <CardContent>
-          <Typography
-            className={`text-center mb-4 text-2xl ${pacifico.className}`}
-          >
-            {PRODUCT_NAME}
-          </Typography>
-          <BottomNavigation
-            className="mb-4"
-            showLabels
-            value={userType}
-            onChange={(event, newValue) => {
-              dispatch(updateUserType(newValue));
-            }}
-          >
-            <BottomNavigationAction
-              value={USER_TYPES.customer}
-              label="Customer"
-              icon={<PersonRoundedIcon />}
-            />
-            <BottomNavigationAction
-              value={USER_TYPES.hotel}
-              label="Hotel"
-              icon={<StoreMallDirectoryRoundedIcon />}
-            />
-            <BottomNavigationAction
-              value={USER_TYPES.deliveryAgent}
-              label="Delivery Agent"
-              icon={<DeliveryDiningRoundedIcon />}
-            />
-          </BottomNavigation>
-          {userType === USER_TYPES.customer && <Customer />}
-          {userType === USER_TYPES.hotel && <Hotel />}
-          {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}
-          <Box className="flex justify-between mt-3">
-            <Typography className="text-sm self-center">
-              Already have an account ?{' '}
-              <Link href="/login" className="underline">
-                Login
-              </Link>
+    <React.Fragment>
+      <Loader />
+      <Box className="flex justify-center items-center h-screen">
+        <Card className={`${styles.createAccountCard} rounded-xl`}>
+          <CardContent>
+            <Typography
+              className={`text-center mb-4 text-2xl ${pacifico.className}`}
+            >
+              {PRODUCT_NAME}
             </Typography>
-            <Button
-              label="Register"
-              variant="outlined"
-              endIcon={<EastRoundedIcon />}
-              onClick={registerBtnClick}
-            />
-          </Box>
-        </CardContent>
-      </Card>
-    </Box>
+            <BottomNavigation
+              className="mb-4"
+              showLabels
+              value={userType}
+              onChange={(event, newValue) => {
+                dispatch(updateUserType(newValue));
+              }}
+            >
+              <BottomNavigationAction
+                value={USER_TYPES.customer}
+                label="Customer"
+                icon={<PersonRoundedIcon />}
+              />
+              <BottomNavigationAction
+                value={USER_TYPES.hotel}
+                label="Hotel"
+                icon={<StoreMallDirectoryRoundedIcon />}
+              />
+              <BottomNavigationAction
+                value={USER_TYPES.deliveryAgent}
+                label="Delivery Agent"
+                icon={<DeliveryDiningRoundedIcon />}
+              />
+            </BottomNavigation>
+            {userType === USER_TYPES.customer && <Customer />}
+            {userType === USER_TYPES.hotel && <Hotel />}
+            {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}
+            <Box className="flex justify-between mt-3">
+              <Typography className="text-sm self-center">
+              Already have an account ?{' '}
+                <Link href="/login" className="underline">
+                Login
+                </Link>
+              </Typography>
+              <Button
+                label="Register"
+                variant="outlined"
+                endIcon={<EastRoundedIcon />}
+                onClick={registerBtnClick}
+              />
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    </React.Fragment>
   );
 };
 
