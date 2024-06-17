@@ -32,8 +32,10 @@ import { pacifico } from '../../utilities/fonts';
 import { login } from '@/thunks/loginThunk';
 import { AppDispatch } from '@/store/store';
 import Loader from '@/components/Loader';
+import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const userType: UserType = useSelector(
     (state: any) => state.centralDataSlice.userType
@@ -47,7 +49,7 @@ const LoginPage = () => {
   };
 
   const loginBtnClick = () => {
-    dispatch(login());
+    dispatch(login({router}));
   };
 
   return (
