@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {RootState} from '../store/store';
 import axios from 'axios';
-import { API_ENDPOINTS, CustomerDetails, DeliveryAgentDetails, HotelDetails, USER_TYPES, UserType } from '@/utilities/constants';
-import { setLoader } from '@/store/slices/utilitySlice';
+import { API_ENDPOINTS, CustomerDetails, DeliveryAgentDetails, HotelDetails, SNACKBAR_MESSAGES, SNACKBAR_STATUS, USER_TYPES, UserType } from '@/utilities/constants';
+import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,11 +34,19 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
   };
   
   thunkAPI.dispatch(setLoader(true));
-  await axios(payload).then((res)=>{
-    console.log(res);
+  await axios(payload).then(()=>{
+    thunkAPI.dispatch(openSnackbar({
+      open: true,
+      message: SNACKBAR_MESSAGES.registrationSuccess,
+      status: SNACKBAR_STATUS.success,
+    }));
     router.push('/login');
   }).catch((err)=>{
-    console.log(err);
+    thunkAPI.dispatch(openSnackbar({
+      open: true,
+      message: err?.response?.data?.message ?? SNACKBAR_MESSAGES.failedToRegister,
+      status: SNACKBAR_STATUS.error,
+    }));
   });
   thunkAPI.dispatch(setLoader(false));
 });

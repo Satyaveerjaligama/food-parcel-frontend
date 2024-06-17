@@ -33,6 +33,7 @@ import { login } from '@/thunks/loginThunk';
 import { AppDispatch } from '@/store/store';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
+import Snackbar from '@/components/Snackbar';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -55,6 +56,7 @@ const LoginPage = () => {
   return (
     <React.Fragment>
       <Loader />
+      <Snackbar />
       <Box className="flex justify-center items-center h-screen">
         <Card className={`${styles.loginCard} rounded-xl`}>
           <CardContent>

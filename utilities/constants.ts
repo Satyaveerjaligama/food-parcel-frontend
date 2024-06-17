@@ -51,3 +51,17 @@ export const API_ENDPOINTS:{[key: UserType]: string} = {
 };
 
 export const PRODUCT_NAME = 'Food Parcel';
+
+export const SNACKBAR_MESSAGES = {
+  loginSuccess: 'Successfully logged in',
+  failedToLogin: 'Something went wrong while logging in',
+  registrationSuccess: 'Successfully Registered, Please proceed by logging in',
+  failedToRegister: 'Something went wrong while registering',
+};
+
+export const SNACKBAR_STATUS = {
+  success: 'success',
+  warning: 'warning',
+  info: 'info',
+  error: 'error',
+};
