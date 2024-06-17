@@ -44,7 +44,7 @@ const CreateAccount = () => {
     <React.Fragment>
       <Loader />
       <Snackbar />
-      <Box className="flex justify-center items-center h-screen">
+      <Box className={`flex justify-center items-center h-screen ${styles.pageBackground}`}>
         <Card className={`${styles.createAccountCard} rounded-xl`}>
           <CardContent>
             <Typography

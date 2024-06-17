@@ -8,10 +8,6 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  background: linear-gradient(to bottom, transparent, #ffbf78) #90b274;
-}
-
 .MuiBottomNavigationAction-root {
   border-radius: 20px;
 }

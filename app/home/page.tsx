@@ -2,13 +2,14 @@
 import React from 'react';
 import { Typography } from '@mui/material';
 import Snackbar from '@/components/Snackbar';
+import Layout from '@/components/Layout';
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <Layout>
       <Snackbar />
       <Typography>Sample</Typography>
-    </React.Fragment>
+    </Layout>
   );
 };
 
