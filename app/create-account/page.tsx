@@ -27,6 +27,7 @@ import register from '@/thunks/registerThunk';
 import { AppDispatch } from '@/store/store';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
+import Snackbar from '@/components/Snackbar';
 
 const CreateAccount = () => {
   const router = useRouter();
@@ -42,6 +43,7 @@ const CreateAccount = () => {
   return (
     <React.Fragment>
       <Loader />
+      <Snackbar />
       <Box className="flex justify-center items-center h-screen">
         <Card className={`${styles.createAccountCard} rounded-xl`}>
           <CardContent>
