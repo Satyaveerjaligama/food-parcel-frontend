@@ -1,6 +1,5 @@
 import { openSnackbar } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { SNACKBAR_STATUS } from '@/utilities/constants';
 import { Alert, Snackbar as MuiSnackBar } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -25,8 +24,8 @@ const Snackbar = (props: SnackbarProps) => {
     dispatch(
       openSnackbar({
         open: false,
-        message: '',
-        status: SNACKBAR_STATUS.success,
+        message: snackbar.message,
+        status: snackbar.status,
       })
     );
   };
