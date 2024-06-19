@@ -9,10 +9,12 @@ interface ButtonProps {
   startIcon?: ReactNode;
   onClick?: (() => void) | ((event: any) => void);
   className?: string;
+  fullWidth?: boolean;
+  color?: 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning';
 }
 
 const Button = (props: ButtonProps) => {
-  const { label, variant, endIcon, startIcon, onClick, className } = props;
+  const { label, variant, endIcon, startIcon, onClick, className, fullWidth, color } = props;
   return (
     <MuiButton
       className={className}
@@ -20,6 +22,8 @@ const Button = (props: ButtonProps) => {
       endIcon={endIcon}
       startIcon={startIcon}
       onClick={onClick}
+      fullWidth={fullWidth}
+      color={color}
     >
       {label}
     </MuiButton>
