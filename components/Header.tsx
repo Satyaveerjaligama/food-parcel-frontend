@@ -1,12 +1,19 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, IconButton, Typography } from '@mui/material';
 import styles from '../styles/Header.module.css';
 import { PRODUCT_NAME } from '@/utilities/constants';
 import { pacifico } from '@/utilities/fonts';
 import TextField from './TextField';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
+  const router = useRouter();
+  
+  const iconBtnClickHandler = (type: string) => {
+    router.push(type);
+  };
+
   return (
     <Box className={`py-4 ${styles.mainDiv}`}>
       <Grid container className="items-center px-4">
@@ -23,8 +30,12 @@ const Header = () => {
           />
         </Grid>
         <Grid item sm={4} className="text-right">
-          <AccountCircleRoundedIcon className="text-4xl cursor-pointer" />
-          <ShoppingCartRoundedIcon className="text-4xl ml-6 cursor-pointer" />
+          <IconButton onClick={()=>iconBtnClickHandler('my-account')}>
+            <AccountCircleRoundedIcon className="text-black text-4xl cursor-pointer" />
+          </IconButton>
+          <IconButton className='ml-6' onClick={()=>iconBtnClickHandler('cart')}>
+            <ShoppingCartRoundedIcon className="text-black text-4xl cursor-pointer" />
+          </IconButton>
         </Grid>
       </Grid>
     </Box>

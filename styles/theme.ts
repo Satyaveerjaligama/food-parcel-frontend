@@ -32,6 +32,34 @@ const theme = createTheme({
           }
         }
       }
+    },
+    MuiButton: {
+      styleOverrides: {
+        outlined: {
+          borderRadius: '20px',
+          textTransform: 'capitalize',
+          color: '#ff7d29',
+          borderColor: '#ff7d29',
+        },
+        contained: {
+          borderRadius: '20px',
+          textTransform: 'capitalize',
+          color: 'white',
+          backgroundColor: '#ff7d29',
+          '&:hover': {
+            backgroundColor: '#ff7d29',
+          }
+        },
+        containedError: {
+          borderRadius: '20px',
+          textTransform: 'capitalize',
+          color: 'white',
+          backgroundColor: 'rgb(239 68 68)',
+          '&:hover': {
+            backgroundColor: 'rgb(239 68 68)',
+          }
+        }
+      }
     }
   }
 });

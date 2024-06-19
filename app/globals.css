@@ -20,13 +20,6 @@ body {
   color: #ff7d29;
 }
 
-.MuiButton-outlined {
-  border-radius: 20px;
-  text-transform: capitalize;
-  color: #ff7d29;
-  border-color: #ff7d29;
-}
-
 .MuiButton-outlined:hover {
   border-color: #ff7d29;
 }

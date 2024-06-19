@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 const HotelCards = () => {
   return (
-    <Grid container columnSpacing={2} rowSpacing={2} className="mb-5">
+    <Grid container columnSpacing={4} rowSpacing={2} className="mb-5">
       {[1, 2, 3, 4, 5].map((hotel) => (
         <Grid item xs={12} sm={6} md={4} key={hotel}>
           <Card>
