@@ -15,6 +15,23 @@ const theme = createTheme({
           left: '48%',
         }
       }
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: '25px',
+          boxShadow: '0px 1px 3px black',
+        }
+      }
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          '&:last-child': {
+            paddingBottom: '16px',
+          }
+        }
+      }
     }
   }
 });
