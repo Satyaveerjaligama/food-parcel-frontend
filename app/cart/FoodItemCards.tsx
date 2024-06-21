@@ -1,7 +1,8 @@
-import Button from '@/components/Button';
-import { Box, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 
 const FoodItemCards = () => {
   return (
@@ -16,18 +17,16 @@ const FoodItemCards = () => {
               Product name
             </Typography>
           </CardContent>
-          <CardActions>
-            <Button
-              label='-'
-              variant='outlined'
-            />
+          <CardActions className='justify-end'>
+            <IconButton>
+              <RemoveCircleRoundedIcon />
+            </IconButton>
             <Typography>
               4
             </Typography>
-            <Button
-              label='+'
-              variant='outlined'
-            />
+            <IconButton>
+              <AddCircleRoundedIcon />
+            </IconButton>
           </CardActions>
         </Card>
       )}
