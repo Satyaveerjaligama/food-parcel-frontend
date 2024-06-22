@@ -19,7 +19,7 @@ const theme = createTheme({
     MuiCard: {
       styleOverrides: {
         root: {
-          borderRadius: '25px',
+          borderRadius: '10px',
           boxShadow: '0px 1px 3px black',
         }
       }
@@ -36,13 +36,13 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         outlined: {
-          borderRadius: '20px',
+          borderRadius: '10px',
           textTransform: 'capitalize',
           color: '#ff7d29',
           borderColor: '#ff7d29',
         },
         contained: {
-          borderRadius: '20px',
+          borderRadius: '10px',
           textTransform: 'capitalize',
           color: 'white',
           backgroundColor: '#ff7d29',
@@ -51,7 +51,7 @@ const theme = createTheme({
           }
         },
         containedError: {
-          borderRadius: '20px',
+          borderRadius: '10px',
           textTransform: 'capitalize',
           color: 'white',
           backgroundColor: 'rgb(239 68 68)',
@@ -60,7 +60,14 @@ const theme = createTheme({
           }
         }
       }
-    }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderRadius: '10px',
+        }
+      }
+    },
   }
 });
 
