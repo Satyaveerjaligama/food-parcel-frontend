@@ -18,7 +18,7 @@ const Header = () => {
     <Box className={`py-4 ${styles.mainDiv}`}>
       <Grid container className="items-center px-4">
         <Grid item sm={4}>
-          <Typography className={`text-2xl ${pacifico.className}`}>
+          <Typography className={`text-2xl cursor-pointer ${pacifico.className}`} onClick={()=>iconBtnClickHandler('home')}>
             {PRODUCT_NAME}
           </Typography>
         </Grid>
