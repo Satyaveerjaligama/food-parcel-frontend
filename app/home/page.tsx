@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { USER_TYPES } from '@/utilities/constants';
 import Customer from './Customer';
-import Restaurant from './Hotel';
+import Restaurant from './Restaurant';
 import DeliveryAgent from './DeliveryAgent';
 
 const Home = () => {
