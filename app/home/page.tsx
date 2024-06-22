@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { USER_TYPES } from '@/utilities/constants';
-import Customer from '@/components/pages/home/Customer';
+import Customer from './Customer';
 import Hotel from './Hotel';
 
 const Home = () => {
