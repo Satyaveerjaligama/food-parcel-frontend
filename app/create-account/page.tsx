@@ -19,7 +19,7 @@ import { updateUserType } from '@/store/slices/centralDataSlice';
 import styles from '../../styles/CreateAccount.module.css';
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import Customer from '@/app/create-account/Customer';
-import Restaurant from '@/app/create-account/Hotel';
+import Restaurant from '@/app/create-account/Restaurant';
 import DeliveryAgent from '@/app/create-account/DeliveryAgent';
 import Link from 'next/link';
 import { pacifico } from '@/utilities/fonts';
