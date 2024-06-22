@@ -1,5 +1,5 @@
-import FoodTypes from '@/app/home/FoodTypes';
-import HotelCards from '@/app/home/HotelCards';
+import FoodTypes from '@/components/pages/home/FoodTypes';
+import HotelCards from '@/components/pages/home/HotelCards';
 import React from 'react';
 
 const Customer = () => {

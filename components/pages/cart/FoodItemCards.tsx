@@ -1,6 +1,6 @@
+import React from 'react';
 import { Box, Card, CardActions, CardContent, CardMedia, IconButton, Typography } from '@mui/material';
 import Image from 'next/image';
-import React from 'react';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 

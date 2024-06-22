@@ -1,6 +1,6 @@
 'use client';
 import Layout from '@/components/Layout';
-import FoodItemCards from './FoodItemCards';
+import FoodItemCards from '@/components/pages/cart/FoodItemCards';
 import { Box, Divider, Grid, Typography } from '@mui/material';
 import TextField from '@/components/TextField';
 import Button from '@/components/Button';
