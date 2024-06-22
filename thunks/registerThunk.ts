@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {RootState} from '../store/store';
 import axios from 'axios';
-import { API_ENDPOINTS, CustomerDetails, DeliveryAgentDetails, HotelDetails, SNACKBAR_MESSAGES, SNACKBAR_STATUS, USER_TYPES, UserType } from '@/utilities/constants';
+import { API_ENDPOINTS, CustomerDetails, DeliveryAgentDetails, RestaurantDetails, SNACKBAR_MESSAGES, SNACKBAR_STATUS, USER_TYPES, UserType } from '@/utilities/constants';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
@@ -10,7 +10,7 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
   const getState: RootState = thunkAPI.getState();
   const userType: UserType = getState.centralDataSlice.userType;
   const customerDetails: CustomerDetails = getState.centralDataSlice.customerDetails;
-  const hotelDetails: HotelDetails = getState.centralDataSlice.hotelDetails;
+  const restaurantDetails: RestaurantDetails = getState.centralDataSlice.restaurantDetails;
   const deliveryAgentDetails: DeliveryAgentDetails = getState.centralDataSlice.deliveryAgentDetails;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,8 +19,8 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
   case USER_TYPES.customer:
     reqBody = customerDetails;
     break;
-  case USER_TYPES.hotel:
-    reqBody = hotelDetails;
+  case USER_TYPES.restaurant:
+    reqBody = restaurantDetails;
     break;
   case USER_TYPES.deliveryAgent:
     reqBody = deliveryAgentDetails;

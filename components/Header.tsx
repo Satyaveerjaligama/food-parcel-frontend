@@ -28,7 +28,7 @@ const Header = () => {
         <Grid item sm={4}>
           <TextField
             size="small"
-            placeholder="Search Hotel or food item"
+            placeholder="Search Restaurant or food item"
             fullWidth
           />
         </Grid>

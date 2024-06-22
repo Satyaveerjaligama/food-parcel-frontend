@@ -19,7 +19,7 @@ import { updateUserType } from '@/store/slices/centralDataSlice';
 import styles from '../../styles/CreateAccount.module.css';
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import Customer from '@/app/create-account/Customer';
-import Hotel from '@/app/create-account/Hotel';
+import Restaurant from '@/app/create-account/Hotel';
 import DeliveryAgent from '@/app/create-account/DeliveryAgent';
 import Link from 'next/link';
 import { pacifico } from '@/utilities/fonts';
@@ -66,8 +66,8 @@ const CreateAccount = () => {
                 icon={<PersonRoundedIcon />}
               />
               <BottomNavigationAction
-                value={USER_TYPES.hotel}
-                label="Hotel"
+                value={USER_TYPES.restaurant}
+                label="Restaurant"
                 icon={<StoreMallDirectoryRoundedIcon />}
               />
               <BottomNavigationAction
@@ -77,7 +77,7 @@ const CreateAccount = () => {
               />
             </BottomNavigation>
             {userType === USER_TYPES.customer && <Customer />}
-            {userType === USER_TYPES.hotel && <Hotel />}
+            {userType === USER_TYPES.restaurant && <Restaurant />}
             {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}
             <Box className="flex justify-between mt-3">
               <Typography className="text-sm self-center">

@@ -1,7 +1,7 @@
 export const USER_TYPES = {
   customer: 'customer',
   deliveryAgent: 'deliveryAgent',
-  hotel: 'hotel',
+  restaurant: 'restaurant',
 };
 
 export type UserType = (typeof USER_TYPES)[keyof typeof USER_TYPES];
@@ -19,8 +19,8 @@ export interface CustomerDetails {
   reEnteredPassword: string;
 }
 
-export interface HotelDetails {
-  hotelName: string;
+export interface RestaurantDetails {
+  restaurantName: string;
   address: string;
   pincode: string;
   emailId: string;
@@ -46,7 +46,7 @@ export interface DeliveryAgentDetails {
 
 export const API_ENDPOINTS:{[key: UserType]: string} = {
   customer: 'customer',
-  hotel: 'hotel',
+  restaurant: 'restaurant',
   deliveryAgent: 'delivery-agent',
 };
 

@@ -42,7 +42,7 @@ const DeliveryAgent = () => {
             <Box className='flex justify-between items-center mt-3'>
               <Typography>Update status</Typography>
               <Button 
-                label='Reached Hotel'
+                label='Reached Restaurant'
                 variant='outlined'
               />
               <Button 

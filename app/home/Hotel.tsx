@@ -4,7 +4,7 @@ import { Divider } from '@mui/material';
 import Orders from '@/components/pages/home/Orders';
 import Menu from '@/components/pages/home/Menu';
 
-const Hotel = () => {
+const Restaurant = () => {
   return (
     <React.Fragment>
       <Orders />
@@ -14,4 +14,4 @@ const Hotel = () => {
   );
 };
 
-export default Hotel;
+export default Restaurant;

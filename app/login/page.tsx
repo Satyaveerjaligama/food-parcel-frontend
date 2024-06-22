@@ -79,8 +79,8 @@ const LoginPage = () => {
                 icon={<PersonRoundedIcon />}
               />
               <BottomNavigationAction
-                value={USER_TYPES.hotel}
-                label="Hotel"
+                value={USER_TYPES.restaurant}
+                label="Restaurant"
                 icon={<StoreMallDirectoryRoundedIcon />}
               />
               <BottomNavigationAction
