@@ -1,39 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import TextField from '@/components/TextField';
-import { updateHotelDetails } from '@/store/slices/centralDataSlice';
-import { HotelDetails } from '@/utilities/constants';
+import { updateRestaurantDetails } from '@/store/slices/centralDataSlice';
+import { RestaurantDetails } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Hotel = () => {
+const Restaurant = () => {
   const dispatch = useDispatch();
-  const hotelDetails: HotelDetails = useSelector(
-    (state: any) => state.centralDataSlice.hotelDetails
+  const restaurantDetails: RestaurantDetails = useSelector(
+    (state: any) => state.centralDataSlice.restaurantDetails
   );
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(
-      updateHotelDetails({ ...hotelDetails, [type]: event.target.value })
+      updateRestaurantDetails({ ...restaurantDetails, [type]: event.target.value })
     );
   };
 
   return (
     <Box className="height-50vh scroll-bar overflow-y-auto py-2">
       <TextField
-        label="Hotel name"
+        label="Restaurant name"
         size="small"
         fullWidth
         className="mb-4"
-        value={hotelDetails.hotelName}
-        onChange={(event) => onChangeHandler(event, 'hotelName')}
+        value={restaurantDetails.restaurantName}
+        onChange={(event) => onChangeHandler(event, 'restaurantName')}
       />
       <TextField
         label="Address"
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.address}
+        value={restaurantDetails.address}
         onChange={(event) => onChangeHandler(event, 'address')}
       />
       <TextField
@@ -41,7 +41,7 @@ const Hotel = () => {
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.pincode}
+        value={restaurantDetails.pincode}
         onChange={(event) => onChangeHandler(event, 'pincode')}
       />
       <TextField
@@ -49,7 +49,7 @@ const Hotel = () => {
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.emailId}
+        value={restaurantDetails.emailId}
         onChange={(event) => onChangeHandler(event, 'emailId')}
       />
       <TextField
@@ -57,7 +57,7 @@ const Hotel = () => {
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.phoneNumber}
+        value={restaurantDetails.phoneNumber}
         onChange={(event) => onChangeHandler(event, 'phoneNumber')}
       />
       <TextField
@@ -65,7 +65,7 @@ const Hotel = () => {
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.gstNumber}
+        value={restaurantDetails.gstNumber}
         onChange={(event) => onChangeHandler(event, 'gstNumber')}
       />
       <TextField
@@ -73,7 +73,7 @@ const Hotel = () => {
         fullWidth
         size="small"
         className="mb-4"
-        value={hotelDetails.fssaiNumber}
+        value={restaurantDetails.fssaiNumber}
         onChange={(event) => onChangeHandler(event, 'fssaiNumber')}
       />
       <TextField
@@ -82,7 +82,7 @@ const Hotel = () => {
         size="small"
         fullWidth
         className="mb-4"
-        value={hotelDetails.password}
+        value={restaurantDetails.password}
         onChange={(event) => onChangeHandler(event, 'password')}
       />
       <TextField
@@ -91,11 +91,11 @@ const Hotel = () => {
         size="small"
         fullWidth
         className="mb-4"
-        value={hotelDetails.reEnteredPassword}
+        value={restaurantDetails.reEnteredPassword}
         onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
       />
     </Box>
   );
 };
 
-export default Hotel;
+export default Restaurant;
