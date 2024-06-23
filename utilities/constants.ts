@@ -15,12 +15,15 @@ export interface CustomerDetails {
   fullName: string;
   emailId: string;
   phoneNumber: string;
+  address: string;
+  pincode: string;
   password: string;
   reEnteredPassword: string;
 }
 
 export interface RestaurantDetails {
   restaurantName: string;
+  restaurantType: string;
   address: string;
   pincode: string;
   emailId: string;

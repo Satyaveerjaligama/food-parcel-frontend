@@ -29,6 +29,14 @@ const Restaurant = () => {
         onChange={(event) => onChangeHandler(event, 'restaurantName')}
       />
       <TextField
+        label="Restaurant type"
+        size="small"
+        fullWidth
+        className="mb-4"
+        value={restaurantDetails.restaurantType}
+        onChange={(event) => onChangeHandler(event, 'restaurantType')}
+      />
+      <TextField
         label="Address"
         fullWidth
         size="small"
