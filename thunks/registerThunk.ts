@@ -20,7 +20,7 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
     reqBody = customerDetails;
     break;
   case USER_TYPES.restaurant:
-    reqBody = restaurantDetails;
+    reqBody = {...restaurantDetails, restaurantType: restaurantDetails.restaurantType.split(',')};
     break;
   case USER_TYPES.deliveryAgent:
     reqBody = deliveryAgentDetails;

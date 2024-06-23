@@ -23,6 +23,7 @@ export interface CustomerDetails {
 
 export interface RestaurantDetails {
   restaurantName: string;
+  restaurantType: string;
   address: string;
   pincode: string;
   emailId: string;
