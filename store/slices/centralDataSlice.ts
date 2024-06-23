@@ -33,6 +33,7 @@ const initialState: CentralSliceInitialState = {
   },
   restaurantDetails: {
     restaurantName: '',
+    restaurantType: '',
     address: '',
     pincode: '',
     emailId: '',
