@@ -45,6 +45,22 @@ const Customer = () => {
         onChange={(event) => onChangeHandler(event, 'phoneNumber')}
       />
       <TextField
+        label="Address"
+        fullWidth
+        size="small"
+        className="mb-4"
+        value={customerDetails.address}
+        onChange={(event) => onChangeHandler(event, 'address')}
+      />
+      <TextField
+        label="Pincode"
+        fullWidth
+        size="small"
+        className="mb-4"
+        value={customerDetails.pincode}
+        onChange={(event) => onChangeHandler(event, 'pincode')}
+      />
+      <TextField
         type="password"
         label="Password"
         size="small"

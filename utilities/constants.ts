@@ -15,6 +15,8 @@ export interface CustomerDetails {
   fullName: string;
   emailId: string;
   phoneNumber: string;
+  address: string;
+  pincode: string;
   password: string;
   reEnteredPassword: string;
 }

@@ -26,6 +26,8 @@ const initialState: CentralSliceInitialState = {
     fullName: '',
     emailId: '',
     phoneNumber: '',
+    address: '',
+    pincode: '',
     password: '',
     reEnteredPassword: '',
   },
