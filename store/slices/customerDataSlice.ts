@@ -6,10 +6,18 @@ interface CustomerSliceInitialState {
     restaurantId: string;
     restaurantType: string[];
   }[];
+  restaurantDetails: {
+    restaurantName: string;
+    restaurantType: string[];
+  }
 }
 
 const initialState: CustomerSliceInitialState = {
   restaurantsList: [],
+  restaurantDetails: {
+    restaurantName: '',
+    restaurantType: [],
+  }
 };
 
 const customerData = createSlice({
@@ -19,9 +27,12 @@ const customerData = createSlice({
     updateRestaurantsList: (state, action) => {
       state.restaurantsList = action.payload;
     },
+    updateRestaurantDetails: (state, action) => {
+      state.restaurantDetails = action.payload;
+    },
   },
 });
 
 export default customerData.reducer;
 
-export const { updateRestaurantsList } = customerData.actions;
+export const { updateRestaurantsList, updateRestaurantDetails } = customerData.actions;
