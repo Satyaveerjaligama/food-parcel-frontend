@@ -2,7 +2,7 @@
 import Layout from '@/components/Layout';
 import MenuItems from '@/components/pages/restaurant-view/MenuItems';
 import { AppDispatch, RootState } from '@/store/store';
-import { fetchRestaurantDetails } from '@/thunks/fetchRestaurantDetails';
+import { fetchRestaurantDetails } from '@/thunks/fetchRestaurantDetailsThunk';
 import { Divider, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

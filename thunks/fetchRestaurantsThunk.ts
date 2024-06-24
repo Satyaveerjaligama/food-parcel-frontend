@@ -1,19 +1,18 @@
 import { updateRestaurantsList } from '@/store/slices/customerDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { API_ENDPOINTS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchRestaurants = createAsyncThunk('fetchRestaurants', async(_, thunkAPI: any)=>{
   const getState: RootState = thunkAPI.getState();
-  const userType = getState.centralDataSlice.userType;
   const pincode = getState.centralDataSlice.customerDetails.pincode;
 
   const payload = {
     method: 'GET',
-    url: `http://localhost:5000/${API_ENDPOINTS[userType]}/fetchRestaurants/${pincode}`,
+    url: `http://localhost:5000/customer/fetchRestaurants/${pincode}`,
   };
 
   thunkAPI.dispatch(setLoader(true));
