@@ -60,6 +60,7 @@ export const SNACKBAR_MESSAGES = {
   failedToLogin: 'Something went wrong while logging in',
   registrationSuccess: 'Successfully Registered, Please proceed by logging in',
   failedToRegister: 'Something went wrong while registering',
+  failedToFetchRestaurants: 'Something went wrong while getting the Restaurants information',
 };
 
 export const SNACKBAR_STATUS = {
