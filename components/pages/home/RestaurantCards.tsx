@@ -1,3 +1,4 @@
+import { RootState } from '@/store/store';
 import {
   Card,
   CardActionArea,
@@ -7,14 +8,23 @@ import {
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { useSelector } from 'react-redux';
 
 const RestaurantCards = () => {
+  const router = useRouter();
+  const restaurantsList = useSelector((state: RootState) => state.customerSlice.restaurantsList);
+
+  const hotelCardOnClickHandler = (restaurantId: string) => {
+    router.push(`/customer/restaurant-view/${restaurantId}`);
+  };
+
   return (
     <Grid container columnSpacing={4} rowSpacing={2} className="mb-5">
-      {[1, 2, 3, 4, 5].map((restaurant) => (
-        <Grid item xs={12} sm={6} md={4} key={restaurant}>
+      {restaurantsList && restaurantsList.map((restaurant) => (
+        <Grid item xs={12} sm={6} md={4} key={restaurant.restaurantId}>
           <Card>
-            <CardActionArea className="flex justify-start">
+            <CardActionArea className="flex justify-start" onClick={()=>hotelCardOnClickHandler(restaurant.restaurantId)}>
               <CardMedia>
                 <Image
                   src="/next.svg"
@@ -24,9 +34,9 @@ const RestaurantCards = () => {
                 />
               </CardMedia>
               <CardContent>
-                <Typography>Restaurant name</Typography>
+                <Typography>{restaurant.restaurantName}</Typography>
                 <Typography className="text-gray-400 text-sm">
-                  Restaurant type
+                  {restaurant.restaurantType}
                 </Typography>
               </CardContent>
             </CardActionArea>
