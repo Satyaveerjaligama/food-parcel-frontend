@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Card,
@@ -27,6 +27,17 @@ import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import Snackbar from '@/components/Snackbar';
 import UserNavigation from '@/components/UserNavigation';
+import loginSchema from '@/utilities/validations/loginSchema';
+
+interface Errors {
+  emailId: string;
+  password: string;
+}
+
+const errorInitialState: Errors = {
+  emailId: '',
+  password: '',
+};
 
 const LoginPage = () => {
   const router = useRouter();
@@ -34,13 +45,28 @@ const LoginPage = () => {
   const credentials: Credentials = useSelector(
     (state: any) => state.centralDataSlice.credentials
   );
+  const [errors, setErrors] = useState<Errors>(errorInitialState);
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(updateCredentials({ ...credentials, [type]: event.target.value }));
   };
 
-  const loginBtnClick = () => {
-    dispatch(login({router}));
+  const loginBtnClick = async() => {
+    const isCredentialsValid = await loginSchema.isValid(credentials);
+    if(isCredentialsValid) {
+      setErrors(errorInitialState);
+      dispatch(login({router}));
+    } else {
+      try {
+        await loginSchema.validate(credentials, { abortEarly: false });
+      } catch(err: any) {
+        const formatErrors: Errors = errorInitialState;
+        err.inner.forEach((error: any) => {
+          formatErrors[error.path as keyof Errors] = error.message; 
+        });
+        setErrors(formatErrors);
+      }
+    }
   };
 
   return (
@@ -62,6 +88,8 @@ const LoginPage = () => {
               className="mb-4"
               value={credentials.emailId}
               onChange={(event) => onChangeHandler(event, 'emailId')}
+              helperText={errors.emailId ?? ''}
+              error={Boolean(errors.emailId)}
             />
             <TextField
               type="password"
@@ -70,6 +98,8 @@ const LoginPage = () => {
               className="mb-4"
               value={credentials.password}
               onChange={(event) => onChangeHandler(event, 'password')}
+              helperText={errors.password ?? ''}
+              error={Boolean(errors.password)}
             />
             <Box className="flex justify-between">
               <Typography className="text-sm self-center">
