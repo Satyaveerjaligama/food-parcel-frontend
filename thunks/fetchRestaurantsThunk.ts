@@ -12,7 +12,7 @@ export const fetchRestaurants = createAsyncThunk('fetchRestaurants', async(_, th
 
   const payload = {
     method: 'GET',
-    url: `http://localhost:5000/customer/fetchRestaurants/${pincode}`,
+    url: `http://localhost:5000/restaurant/fetchRestaurants/${pincode}`,
   };
 
   thunkAPI.dispatch(setLoader(true));

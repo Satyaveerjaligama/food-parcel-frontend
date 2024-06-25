@@ -10,7 +10,7 @@ export const fetchRestaurantDetails = createAsyncThunk(
   async (restaurantId: string, thunkAPI: any) => {
     const apiData = {
       method: 'GET',
-      url: `http://localhost:5000/customer/fetchRestaurantDetails/${restaurantId}`,
+      url: `http://localhost:5000/restaurant/fetchRestaurantDetails/${restaurantId}`,
     };
 
     thunkAPI.dispatch(setLoader(true));

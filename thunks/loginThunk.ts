@@ -14,7 +14,7 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
 
   const payload = {
     method: 'POST',
-    url: `http://localhost:5000/${API_ENDPOINTS[userType]}/login`,
+    url: `${process.env.API_BASE_URL}/${API_ENDPOINTS[userType]}/${process.env.LOGIN}`,
     data: credentials,
   };
 
