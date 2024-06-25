@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Snackbar from '@/components/Snackbar';
 import Layout from '@/components/Layout';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
@@ -14,7 +13,6 @@ const Home = () => {
 
   return (
     <Layout>
-      <Snackbar />
       {userType === USER_TYPES.customer && <Customer />}
       {userType === USER_TYPES.restaurant && <Restaurant />}
       {userType === USER_TYPES.deliveryAgent && <DeliveryAgent />}

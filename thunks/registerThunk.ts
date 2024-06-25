@@ -29,7 +29,7 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
 
   const payload = {
     method: 'POST',
-    url: `http://localhost:5000/${API_ENDPOINTS[userType]}/register`,
+    url: `${process.env.API_BASE_URL}/${API_ENDPOINTS[userType]}/${process.env.REGISTER}`,
     data: reqBody
   };
   
