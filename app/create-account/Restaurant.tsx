@@ -4,13 +4,15 @@ import { updateRestaurantDetails } from '@/store/slices/centralDataSlice';
 import { RestaurantDetails } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const Restaurant = () => {
+interface RestaurantProps {
+  restaurantDetails: RestaurantDetails;
+}
+
+const Restaurant = (props: RestaurantProps) => {
   const dispatch = useDispatch();
-  const restaurantDetails: RestaurantDetails = useSelector(
-    (state: any) => state.centralDataSlice.restaurantDetails
-  );
+  const { restaurantDetails } = props;
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(

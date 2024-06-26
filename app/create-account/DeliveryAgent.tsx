@@ -4,13 +4,15 @@ import { updateDeliveryAgentDetails } from '@/store/slices/centralDataSlice';
 import { DeliveryAgentDetails } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const DeliveryAgent = () => {
+interface DeliveryAgentProps {
+  deliveryAgentDetails: DeliveryAgentDetails;
+}
+
+const DeliveryAgent = (props: DeliveryAgentProps) => {
   const dispatch = useDispatch();
-  const deliveryAgentDetails: DeliveryAgentDetails = useSelector(
-    (state: any) => state.centralDataSlice.deliveryAgentDetails
-  );
+  const { deliveryAgentDetails } = props;
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(
