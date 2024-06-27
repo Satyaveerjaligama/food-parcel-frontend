@@ -4,13 +4,16 @@ import { updateCustomerDetails } from '@/store/slices/centralDataSlice';
 import { CustomerDetails } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-const Customer = () => {
+interface CustomerProps {
+  customerDetails: CustomerDetails;
+  errors: any;
+}
+
+const Customer = (props: CustomerProps) => {
   const dispatch = useDispatch();
-  const customerDetails: CustomerDetails = useSelector(
-    (state: any) => state.centralDataSlice.customerDetails
-  );
+  const { customerDetails, errors } = props;
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(
@@ -27,6 +30,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.fullName}
         onChange={(event) => onChangeHandler(event, 'fullName')}
+        helperText={errors.fullName ?? ''}
+        error={Boolean(errors.fullName)}
       />
       <TextField
         label="Email id"
@@ -35,6 +40,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.emailId}
         onChange={(event) => onChangeHandler(event, 'emailId')}
+        helperText={errors.emailId ?? ''}
+        error={Boolean(errors.emailId)}
       />
       <TextField
         label="Phone number"
@@ -43,6 +50,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.phoneNumber}
         onChange={(event) => onChangeHandler(event, 'phoneNumber')}
+        helperText={errors.phoneNumber ?? ''}
+        error={Boolean(errors.phoneNumber)}
       />
       <TextField
         label="Address"
@@ -51,6 +60,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.address}
         onChange={(event) => onChangeHandler(event, 'address')}
+        helperText={errors.address ?? ''}
+        error={Boolean(errors.address)}
       />
       <TextField
         label="Pincode"
@@ -59,6 +70,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.pincode}
         onChange={(event) => onChangeHandler(event, 'pincode')}
+        helperText={errors.pincode ?? ''}
+        error={Boolean(errors.pincode)}
       />
       <TextField
         type="password"
@@ -68,6 +81,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.password}
         onChange={(event) => onChangeHandler(event, 'password')}
+        helperText={errors.password ?? ''}
+        error={Boolean(errors.password)}
       />
       <TextField
         type="password"
@@ -77,6 +92,8 @@ const Customer = () => {
         className="mb-4"
         value={customerDetails.reEnteredPassword}
         onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
+        helperText={errors.reEnteredPassword ?? ''}
+        error={Boolean(errors.reEnteredPassword)}
       />
     </Box>
   );
