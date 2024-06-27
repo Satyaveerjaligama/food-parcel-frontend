@@ -5,11 +5,10 @@ import { CustomerDetails } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Errors } from './page';
 
 interface CustomerProps {
   customerDetails: CustomerDetails;
-  errors: Errors;
+  errors: any;
 }
 
 const Customer = (props: CustomerProps) => {

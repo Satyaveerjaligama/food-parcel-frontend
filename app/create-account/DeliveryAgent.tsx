@@ -8,11 +8,12 @@ import { useDispatch } from 'react-redux';
 
 interface DeliveryAgentProps {
   deliveryAgentDetails: DeliveryAgentDetails;
+  errors: any;
 }
 
 const DeliveryAgent = (props: DeliveryAgentProps) => {
   const dispatch = useDispatch();
-  const { deliveryAgentDetails } = props;
+  const { deliveryAgentDetails, errors } = props;
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(
@@ -32,6 +33,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.fullName}
         onChange={(event) => onChangeHandler(event, 'fullName')}
+        helperText={errors.fullName ?? ''}
+        error={Boolean(errors.fullName)}
       />
       <TextField
         label="Email Id"
@@ -40,6 +43,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.emailId}
         onChange={(event) => onChangeHandler(event, 'emailId')}
+        helperText={errors.emailId ?? ''}
+        error={Boolean(errors.emailId)}
       />
       <TextField
         label="Phone number"
@@ -48,6 +53,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.phoneNumber}
         onChange={(event) => onChangeHandler(event, 'phoneNumber')}
+        helperText={errors.phoneNumber ?? ''}
+        error={Boolean(errors.phoneNumber)}
       />
       <TextField
         label="Aadhaar number"
@@ -56,6 +63,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.aadhaarNumber}
         onChange={(event) => onChangeHandler(event, 'aadhaarNumber')}
+        helperText={errors.aadhaarNumber ?? ''}
+        error={Boolean(errors.aadhaarNumber)}
       />
       <TextField
         label="Vehicle model"
@@ -64,6 +73,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.vehicleModel}
         onChange={(event) => onChangeHandler(event, 'vehicleModel')}
+        helperText={errors.vehicleModel ?? ''}
+        error={Boolean(errors.vehicleModel)}
       />
       <TextField
         label="Vehicle number"
@@ -72,6 +83,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.vehicleNumber}
         onChange={(event) => onChangeHandler(event, 'vehicleNumber')}
+        helperText={errors.vehicleNumber ?? ''}
+        error={Boolean(errors.vehicleNumber)}
       />
       <TextField
         label="Address"
@@ -80,6 +93,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.address}
         onChange={(event) => onChangeHandler(event, 'address')}
+        helperText={errors.address ?? ''}
+        error={Boolean(errors.address)}
       />
       <TextField
         label="Pincode of delivery location"
@@ -88,6 +103,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.availabilityPincode}
         onChange={(event) => onChangeHandler(event, 'availabilityPincode')}
+        helperText={errors.availabilityPincode ?? ''}
+        error={Boolean(errors.availabilityPincode)}
       />
       <TextField
         type="password"
@@ -97,6 +114,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.password}
         onChange={(event) => onChangeHandler(event, 'password')}
+        helperText={errors.password ?? ''}
+        error={Boolean(errors.password)}
       />
       <TextField
         type="password"
@@ -106,6 +125,8 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
         className="mb-4"
         value={deliveryAgentDetails.reEnteredPassword}
         onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
+        helperText={errors.reEnteredPassword ?? ''}
+        error={Boolean(errors.reEnteredPassword)}
       />
     </Box>
   );

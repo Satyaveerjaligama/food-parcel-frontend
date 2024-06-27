@@ -8,11 +8,12 @@ import { useDispatch } from 'react-redux';
 
 interface RestaurantProps {
   restaurantDetails: RestaurantDetails;
+  errors: any;
 }
 
 const Restaurant = (props: RestaurantProps) => {
   const dispatch = useDispatch();
-  const { restaurantDetails } = props;
+  const { restaurantDetails, errors } = props;
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(
@@ -29,6 +30,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.restaurantName}
         onChange={(event) => onChangeHandler(event, 'restaurantName')}
+        helperText={errors.restaurantName ?? ''}
+        error={Boolean(errors.restaurantName)}
       />
       <TextField
         label="Restaurant type"
@@ -37,6 +40,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.restaurantType}
         onChange={(event) => onChangeHandler(event, 'restaurantType')}
+        helperText={errors.restaurantType ?? ''}
+        error={Boolean(errors.restaurantType)}
       />
       <TextField
         label="Address"
@@ -45,6 +50,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.address}
         onChange={(event) => onChangeHandler(event, 'address')}
+        helperText={errors.address ?? ''}
+        error={Boolean(errors.address)}
       />
       <TextField
         label="Pincode"
@@ -53,6 +60,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.pincode}
         onChange={(event) => onChangeHandler(event, 'pincode')}
+        helperText={errors.pincode ?? ''}
+        error={Boolean(errors.pincode)}
       />
       <TextField
         label="Email id"
@@ -61,6 +70,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.emailId}
         onChange={(event) => onChangeHandler(event, 'emailId')}
+        helperText={errors.emailId ?? ''}
+        error={Boolean(errors.emailId)}
       />
       <TextField
         label="Phone number"
@@ -69,6 +80,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.phoneNumber}
         onChange={(event) => onChangeHandler(event, 'phoneNumber')}
+        helperText={errors.phoneNumber ?? ''}
+        error={Boolean(errors.phoneNumber)}
       />
       <TextField
         label="GST number"
@@ -77,6 +90,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.gstNumber}
         onChange={(event) => onChangeHandler(event, 'gstNumber')}
+        helperText={errors.gstNumber ?? ''}
+        error={Boolean(errors.gstNumber)}
       />
       <TextField
         label="FSSAI license number"
@@ -85,6 +100,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.fssaiNumber}
         onChange={(event) => onChangeHandler(event, 'fssaiNumber')}
+        helperText={errors.fssaiNumber ?? ''}
+        error={Boolean(errors.fssaiNumber)}
       />
       <TextField
         type="password"
@@ -94,6 +111,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.password}
         onChange={(event) => onChangeHandler(event, 'password')}
+        helperText={errors.password ?? ''}
+        error={Boolean(errors.password)}
       />
       <TextField
         type="password"
@@ -103,6 +122,8 @@ const Restaurant = (props: RestaurantProps) => {
         className="mb-4"
         value={restaurantDetails.reEnteredPassword}
         onChange={(event) => onChangeHandler(event, 'reEnteredPassword')}
+        helperText={errors.reEnteredPassword ?? ''}
+        error={Boolean(errors.reEnteredPassword)}
       />
     </Box>
   );

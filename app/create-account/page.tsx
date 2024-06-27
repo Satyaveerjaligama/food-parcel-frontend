@@ -25,32 +25,12 @@ import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import Snackbar from '@/components/Snackbar';
 import UserNavigation from '@/components/UserNavigation';
-import registerSchema from '@/utilities/validations/registerSchema';
-
-export interface Errors {
-  fullName: string;
-  emailId: string;
-  phoneNumber: string;
-  address: string;
-  pincode: string;
-  password: string;
-  reEnteredPassword: string;
-}
-
-const errorInitialState: Errors = {
-  fullName: '',
-  emailId: '',
-  phoneNumber: '', 
-  address: '',
-  pincode: '',
-  password: '',
-  reEnteredPassword: '',
-};
+import {customerRegistionSchema, deliveryAgentRegistrationSchema, restaurantRegistrationSchema} from '@/utilities/validations/registerSchema';
 
 const CreateAccount = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const [errors, setErrors] = useState<Errors>(errorInitialState);
+  const [errors, setErrors] = useState<any>({});
   const userType: UserType = useSelector(
     (state: RootState) => state.centralDataSlice.userType
   );
@@ -65,17 +45,34 @@ const CreateAccount = () => {
   );
 
   const registerBtnClick = async() => {
-    const isDetailsValid = await registerSchema.isValid(customerDetails);
+    let schema: any;
+    let detailsToValidate;
+    switch(userType) {
+    case USER_TYPES.customer:
+      schema = customerRegistionSchema;
+      detailsToValidate = {...customerDetails};
+      break;
+    case USER_TYPES.restaurant:
+      schema = restaurantRegistrationSchema;
+      detailsToValidate = {...restaurantDetails};
+      break;
+    case USER_TYPES.deliveryAgent:
+      schema = deliveryAgentRegistrationSchema;
+      detailsToValidate = {...deliveryAgentDetails};
+      break;
+    }
+
+    const isDetailsValid = await schema.isValid(detailsToValidate);
     if (isDetailsValid) {
-      setErrors(errorInitialState);
+      setErrors({});
       dispatch(register({ router }));
     } else {
       try {
-        await registerSchema.validate(customerDetails, { abortEarly: false });
+        await schema.validate(detailsToValidate, { abortEarly: false });
       } catch(errors: any) {
-        const formErrors: Errors = {...errorInitialState};
+        const formErrors: any = {};
         errors.inner.forEach((error: any) => {
-          formErrors[error.path as keyof Errors] = error.message;
+          formErrors[error.path] = error.message;
         });
         setErrors(formErrors);
       }
@@ -101,10 +98,10 @@ const CreateAccount = () => {
               <Customer customerDetails={customerDetails} errors={errors}/>
             )}
             {userType === USER_TYPES.restaurant && (
-              <Restaurant restaurantDetails={restaurantDetails} />
+              <Restaurant restaurantDetails={restaurantDetails} errors={errors} />
             )}
             {userType === USER_TYPES.deliveryAgent && (
-              <DeliveryAgent deliveryAgentDetails={deliveryAgentDetails} />
+              <DeliveryAgent deliveryAgentDetails={deliveryAgentDetails} errors={errors} />
             )}
             <Box className="flex justify-between mt-3">
               <Typography className="text-sm self-center">
