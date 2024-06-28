@@ -119,7 +119,7 @@ const DeliveryAgent = (props: DeliveryAgentProps) => {
       />
       <TextField
         type="password"
-        label="Re-enter Password"
+        label="Confirm Password"
         size="small"
         fullWidth
         className="mb-4"

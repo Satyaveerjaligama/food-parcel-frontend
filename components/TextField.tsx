@@ -15,10 +15,25 @@ interface TextFieldProps {
     placeholder ?: string;
     error?: boolean;
     helperText?: string;
+    InputLabelProps?: object;
 }
 
 const TextField = (props: TextFieldProps) => {
-  const {type, className, label, size, variant, value, fullWidth, disabled, onChange, placeholder, error, helperText} = props;
+  const {
+    type,
+    className,
+    label,
+    size,
+    variant,
+    value,
+    fullWidth,
+    disabled,
+    onChange,
+    placeholder,
+    error,
+    helperText,
+    InputLabelProps
+  } = props;
   return (
     <MuiTextField
       type={type}
@@ -33,6 +48,7 @@ const TextField = (props: TextFieldProps) => {
       placeholder={placeholder}
       helperText={error ? helperText : ''}
       error={error}
+      InputLabelProps={InputLabelProps}
     />
   );
 };

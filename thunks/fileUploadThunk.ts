@@ -1,0 +1,27 @@
+import { openSnackbar } from '@/store/slices/utilitySlice';
+import { SNACKBAR_STATUS } from '@/utilities/constants';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, thunkAPI: any) => {
+  const apiPayload = {
+    method: 'POST',
+    url: 'http://localhost:5000/restaurant/upload/restaurant_455223',
+    data: formData
+  };
+
+  axios(apiPayload)
+    .then(()=>{
+      thunkAPI.dispatch(openSnackbar({
+        open: true,
+        message: 'success',
+        status: SNACKBAR_STATUS.success})
+      );
+    }).catch(()=>{
+      thunkAPI.dispatch(openSnackbar({
+        open: true,
+        message: 'failed',
+        status: SNACKBAR_STATUS.error}));
+    });
+});
