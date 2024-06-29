@@ -1,4 +1,4 @@
-import { openSnackbar } from '@/store/slices/utilitySlice';
+import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -7,10 +7,11 @@ import axios from 'axios';
 export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, thunkAPI: any) => {
   const apiPayload = {
     method: 'POST',
-    url: 'http://localhost:5000/restaurant/upload/restaurant_455223',
+    url: 'http://localhost:5000/file/upload/restaurant_455223',
     data: formData
   };
 
+  thunkAPI.dispatch(setLoader(true));
   axios(apiPayload)
     .then(()=>{
       thunkAPI.dispatch(openSnackbar({
@@ -24,4 +25,5 @@ export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, th
         message: 'failed',
         status: SNACKBAR_STATUS.error}));
     });
+  thunkAPI.dispatch(setLoader(false));
 });
