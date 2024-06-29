@@ -47,6 +47,12 @@ export interface DeliveryAgentDetails {
   reEnteredPassword: string;
 }
 
+export interface UserDetails {
+  name: string;
+  userId: string;
+  pincode: string;
+}
+
 export const API_ENDPOINTS:{[key: UserType]: string} = {
   customer: 'customer',
   restaurant: 'restaurant',

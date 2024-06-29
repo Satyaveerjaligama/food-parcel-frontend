@@ -51,6 +51,8 @@ const LoginPage = () => {
     dispatch(updateCredentials({ ...credentials, [type]: event.target.value }));
   };
 
+  /* This function will check for the possible errors.If all the fields satify the requirement, then we will hit login api.
+  If any mandatory field is not filled, then related error message will be shown.*/
   const loginBtnClick = async() => {
     const isCredentialsValid = await loginSchema.isValid(credentials);
     if(isCredentialsValid) {
@@ -60,11 +62,11 @@ const LoginPage = () => {
       try {
         await loginSchema.validate(credentials, { abortEarly: false });
       } catch(err: any) {
-        const formatErrors: Errors = errorInitialState;
+        const formattedErrors: Errors = errorInitialState;
         err.inner.forEach((error: any) => {
-          formatErrors[error.path as keyof Errors] = error.message; 
+          formattedErrors[error.path as keyof Errors] = error.message; 
         });
-        setErrors(formatErrors);
+        setErrors(formattedErrors);
       }
     }
   };

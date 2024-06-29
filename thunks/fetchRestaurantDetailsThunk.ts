@@ -16,7 +16,6 @@ export const fetchRestaurantDetails = createAsyncThunk(
     thunkAPI.dispatch(setLoader(true));
     await axios(apiData)
       .then((res) => {
-        console.log(res);
         thunkAPI.dispatch(updateRestaurantDetails(res.data));
       })
       .catch((err) => {

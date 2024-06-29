@@ -5,6 +5,7 @@ import {
   CustomerDetails,
   RestaurantDetails,
   DeliveryAgentDetails,
+  UserDetails,
 } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -14,7 +15,7 @@ interface CentralSliceInitialState {
   customerDetails: CustomerDetails;
   restaurantDetails: RestaurantDetails;
   deliveryAgentDetails: DeliveryAgentDetails;
-  activeUserId: string,
+  userDetails: UserDetails;
 }
 
 const initialState: CentralSliceInitialState = {
@@ -56,7 +57,11 @@ const initialState: CentralSliceInitialState = {
     password: '',
     reEnteredPassword: '',
   },
-  activeUserId: '',
+  userDetails: {
+    name: '',
+    userId: '',
+    pincode: ''
+  }
 };
 
 const centralSlice = createSlice({
@@ -78,8 +83,8 @@ const centralSlice = createSlice({
     updateDeliveryAgentDetails: (state, action) => {
       state.deliveryAgentDetails = action.payload;
     },
-    updateActiveUserId: (state, action) => {
-      state.activeUserId = action.payload[state.userType+'Id'];
+    updateUserDetails: (state, action) => {
+      state.userDetails = action.payload;
     }
   },
 });
@@ -92,5 +97,5 @@ export const {
   updateCustomerDetails,
   updateRestaurantDetails,
   updateDeliveryAgentDetails,
-  updateActiveUserId
+  updateUserDetails
 } = centralSlice.actions;

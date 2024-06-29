@@ -7,11 +7,11 @@ import axios from 'axios';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
-  const activeUserId: string = getState.centralDataSlice.activeUserId;
+  const userId: string = getState.centralDataSlice.userDetails.userId;
 
   const apiPayload = {
     method: 'POST',
-    url: `http://localhost:5000/file/upload/${activeUserId}`,
+    url: `http://localhost:5000/file/upload/${userId}`,
     data: formData
   };
 
