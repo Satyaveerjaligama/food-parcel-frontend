@@ -9,11 +9,10 @@ import { useRouter } from 'next/navigation';
 import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store/store';
 import { fileUpload } from '@/thunks/fileUploadThunk';
 import Image from 'next/image';
-import { USER_TYPES } from '@/utilities/constants';
 
 const MyAccount = () => {
   const router = useRouter();
@@ -21,6 +20,7 @@ const MyAccount = () => {
   const fileRef: any = useRef(null);
   const [filePreview, setFilePreview] = useState<any>(null);
   const [, setFile] = useState(null);
+  const userType: string = useSelector((state: RootState) => state.centralDataSlice.userType);
 
   const handleChange = (event: any) => {
     if(event.target.files && event.target.files.length > 0) {
@@ -40,7 +40,7 @@ const MyAccount = () => {
       }
       
       form.append('file', fileData);
-      form.append('type', USER_TYPES.restaurant);
+      form.append('type', userType);
       dispatch(fileUpload(form));
     }
   };
@@ -60,6 +60,7 @@ const MyAccount = () => {
           <Badge
             overlap='circular'
             anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            className='cursor-pointer'
             badgeContent={
               <>
                 <EditRoundedIcon className='bg-gray-700 rounded-3xl text-white p-0.5' fontSize='small' onClick={handleButtonClick} />

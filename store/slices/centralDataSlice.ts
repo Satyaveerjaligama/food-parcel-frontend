@@ -14,6 +14,7 @@ interface CentralSliceInitialState {
   customerDetails: CustomerDetails;
   restaurantDetails: RestaurantDetails;
   deliveryAgentDetails: DeliveryAgentDetails;
+  activeUserId: string,
 }
 
 const initialState: CentralSliceInitialState = {
@@ -55,6 +56,7 @@ const initialState: CentralSliceInitialState = {
     password: '',
     reEnteredPassword: '',
   },
+  activeUserId: '',
 };
 
 const centralSlice = createSlice({
@@ -76,6 +78,9 @@ const centralSlice = createSlice({
     updateDeliveryAgentDetails: (state, action) => {
       state.deliveryAgentDetails = action.payload;
     },
+    updateActiveUserId: (state, action) => {
+      state.activeUserId = action.payload[state.userType+'Id'];
+    }
   },
 });
 
@@ -87,4 +92,5 @@ export const {
   updateCustomerDetails,
   updateRestaurantDetails,
   updateDeliveryAgentDetails,
+  updateActiveUserId
 } = centralSlice.actions;
