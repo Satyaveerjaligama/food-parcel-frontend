@@ -5,6 +5,7 @@ interface CustomerSliceInitialState {
     restaurantName: string;
     restaurantId: string;
     restaurantType: string[];
+    image: string;
   }[];
   restaurantDetails: {
     restaurantName: string;

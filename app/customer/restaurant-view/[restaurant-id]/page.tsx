@@ -16,7 +16,7 @@ const RestaurantPage = () => {
       const url = new URL(window.location.href);
       const splitPathname = url.pathname.split('/');
       console.log(splitPathname);
-      if(splitPathname.length === 4) {
+      if(splitPathname.length === 5) {
         const restaurantId = splitPathname[splitPathname.length - 1];
         dispatch(fetchRestaurantDetails(restaurantId));
       }

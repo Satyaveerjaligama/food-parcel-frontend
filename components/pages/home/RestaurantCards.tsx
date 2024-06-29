@@ -27,7 +27,7 @@ const RestaurantCards = () => {
             <CardActionArea className="flex justify-start" onClick={()=>hotelCardOnClickHandler(restaurant.restaurantId)}>
               <CardMedia>
                 <Image
-                  src="/next.svg"
+                  src={`data:image/png;base64,${restaurant.image}`}
                   alt="sample image"
                   width={100}
                   height={100}
