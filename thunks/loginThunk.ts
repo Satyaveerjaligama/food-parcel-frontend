@@ -1,4 +1,4 @@
-import { updateCustomerDetails } from '@/store/slices/centralDataSlice';
+import { updateActiveUserId, updateCustomerDetails } from '@/store/slices/centralDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { API_ENDPOINTS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
@@ -26,6 +26,7 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
       status: SNACKBAR_STATUS.success,
     }));
     thunkAPI.dispatch(updateCustomerDetails(res.data[0]));
+    thunkAPI.dispatch(updateActiveUserId(res.data[0]));
     router.push('/home');
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({
