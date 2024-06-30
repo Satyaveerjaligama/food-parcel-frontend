@@ -8,6 +8,7 @@ interface UtilitySliceInitialState {
       message: string,
       status: AlertColor,
     };
+    modal: boolean,
 }
 
 const utilitySliceInitialState: UtilitySliceInitialState = {
@@ -17,6 +18,7 @@ const utilitySliceInitialState: UtilitySliceInitialState = {
     message: '',
     status: 'success',
   },
+  modal: false,
 };
 
 const utilitySlice = createSlice({
@@ -28,10 +30,13 @@ const utilitySlice = createSlice({
     },
     openSnackbar: (state, action) => {
       state.snackbar = action.payload;
+    },
+    setModal: (state, action) => {
+      state.modal = action.payload;
     }
   }
 });
 
 export default utilitySlice.reducer;
 
-export const {setLoader, openSnackbar} = utilitySlice.actions;
+export const {setLoader, openSnackbar, setModal} = utilitySlice.actions;

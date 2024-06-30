@@ -36,7 +36,7 @@ const RestaurantCards = () => {
               <CardContent>
                 <Typography>{restaurant.restaurantName}</Typography>
                 <Typography className="text-gray-400 text-sm">
-                  {restaurant.restaurantType}
+                  {restaurant?.restaurantType.join(' | ')}
                 </Typography>
               </CardContent>
             </CardActionArea>

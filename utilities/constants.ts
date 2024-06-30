@@ -53,6 +53,16 @@ export interface UserDetails {
   pincode: string;
 }
 
+export interface DropDownMenuItem {
+  label: string | number;
+  value: string | number;
+}
+
+export interface RadioGroupOptions {
+  label: string | number;
+  value: string | number | boolean;
+}
+
 export const API_ENDPOINTS:{[key: UserType]: string} = {
   customer: 'customer',
   restaurant: 'restaurant',
@@ -75,3 +85,64 @@ export const SNACKBAR_STATUS = {
   info: 'info',
   error: 'error',
 };
+
+export const CUISINE_TYPES: DropDownMenuItem[] = [
+  {
+    label: 'Indian',
+    value: 'Indian'
+  },
+  {
+    label: 'Chinese',
+    value: 'Chinese'
+  },
+  {
+    label: 'Continental',
+    value: 'Continental'
+  },
+  {
+    label: 'American',
+    value: 'American'
+  },
+  {
+    label: 'Italian',
+    value: 'Italian'
+  },
+  {
+    label: 'Japanese',
+    value: 'Japanese'
+  }
+];
+
+export const MENU_ITEM_CATEGORIES: DropDownMenuItem[] = [
+  {
+    label: 'Starter',
+    value: 'Starter'
+  },
+  {
+    label: 'Breads',
+    value: 'Breads'
+  },
+  {
+    label: 'Main Course',
+    value: 'Main Course'
+  },
+  {
+    label: 'Rice and Biryani',
+    value: 'Rice and Biryani'
+  },
+  {
+    label: 'Desserts',
+    value: 'Desserts'
+  },
+];
+
+export const RADIO_GRP_YES_NO: RadioGroupOptions[] = [
+  {
+    label: 'Yes',
+    value: true
+  },
+  {
+    label: 'No',
+    value: false
+  }
+];
