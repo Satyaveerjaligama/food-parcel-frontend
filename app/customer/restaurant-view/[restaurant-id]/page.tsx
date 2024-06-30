@@ -12,21 +12,18 @@ const RestaurantPage = () => {
   const restaurantDetails = useSelector((state: RootState) => state.customerSlice.restaurantDetails);
 
   useEffect(() => {
-    async function hitApi() {
-      const url = new URL(window.location.href);
-      const splitPathname = url.pathname.split('/');
-      if(splitPathname.length === 5) {
-        const restaurantId = splitPathname[splitPathname.length - 1];
-        dispatch(fetchRestaurantDetails(restaurantId));
-      }
+    const url = new URL(window.location.href);
+    const splitPathname = url.pathname.split('/');
+    if(splitPathname.length === 5) {
+      const restaurantId = splitPathname[splitPathname.length - 1];
+      dispatch(fetchRestaurantDetails(restaurantId));
     }
-    hitApi();
   }, []);
 
   return (
     <Layout>
       <Typography className='text-center' variant='h4'>{restaurantDetails.restaurantName}</Typography>
-      <Typography className="text-gray-400 text-base text-center">{restaurantDetails.restaurantType}</Typography>
+      <Typography className="text-gray-400 text-base text-center">{restaurantDetails?.restaurantType.join(' | ')}</Typography>
       <Divider className='my-3'/>
       <MenuItems />
     </Layout>

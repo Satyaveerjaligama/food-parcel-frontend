@@ -10,12 +10,7 @@ const Customer = () => {
   const pincode = useSelector((state: RootState) => state.centralDataSlice.userDetails.pincode);
 
   useEffect(()=>{
-    async function hitApi() {
-      if(pincode) {
-        dispatch(fetchRestaurants());
-      }
-    }
-    hitApi();
+    dispatch(fetchRestaurants());
   },[pincode]);
 
   return (
