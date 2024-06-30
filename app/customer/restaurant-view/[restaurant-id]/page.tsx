@@ -15,7 +15,6 @@ const RestaurantPage = () => {
     async function hitApi() {
       const url = new URL(window.location.href);
       const splitPathname = url.pathname.split('/');
-      console.log(splitPathname);
       if(splitPathname.length === 5) {
         const restaurantId = splitPathname[splitPathname.length - 1];
         dispatch(fetchRestaurantDetails(restaurantId));

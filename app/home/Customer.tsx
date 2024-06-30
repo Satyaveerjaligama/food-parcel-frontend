@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Customer = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const pincode = useSelector((state: RootState) => state.centralDataSlice.customerDetails.pincode);
+  const pincode = useSelector((state: RootState) => state.centralDataSlice.userDetails.pincode);
 
   useEffect(()=>{
     async function hitApi() {

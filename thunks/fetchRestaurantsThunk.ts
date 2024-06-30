@@ -8,7 +8,7 @@ import axios from 'axios';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fetchRestaurants = createAsyncThunk('fetchRestaurants', async(_, thunkAPI: any)=>{
   const getState: RootState = thunkAPI.getState();
-  const pincode = getState.centralDataSlice.customerDetails.pincode;
+  const pincode: string = getState.centralDataSlice.userDetails.pincode;
 
   const payload = {
     method: 'GET',
@@ -17,7 +17,6 @@ export const fetchRestaurants = createAsyncThunk('fetchRestaurants', async(_, th
 
   thunkAPI.dispatch(setLoader(true));
   await axios(payload).then((res)=>{
-    console.log(res);
     thunkAPI.dispatch(updateRestaurantsList(res.data));
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({

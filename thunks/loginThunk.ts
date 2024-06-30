@@ -1,7 +1,7 @@
-import { updateActiveUserId, updateCustomerDetails } from '@/store/slices/centralDataSlice';
+import { updateUserDetails } from '@/store/slices/centralDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { API_ENDPOINTS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -14,8 +14,8 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
 
   const payload = {
     method: 'POST',
-    url: `${process.env.API_BASE_URL}/${API_ENDPOINTS[userType]}/${process.env.LOGIN}`,
-    data: credentials,
+    url: `${process.env.API_BASE_URL}/${process.env.LOGIN}`,
+    data: {...credentials, userType},
   };
 
   thunkAPI.dispatch(setLoader(true));
@@ -25,8 +25,7 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
       message: SNACKBAR_MESSAGES.loginSuccess,
       status: SNACKBAR_STATUS.success,
     }));
-    thunkAPI.dispatch(updateCustomerDetails(res.data[0]));
-    thunkAPI.dispatch(updateActiveUserId(res.data[0]));
+    thunkAPI.dispatch(updateUserDetails(res.data));
     router.push('/home');
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({
