@@ -17,7 +17,7 @@ const Menu = () => {
     <React.Fragment>
       <Grid container columnSpacing={3} rowSpacing={3} className='my-4'>
         <Grid item xs={12} sm={4} md={3}>
-          <Card onClick={addItem}>
+          <Card onClick={addItem} className='cursor-pointer'>
             <CardContent>
               <Typography>
                 + Add item

@@ -7,17 +7,17 @@ interface DropdownProps {
   value: string | number;
   className?: string;
   fullWidth?: boolean;
-  handleChange?: ((event: any) => void) | (() => void);
+  onChange?: ((event: any) => void) | (() => void);
   dropdownOptions?: DropDownMenuItem[];
 }
 
 const Dropdown = (props: DropdownProps) => {
-  const { label, value, handleChange, className, fullWidth, dropdownOptions } =
+  const { label, value, onChange, className, fullWidth, dropdownOptions } =
     props;
   return (
     <FormControl fullWidth={fullWidth} className={className}>
       <InputLabel>{label}</InputLabel>
-      <Select value={value} label={label} onChange={handleChange}>
+      <Select value={value} label={label} onChange={onChange}>
         {dropdownOptions?.map((item) => (
           <MenuItem value={item.value} key={item.value}>
             {item.label}

@@ -8,17 +8,17 @@ interface RadioGroupProps {
     label: string;
     className?: string;
     radioBtnsList: RadioGroupOptions[];
-    handleChange?: ((event: any) => void) | (() => void);
+    onChange?: ((event: any) => void) | (() => void);
 }
 
 const RadioGroup = (props: RadioGroupProps) => {
-  const {defaultValue, label, className, radioBtnsList, value, handleChange} = props;
+  const {defaultValue, label, className, radioBtnsList, value, onChange} = props;
   return (
     <FormControl className={className}>
       <FormLabel>{label}</FormLabel>
       <MuiRadioGroup
         defaultValue={defaultValue}
-        onChange={handleChange}
+        onChange={onChange}
         value={value}
       >
         {radioBtnsList.map((item)=>
