@@ -53,6 +53,16 @@ export interface UserDetails {
   pincode: string;
 }
 
+export interface MenuItem {
+  name: string;
+  price: number;
+  isVeg: boolean;
+  isAvailable: boolean;
+  type: string;
+  category: string;
+  mainIngredients: string;
+}
+
 export interface DropDownMenuItem {
   label: string | number;
   value: string | number;
@@ -77,6 +87,7 @@ export const SNACKBAR_MESSAGES = {
   registrationSuccess: 'Successfully Registered, Please proceed by logging in',
   failedToRegister: 'Something went wrong while registering',
   failedToFetchRestaurants: 'Something went wrong while getting the Restaurants information',
+  menuItemAdded: 'Item added to menu successfully'
 };
 
 export const SNACKBAR_STATUS = {
