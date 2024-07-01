@@ -10,12 +10,35 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { updateMenuItem } from '@/store/slices/restaurantDataSlice';
+import addMenuItemSchema from '@/utilities/validations/addMenuItemSchema';
 import { addMenuItem } from '@/thunks/addMenuItemThunk';
 import { setModal } from '@/store/slices/utilitySlice';
 import { restaurantDataInitialState } from '@/store/slices/restaurantDataSlice';
+import { useState } from 'react';
+
+interface Errors {
+  name: string;
+  price: string;
+  isVeg: string;
+  isAvailable: string;
+  type: string;
+  category: string;
+  mainIngredients: string;
+}
+
+const errorInitialState: Errors = {
+  name: '',
+  price: '',
+  isVeg: '',
+  isAvailable: '',
+  type: '',
+  category: '',
+  mainIngredients: '',
+};
 
 const AddMenuItem = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [errors, setErrors] = useState<Errors>(errorInitialState);
   const menuItem: MenuItem = useSelector((state: RootState) => state.restaurantSlice.menuItem);
 
   const handleChange = (event: any, fieldType: string, key: keyof MenuItem) => {
@@ -31,9 +54,23 @@ const AddMenuItem = () => {
   };
 
   const addBtnClick = async() => {
-    await dispatch(addMenuItem());
-    dispatch(setModal(false));
-    dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
+    const isMenuItemDetailsValid = await addMenuItemSchema.isValid(menuItem);
+    if(isMenuItemDetailsValid) {
+      setErrors(errorInitialState);
+      await dispatch(addMenuItem());
+      dispatch(setModal(false));
+      dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
+    } else {
+      try {
+        await addMenuItemSchema.validate(menuItem, {abortEarly: false});
+      } catch(err: any) {
+        const formattedErrors: Errors = {...errorInitialState};
+        err.inner.forEach((error: any) => {
+          formattedErrors[error.path as keyof Errors] = error.message;
+        });
+        setErrors(formattedErrors);
+      }
+    }
   };
 
   return (
@@ -45,6 +82,8 @@ const AddMenuItem = () => {
         fullWidth
         value={menuItem.name}
         onChange={(event)=>handleChange(event, 'textfield', 'name')}
+        helperText={errors.name}
+        error={Boolean(errors.name)}
       />
       <TextField 
         type='number'
@@ -53,6 +92,8 @@ const AddMenuItem = () => {
         fullWidth
         value={menuItem.price}
         onChange={(event)=>handleChange(event, 'textfield', 'price')}
+        helperText={errors.price}
+        error={Boolean(errors.price)}
       />
       <TextField 
         type='text'
@@ -61,6 +102,8 @@ const AddMenuItem = () => {
         fullWidth
         value={menuItem.mainIngredients}
         onChange={(event)=>handleChange(event, 'textfield', 'mainIngredients')}
+        helperText={errors.mainIngredients}
+        error={Boolean(errors.mainIngredients)}
       />
       <Dropdown
         label='Cuisine Type'
@@ -69,6 +112,8 @@ const AddMenuItem = () => {
         dropdownOptions={CUISINE_TYPES}
         value={menuItem.type}
         onChange={(event)=>handleChange(event, 'dropdown', 'type')}
+        helperText={errors.type}
+        error={Boolean(errors.type)}
       />
       <Dropdown
         label='Item Category'
@@ -77,6 +122,8 @@ const AddMenuItem = () => {
         dropdownOptions={MENU_ITEM_CATEGORIES}
         value={menuItem.category}
         onChange={(event)=>handleChange(event, 'dropdown', 'category')}
+        helperText={errors.category}
+        error={Boolean(errors.category)}
       />
       <RadioGroup 
         className='mt-4 block'
@@ -84,6 +131,8 @@ const AddMenuItem = () => {
         radioBtnsList={RADIO_GRP_YES_NO}
         value={menuItem.isVeg}
         onChange={(event)=>handleChange(event, 'radioBtn', 'isVeg')}
+        helperText={errors.isVeg}
+        error={Boolean(errors.isVeg)}
       />
       <RadioGroup 
         className='mt-4 block'
@@ -91,8 +140,10 @@ const AddMenuItem = () => {
         radioBtnsList={RADIO_GRP_YES_NO}
         value={menuItem.isAvailable}
         onChange={(event)=>handleChange(event, 'radioBtn', 'isAvailable')}
+        helperText={errors.isAvailable}
+        error={Boolean(errors.isAvailable)}
       />
-      <Box className='sticky bottom-0 pb-5 bg-white'>
+      <Box className='sticky bottom-0 pb-5 bg-white z-50'>
         <Button 
           label='Add'
           startIcon={<AddRoundedIcon />}

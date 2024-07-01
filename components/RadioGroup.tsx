@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RadioGroupOptions } from '@/utilities/constants';
-import { FormControl, FormControlLabel, FormLabel, RadioGroup as MuiRadioGroup, Radio } from '@mui/material';
+import { FormControl, FormControlLabel, FormHelperText, FormLabel, RadioGroup as MuiRadioGroup, Radio } from '@mui/material';
 
 interface RadioGroupProps {
     defaultValue?: number | string | boolean;
@@ -9,13 +9,16 @@ interface RadioGroupProps {
     className?: string;
     radioBtnsList: RadioGroupOptions[];
     onChange?: ((event: any) => void) | (() => void);
+    helperText?: string;
+    error?: boolean;
 }
 
 const RadioGroup = (props: RadioGroupProps) => {
-  const {defaultValue, label, className, radioBtnsList, value, onChange} = props;
+  const {defaultValue, label, className, radioBtnsList, value, onChange, helperText, error } = props;
   return (
-    <FormControl className={className}>
+    <FormControl className={className} error={error}>
       <FormLabel>{label}</FormLabel>
+      <FormHelperText>{helperText}</FormHelperText>
       <MuiRadioGroup
         defaultValue={defaultValue}
         onChange={onChange}
