@@ -10,7 +10,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { updateMenuItem } from '@/store/slices/restaurantDataSlice';
-import { addMenuItem } from '@/thunks/AddMenuItem';
+import { addMenuItem } from '@/thunks/addMenuItemThunk';
 import { setModal } from '@/store/slices/utilitySlice';
 import { restaurantDataInitialState } from '@/store/slices/restaurantDataSlice';
 
