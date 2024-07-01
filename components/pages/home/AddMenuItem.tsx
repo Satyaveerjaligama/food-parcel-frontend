@@ -53,11 +53,11 @@ const AddMenuItem = () => {
     }
   };
 
-  const addBtnClick = async() => {
+  const handleBtnClick = async(type: string) => {
     const isMenuItemDetailsValid = await addMenuItemSchema.isValid(menuItem);
     if(isMenuItemDetailsValid) {
       setErrors(errorInitialState);
-      await dispatch(addMenuItem());
+      await dispatch(addMenuItem(type));
       dispatch(setModal(false));
       dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
     } else {
@@ -144,14 +144,24 @@ const AddMenuItem = () => {
         error={Boolean(errors.isAvailable)}
       />
       <Box className='sticky bottom-0 pb-5 bg-white z-50'>
-        <Button 
-          label='Add'
-          startIcon={<AddRoundedIcon />}
-          variant='contained'
-          fullWidth
-          className='mt-4'
-          onClick={addBtnClick}
-        />
+        {menuItem.itemId ? 
+          <Button 
+            label='Update'
+            variant='contained'
+            fullWidth
+            className='mt-4'
+            onClick={()=>handleBtnClick('update')}
+          />
+          :
+          <Button 
+            label='Add'
+            startIcon={<AddRoundedIcon />}
+            variant='contained'
+            fullWidth
+            className='mt-4'
+            onClick={()=>handleBtnClick('add')}
+          />
+        }
       </Box>
     </Modal>
   );
