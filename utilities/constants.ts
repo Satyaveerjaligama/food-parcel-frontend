@@ -91,6 +91,7 @@ export const SNACKBAR_MESSAGES = {
   failedToFetchRestaurants: 'Something went wrong while getting the Restaurants information',
   menuItemAdded: 'Item added to menu successfully',
   menuItemUpdated: 'Item updated successfully',
+  menuItemDeleted: 'Item deleted successfully',
 };
 
 export const SNACKBAR_STATUS = {
@@ -101,9 +102,9 @@ export const SNACKBAR_STATUS = {
 };
 
 export const MENU_ITEM_ACTION_TYPES = {
-  add: 'add',
-  update: 'update',
-  delete: 'delete',
+  add: 'POST',
+  update: 'PATCH',
+  delete: 'DELETE',
 };
 
 export const CUISINE_TYPES: DropDownMenuItem[] = [
