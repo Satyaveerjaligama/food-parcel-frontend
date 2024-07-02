@@ -3,10 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 interface InitialState {
   menuItem: MenuItem,
+  menuItemsList: MenuItem [];
 }
 
 export const restaurantDataInitialState: InitialState = {
   menuItem: {
+    itemId: '',
     name: '',
     price: 0,
     isVeg: false,
@@ -14,7 +16,19 @@ export const restaurantDataInitialState: InitialState = {
     type: '',
     category: '',
     mainIngredients: '',
-  }
+    rating: 0,
+  },
+  menuItemsList: [{
+    itemId: '',
+    name: '',
+    price: 0,
+    isVeg: false,
+    isAvailable: false,
+    type: '',
+    category: '',
+    mainIngredients: '',
+    rating: 0,
+  }]
 };
 
 const restaurantData = createSlice({
@@ -24,9 +38,12 @@ const restaurantData = createSlice({
     updateMenuItem: (state, action) => {
       state.menuItem = action.payload;
     },
+    updateMenuItemsList: (state, action) => {
+      state.menuItemsList = action.payload;
+    }
   }
 });
 
 export default restaurantData.reducer;
 
-export const {updateMenuItem} = restaurantData.actions;
+export const {updateMenuItem, updateMenuItemsList} = restaurantData.actions;

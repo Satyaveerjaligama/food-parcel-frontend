@@ -54,6 +54,7 @@ export interface UserDetails {
 }
 
 export interface MenuItem {
+  itemId?: string;
   name: string;
   price: number;
   isVeg: boolean;
@@ -61,6 +62,7 @@ export interface MenuItem {
   type: string;
   category: string;
   mainIngredients: string;
+  rating?: number;
 }
 
 export interface DropDownMenuItem {
@@ -87,7 +89,8 @@ export const SNACKBAR_MESSAGES = {
   registrationSuccess: 'Successfully Registered, Please proceed by logging in',
   failedToRegister: 'Something went wrong while registering',
   failedToFetchRestaurants: 'Something went wrong while getting the Restaurants information',
-  menuItemAdded: 'Item added to menu successfully'
+  menuItemAdded: 'Item added to menu successfully',
+  menuItemUpdated: 'Item updated successfully',
 };
 
 export const SNACKBAR_STATUS = {
@@ -95,6 +98,12 @@ export const SNACKBAR_STATUS = {
   warning: 'warning',
   info: 'info',
   error: 'error',
+};
+
+export const MENU_ITEM_ACTION_TYPES = {
+  add: 'add',
+  update: 'update',
+  delete: 'delete',
 };
 
 export const CUISINE_TYPES: DropDownMenuItem[] = [
