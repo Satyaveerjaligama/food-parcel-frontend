@@ -9,6 +9,7 @@ const nextConfig = {
     FETCH_RESTAURANT_DETAILS: process.env.FETCH_RESTAURANT_DETAILS,
     GET_MENU_ITEMS: process.env.GET_MENU_ITEMS,
     MENU_ITEM: process.env.MENU_ITEM,
+    FILE_UPLOAD: process.env.FILE_UPLOAD,
   },
   basePath: '/food-parcel'
 };

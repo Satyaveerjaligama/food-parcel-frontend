@@ -3,6 +3,7 @@ import Layout from '@/components/Layout';
 import MenuItems from '@/components/pages/restaurant-view/MenuItems';
 import { AppDispatch, RootState } from '@/store/store';
 import { fetchRestaurantDetails } from '@/thunks/fetchRestaurantDetailsThunk';
+import getMenuItems from '@/thunks/getMenuItems';
 import { Divider, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,6 +18,7 @@ const RestaurantPage = () => {
     if(splitPathname.length === 5) {
       const restaurantId = splitPathname[splitPathname.length - 1];
       dispatch(fetchRestaurantDetails(restaurantId));
+      dispatch(getMenuItems(restaurantId));
     }
   }, []);
 

@@ -11,7 +11,7 @@ export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, th
 
   const apiPayload = {
     method: 'POST',
-    url: `http://localhost:5000/file/upload/${id}`,
+    url: `${process.env.API_BASE_URL}/${process.env.FILE_UPLOAD}/${id}`,
     data: formData
   };
 

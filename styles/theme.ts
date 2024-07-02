@@ -20,7 +20,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: '10px',
-          boxShadow: '0px 1px 3px black',
+          boxShadow: '10px 10px 20px #babecc,-10px -10px 20px #ffffff'
         }
       }
     },
