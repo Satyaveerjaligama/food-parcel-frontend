@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { updateMenuItemsList } from '@/store/slices/restaurantDataSlice';
-import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
+import { openSnackbar, setLoader, setModal, updateIdForFileUpload } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { MENU_ITEM_ACTION_TYPES, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import { MENU_ITEM_ACTION_TYPES, MODAL_TYPES, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -35,13 +35,23 @@ export const addMenuItem = createAsyncThunk('addMenuItem', async(type: string, t
     const apiRes = await axios(requestConfig);
 
     let snackBarMessage;
-    if([MENU_ITEM_ACTION_TYPES.update, MENU_ITEM_ACTION_TYPES.delete].includes(type) && apiRes.status === 200 && apiRes.data) {
+    if(apiRes.status === 200 &&  apiRes.data && [MENU_ITEM_ACTION_TYPES.update, MENU_ITEM_ACTION_TYPES.delete].includes(type)) {
       thunkAPI.dispatch(updateMenuItemsList(apiRes.data));
       snackBarMessage = type === MENU_ITEM_ACTION_TYPES.update ? SNACKBAR_MESSAGES.menuItemUpdated : SNACKBAR_MESSAGES.menuItemDeleted;
-    } else if (type === MENU_ITEM_ACTION_TYPES.add && apiRes.status === 201 && apiRes.data) {
-      thunkAPI.dispatch(updateMenuItemsList(apiRes.data.allMenuItems));
+      thunkAPI.dispatch(setModal({
+        open: false,
+        type: ''
+      }));
+    } else if (apiRes.status === 201 && apiRes.data && type === MENU_ITEM_ACTION_TYPES.add ) {
+      thunkAPI.dispatch(updateMenuItemsList(apiRes.data?.allMenuItems));
+      thunkAPI.dispatch(updateIdForFileUpload(apiRes.data?.addedItem?.itemId));
+      thunkAPI.dispatch(setModal({
+        open: true,
+        type: MODAL_TYPES.fileUpload
+      }));
       snackBarMessage = SNACKBAR_MESSAGES.menuItemUpdated;
     }
+    
     thunkAPI.dispatch(openSnackbar({
       open: true,
       message: snackBarMessage,

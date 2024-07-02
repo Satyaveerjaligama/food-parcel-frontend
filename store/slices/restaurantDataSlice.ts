@@ -17,6 +17,7 @@ export const restaurantDataInitialState: InitialState = {
     category: '',
     mainIngredients: '',
     rating: 0,
+    image: '',
   },
   menuItemsList: [{
     itemId: '',
@@ -28,6 +29,7 @@ export const restaurantDataInitialState: InitialState = {
     category: '',
     mainIngredients: '',
     rating: 0,
+    image: '',
   }]
 };
 

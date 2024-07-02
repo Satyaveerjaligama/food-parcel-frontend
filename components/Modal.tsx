@@ -6,26 +6,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const Modal = (props: any) => {
-  const {children, title, fullWidth, maxWidth, contentClassName} = props;
+  const {children, title, fullWidth, maxWidth, contentClassName, hideCloseButton} = props;
   const dispatch = useDispatch();
   const modal = useSelector((state: RootState) => state.utilitySlice.modal);
 
   const handleClose = () => {
-    dispatch(setModal(false));
+    dispatch(setModal({
+      open: false,
+      type: ''
+    }));
   };
 
   return (
     <Dialog
-      open={modal}
+      open={modal.open}
       onClose={handleClose}
       fullWidth={fullWidth}
       maxWidth={maxWidth}
     >
       <DialogTitle className='flex justify-between items-center'>
         <Typography className='text-xl'>{title}</Typography>
+        {!hideCloseButton &&
         <IconButton onClick={handleClose}>
           <CloseRoundedIcon className='text-rose-600 cursor-pointer' />
         </IconButton>
+        }
       </DialogTitle>
       <DialogContent className={contentClassName}>
         {children}

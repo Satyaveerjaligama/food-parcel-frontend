@@ -28,7 +28,7 @@ const RestaurantCards = () => {
               <CardMedia>
                 <Image
                   src={`data:image/png;base64,${restaurant.image}`}
-                  alt="sample image"
+                  alt="Restaurant image"
                   width={100}
                   height={100}
                 />

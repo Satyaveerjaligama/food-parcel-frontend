@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { fileUpload } from '@/thunks/fileUploadThunk';
 import Image from 'next/image';
+import { updateIdForFileUpload } from '@/store/slices/utilitySlice';
 
 const MyAccount = () => {
   const router = useRouter();
@@ -21,6 +22,7 @@ const MyAccount = () => {
   const [filePreview, setFilePreview] = useState<any>(null);
   const [, setFile] = useState(null);
   const userType: string = useSelector((state: RootState) => state.centralDataSlice.userType);
+  const userId: string = useSelector((state: RootState) => state.centralDataSlice.userDetails.userId);
 
   const handleChange = (event: any) => {
     if(event.target.files && event.target.files.length > 0) {
@@ -41,6 +43,7 @@ const MyAccount = () => {
       
       form.append('file', fileData);
       form.append('type', userType);
+      dispatch(updateIdForFileUpload(userId));
       dispatch(fileUpload(form));
     }
   };

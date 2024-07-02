@@ -8,7 +8,11 @@ interface UtilitySliceInitialState {
       message: string,
       status: AlertColor,
     };
-    modal: boolean,
+    modal: {
+      open: boolean,
+      type: string,
+    };
+    idForFileUpload: string;
 }
 
 const utilitySliceInitialState: UtilitySliceInitialState = {
@@ -18,7 +22,11 @@ const utilitySliceInitialState: UtilitySliceInitialState = {
     message: '',
     status: 'success',
   },
-  modal: false,
+  modal: {
+    open: false,
+    type: ''
+  },
+  idForFileUpload: '',
 };
 
 const utilitySlice = createSlice({
@@ -33,10 +41,13 @@ const utilitySlice = createSlice({
     },
     setModal: (state, action) => {
       state.modal = action.payload;
+    },
+    updateIdForFileUpload: (state, action) => {
+      state.idForFileUpload = action.payload;
     }
   }
 });
 
 export default utilitySlice.reducer;
 
-export const {setLoader, openSnackbar, setModal} = utilitySlice.actions;
+export const {setLoader, openSnackbar, setModal, updateIdForFileUpload} = utilitySlice.actions;
