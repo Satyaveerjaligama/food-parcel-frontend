@@ -4,7 +4,7 @@ import Dropdown from '@/components/Dropdown';
 import Modal from '@/components/Modal';
 import RadioGroup from '@/components/RadioGroup';
 import TextField from '@/components/TextField';
-import { CUISINE_TYPES, MENU_ITEM_CATEGORIES, MenuItem, RADIO_GRP_YES_NO } from '@/utilities/constants';
+import { CUISINE_TYPES, MENU_ITEM_ACTION_TYPES, MENU_ITEM_CATEGORIES, MenuItem, RADIO_GRP_YES_NO } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { useDispatch, useSelector } from 'react-redux';
@@ -150,7 +150,7 @@ const AddMenuItem = () => {
             variant='contained'
             fullWidth
             className='mt-4'
-            onClick={()=>handleBtnClick('update')}
+            onClick={()=>handleBtnClick(MENU_ITEM_ACTION_TYPES.update)}
           />
           :
           <Button 
@@ -159,7 +159,7 @@ const AddMenuItem = () => {
             variant='contained'
             fullWidth
             className='mt-4'
-            onClick={()=>handleBtnClick('add')}
+            onClick={()=>handleBtnClick(MENU_ITEM_ACTION_TYPES.add)}
           />
         }
       </Box>

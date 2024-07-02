@@ -100,6 +100,12 @@ export const SNACKBAR_STATUS = {
   error: 'error',
 };
 
+export const MENU_ITEM_ACTION_TYPES = {
+  add: 'add',
+  update: 'update',
+  delete: 'delete',
+};
+
 export const CUISINE_TYPES: DropDownMenuItem[] = [
   {
     label: 'Indian',
