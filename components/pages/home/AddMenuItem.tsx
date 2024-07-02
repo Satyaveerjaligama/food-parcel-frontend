@@ -7,6 +7,7 @@ import TextField from '@/components/TextField';
 import { CUISINE_TYPES, MENU_ITEM_ACTION_TYPES, MENU_ITEM_CATEGORIES, MenuItem, RADIO_GRP_YES_NO } from '@/utilities/constants';
 import { Box } from '@mui/material';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { updateMenuItem } from '@/store/slices/restaurantDataSlice';
@@ -14,7 +15,7 @@ import addMenuItemSchema from '@/utilities/validations/addMenuItemSchema';
 import { addMenuItem } from '@/thunks/addMenuItemThunk';
 import { setModal } from '@/store/slices/utilitySlice';
 import { restaurantDataInitialState } from '@/store/slices/restaurantDataSlice';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface Errors {
   name: string;
@@ -53,13 +54,17 @@ const AddMenuItem = () => {
     }
   };
 
+  const hitMenuItemApi = async(type: string) => {
+    setErrors(errorInitialState);
+    await dispatch(addMenuItem(type));
+    dispatch(setModal(false));
+    dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
+  };
+
   const handleBtnClick = async(type: string) => {
     const isMenuItemDetailsValid = await addMenuItemSchema.isValid(menuItem);
     if(isMenuItemDetailsValid) {
-      setErrors(errorInitialState);
-      await dispatch(addMenuItem(type));
-      dispatch(setModal(false));
-      dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
+      hitMenuItemApi(type);
     } else {
       try {
         await addMenuItemSchema.validate(menuItem, {abortEarly: false});
@@ -145,13 +150,24 @@ const AddMenuItem = () => {
       />
       <Box className='sticky bottom-0 pb-5 bg-white z-50'>
         {menuItem.itemId ? 
-          <Button 
-            label='Update'
-            variant='contained'
-            fullWidth
-            className='mt-4'
-            onClick={()=>handleBtnClick(MENU_ITEM_ACTION_TYPES.update)}
-          />
+          <React.Fragment>
+            <Button
+              startIcon={<DeleteRoundedIcon />}
+              label='Delete'
+              variant='outlined'
+              fullWidth
+              color='error'
+              className='mt-2'
+              onClick={()=>hitMenuItemApi(MENU_ITEM_ACTION_TYPES.delete)}
+            />
+            <Button 
+              label='Update'
+              variant='contained'
+              fullWidth
+              className='mt-2'
+              onClick={()=>handleBtnClick(MENU_ITEM_ACTION_TYPES.update)}
+            />
+          </React.Fragment>
           :
           <Button 
             label='Add'

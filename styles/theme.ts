@@ -58,6 +58,14 @@ const theme = createTheme({
           '&:hover': {
             backgroundColor: 'rgb(239 68 68)',
           }
+        },
+        outlinedError: {
+          borderColor: 'rgb(239 68 68) !important',
+          color: 'rgb(239 68 68)',
+          backgroundColor: 'white',
+          '&:hover': {
+            backgroundColor: 'white',
+          }
         }
       }
     },
