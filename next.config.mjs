@@ -12,6 +12,7 @@ const nextConfig = {
     FILE_UPLOAD: process.env.FILE_UPLOAD,
     DELETE: process.env.DELETE,
     CHANGE_PASSWORD: process.env.CHANGE_PASSWORD,
+    UPDATE_ACCOUNT_DETAILS: process.env.UPDATE_ACCOUNT_DETAILS,
   },
   basePath: '/food-parcel'
 };

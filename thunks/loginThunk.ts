@@ -1,4 +1,4 @@
-import { updateUserDetails } from '@/store/slices/centralDataSlice';
+import { updateAccountDetails, updateUserDetails } from '@/store/slices/centralDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
@@ -25,7 +25,17 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
       message: SNACKBAR_MESSAGES.loginSuccess,
       status: SNACKBAR_STATUS.success,
     }));
-    thunkAPI.dispatch(updateUserDetails(res.data));
+    thunkAPI.dispatch(updateUserDetails({
+      name: res.data?.name,
+      userId: res.data?.userId,
+      pincode: res.data?.pincode
+    }));
+    thunkAPI.dispatch(updateAccountDetails({
+      name: res.data?.name,
+      emailId: res.data?.emailId,
+      phoneNumber: res.data?.phoneNumber,
+      pincode: res.data?.pincode
+    }));
     router.push('/home');
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({

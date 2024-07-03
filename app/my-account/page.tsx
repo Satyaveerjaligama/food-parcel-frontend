@@ -107,7 +107,7 @@ const MyAccount = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardActionArea onClick={()=>navigate('/update-details')}>
+            <CardActionArea onClick={()=>navigate('/update-account-details')}>
               <Typography className='p-4'>
                 Update account details
               </Typography>

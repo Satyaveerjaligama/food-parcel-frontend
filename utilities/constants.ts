@@ -59,6 +59,13 @@ export interface ChangePasswordDetails {
   confirmPassword: string;
 }
 
+export interface AccountDetailsToUpdate {
+  name: string;
+  emailId: string;
+  phoneNumber: string;
+  pincode: string;
+}
+
 export interface MenuItem {
   itemId?: string;
   name: string;
@@ -105,6 +112,8 @@ export const SNACKBAR_MESSAGES = {
   deletionFailed: 'Deletion failed',
   passwordChangeSuccess: 'Password changed successfully',
   passwordChangeFailed: 'Failed to change the password',
+  updateSuccess: 'Updated successfully',
+  updateFailed: 'Failed to update',
 };
 
 export const PROMISE_STATUS = {
