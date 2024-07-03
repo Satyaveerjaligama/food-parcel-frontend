@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { openSnackbar } from '@/store/slices/utilitySlice';
+import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -23,6 +23,7 @@ const updateAccountDetailsThunk = createAsyncThunk('updateAccountDetailsThunk', 
   };
 
   try {
+    thunkAPI.dispatch(setLoader(true));
     const response = await axios(requestConfig);
     if(response.status === 200) {
       thunkAPI.dispatch(openSnackbar({
@@ -38,6 +39,8 @@ const updateAccountDetailsThunk = createAsyncThunk('updateAccountDetailsThunk', 
       message: err.response?.data?.message ?? SNACKBAR_MESSAGES.updateFailed,
       status: SNACKBAR_STATUS.error
     }));
+  } finally {
+    thunkAPI.dispatch(setLoader(false));
   }
 });
 

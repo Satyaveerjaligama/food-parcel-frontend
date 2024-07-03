@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { updateChangePasswordDetails } from '@/store/slices/centralDataSlice';
-import { openSnackbar } from '@/store/slices/utilitySlice';
+import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -26,6 +26,7 @@ const changePassword = createAsyncThunk('changePassword', async(router: AppRoute
   };
 
   try {
+    thunkAPI.dispatch(setLoader(true));
     const response = await axios(requestConfig);
     if(response.status === 200) {
       thunkAPI.dispatch(openSnackbar({
@@ -42,6 +43,8 @@ const changePassword = createAsyncThunk('changePassword', async(router: AppRoute
       message: err.response?.data?.message ?? SNACKBAR_MESSAGES.passwordChangeFailed,
       status: SNACKBAR_STATUS.error
     }));
+  } finally {
+    thunkAPI.dispatch(setLoader(false));
   }
 });
 

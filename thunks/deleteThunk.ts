@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { openSnackbar } from '@/store/slices/utilitySlice';
+import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -20,6 +20,7 @@ const deleteApi = createAsyncThunk('deleteApi', async(params: DeleteApiParams,th
   };
 
   try{
+    thunkAPI.dispatch(setLoader(true));
     await axios(requestConfig);
     thunkAPI.dispatch(openSnackbar({
       open: true,
@@ -33,6 +34,8 @@ const deleteApi = createAsyncThunk('deleteApi', async(params: DeleteApiParams,th
       message: SNACKBAR_MESSAGES.deletionFailed,
       status: SNACKBAR_STATUS.error
     }));
+  } finally {
+    thunkAPI.dispatch(setLoader(false));
   }
 });
 
