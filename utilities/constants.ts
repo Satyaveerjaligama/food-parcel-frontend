@@ -53,6 +53,12 @@ export interface UserDetails {
   pincode: string;
 }
 
+export interface ChangePasswordDetails {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export interface MenuItem {
   itemId?: string;
   name: string;
@@ -95,6 +101,10 @@ export const SNACKBAR_MESSAGES = {
   menuItemDeleted: 'Item deleted successfully',
   fileUploadSuccess: 'File uploaded successfully',
   fileUploadFailed: 'Failed to upload the file',
+  deletionSuccess: 'Deleted successfully',
+  deletionFailed: 'Deletion failed',
+  passwordChangeSuccess: 'Password changed successfully',
+  passwordChangeFailed: 'Failed to change the password',
 };
 
 export const PROMISE_STATUS = {

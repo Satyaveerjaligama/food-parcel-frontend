@@ -10,6 +10,8 @@ const nextConfig = {
     GET_MENU_ITEMS: process.env.GET_MENU_ITEMS,
     MENU_ITEM: process.env.MENU_ITEM,
     FILE_UPLOAD: process.env.FILE_UPLOAD,
+    DELETE: process.env.DELETE,
+    CHANGE_PASSWORD: process.env.CHANGE_PASSWORD,
   },
   basePath: '/food-parcel'
 };

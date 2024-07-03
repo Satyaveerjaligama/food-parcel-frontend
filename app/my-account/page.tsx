@@ -2,7 +2,7 @@
 'use client';
 import Button from '@/components/Button';
 import Layout from '@/components/Layout';
-import { Avatar, Badge, Card, Grid, Typography } from '@mui/material';
+import { Avatar, Badge, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { useRouter } from 'next/navigation';
@@ -14,6 +14,7 @@ import { AppDispatch, RootState } from '@/store/store';
 import { fileUpload } from '@/thunks/fileUploadThunk';
 import Image from 'next/image';
 import { updateIdForFileUpload } from '@/store/slices/utilitySlice';
+import deleteApi from '@/thunks/deleteThunk';
 
 const MyAccount = () => {
   const router = useRouter();
@@ -56,6 +57,14 @@ const MyAccount = () => {
     router.push('login');
   };
 
+  const deleteAccount = () => {
+    dispatch(deleteApi({type: userType, id: userId, router }));
+  };
+
+  const navigate = (route: string) => {
+    router.push(`my-account/${route}`);
+  };
+
   return (
     <Layout>
       <Grid container columnSpacing={2} rowSpacing={2} className='my-5 w-2/4 mx-auto'>
@@ -88,17 +97,21 @@ const MyAccount = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className='p-4'>
-            <Typography>
+          <Card>
+            <CardActionArea onClick={()=>navigate('/change-password')}>
+              <Typography className='p-4'>
                 Change password
-            </Typography>
+              </Typography>
+            </CardActionArea>
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className='p-4'>
-            <Typography>
+          <Card>
+            <CardActionArea onClick={()=>navigate('/update-details')}>
+              <Typography className='p-4'>
                 Update account details
-            </Typography>
+              </Typography>
+            </CardActionArea>
           </Card>
         </Grid>
         <Grid item xs={12} md={6}></Grid>
@@ -109,6 +122,7 @@ const MyAccount = () => {
             variant='contained'
             fullWidth
             color='error'
+            onClick={deleteAccount}
           />
         </Grid>
         <Grid item xs={12} md={6}>
