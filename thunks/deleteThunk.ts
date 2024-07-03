@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import routes from '@/utilities/routes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -27,7 +28,7 @@ const deleteApi = createAsyncThunk('deleteApi', async(params: DeleteApiParams,th
       message: SNACKBAR_MESSAGES.deletionSuccess,
       status: SNACKBAR_STATUS.success
     }));
-    router.push('/login');
+    router.push(`/${routes.login}`);
   } catch(err) {
     thunkAPI.dispatch(openSnackbar({
       open: true,

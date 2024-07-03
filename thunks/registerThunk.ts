@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_ENDPOINTS, CustomerDetails, DeliveryAgentDetails, RestaurantDetails, SNACKBAR_MESSAGES, SNACKBAR_STATUS, USER_TYPES, UserType } from '@/utilities/constants';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import routes from '@/utilities/routes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const register = createAsyncThunk('register', async({router}: {router: AppRouterInstance}, thunkAPI: any) => {
@@ -40,7 +41,7 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
       message: SNACKBAR_MESSAGES.registrationSuccess,
       status: SNACKBAR_STATUS.success,
     }));
-    router.push('/login');
+    router.push(`/${routes.login}`);
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({
       open: true,

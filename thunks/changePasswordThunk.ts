@@ -7,6 +7,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 import { initialState as centralDataInitialState } from '@/store/slices/centralDataSlice';
+import routes from '@/utilities/routes';
 
 const changePassword = createAsyncThunk('changePassword', async(router: AppRouterInstance,thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
@@ -34,7 +35,7 @@ const changePassword = createAsyncThunk('changePassword', async(router: AppRoute
         message: SNACKBAR_MESSAGES.passwordChangeSuccess,
         status: SNACKBAR_STATUS.success
       }));
-      router.push('/my-account');
+      router.push(`/${routes.myAccount}`);
       thunkAPI.dispatch(updateChangePasswordDetails(centralDataInitialState.changePasswordDetails));
     }
   } catch(err: any) {

@@ -2,6 +2,7 @@
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import routes from '@/utilities/routes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -31,7 +32,7 @@ const updateAccountDetailsThunk = createAsyncThunk('updateAccountDetailsThunk', 
         message: SNACKBAR_MESSAGES.updateSuccess,
         status: SNACKBAR_STATUS.success
       }));
-      router.push('/my-account');
+      router.push(`/${routes.myAccount}`);
     }
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
