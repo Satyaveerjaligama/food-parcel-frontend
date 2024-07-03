@@ -1,17 +1,17 @@
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { SNACKBAR_STATUS } from '@/utilities/constants';
+import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
-  const userId: string = getState.centralDataSlice.userDetails.userId;
+  const id: string = getState.utilitySlice.idForFileUpload;
 
   const apiPayload = {
     method: 'POST',
-    url: `http://localhost:5000/file/upload/${userId}`,
+    url: `${process.env.API_BASE_URL}/${process.env.FILE_UPLOAD}/${id}`,
     data: formData
   };
 
@@ -20,14 +20,15 @@ export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, th
     .then(()=>{
       thunkAPI.dispatch(openSnackbar({
         open: true,
-        message: 'success',
+        message: SNACKBAR_MESSAGES.fileUploadSuccess,
         status: SNACKBAR_STATUS.success})
       );
     }).catch(()=>{
       thunkAPI.dispatch(openSnackbar({
         open: true,
-        message: 'failed',
+        message: SNACKBAR_MESSAGES.fileUploadFailed,
         status: SNACKBAR_STATUS.error}));
+    }).finally(()=>{
+      thunkAPI.dispatch(setLoader(false));
     });
-  thunkAPI.dispatch(setLoader(false));
 });

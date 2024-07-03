@@ -1,13 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { updateMenuItemsList } from '@/store/slices/restaurantDataSlice';
 import { setLoader } from '@/store/slices/utilitySlice';
-import { RootState } from '@/store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const getMenuItems = createAsyncThunk('getMenuItems', async(_, thunkAPI: any) => {
-  const getState: RootState = thunkAPI.getState();
-  const restaurantId = getState.centralDataSlice.userDetails.userId;
+const getMenuItems = createAsyncThunk('getMenuItems', async(restaurantId: string, thunkAPI: any) => {
 
   const apiRequestData = {
     method: 'GET',

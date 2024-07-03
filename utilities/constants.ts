@@ -53,6 +53,19 @@ export interface UserDetails {
   pincode: string;
 }
 
+export interface ChangePasswordDetails {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+export interface AccountDetailsToUpdate {
+  name: string;
+  emailId: string;
+  phoneNumber: string;
+  pincode: string;
+}
+
 export interface MenuItem {
   itemId?: string;
   name: string;
@@ -63,6 +76,7 @@ export interface MenuItem {
   category: string;
   mainIngredients: string;
   rating?: number;
+  image?: string;
 }
 
 export interface DropDownMenuItem {
@@ -92,6 +106,20 @@ export const SNACKBAR_MESSAGES = {
   menuItemAdded: 'Item added to menu successfully',
   menuItemUpdated: 'Item updated successfully',
   menuItemDeleted: 'Item deleted successfully',
+  fileUploadSuccess: 'File uploaded successfully',
+  fileUploadFailed: 'Failed to upload the file',
+  deletionSuccess: 'Deleted successfully',
+  deletionFailed: 'Deletion failed',
+  passwordChangeSuccess: 'Password changed successfully',
+  passwordChangeFailed: 'Failed to change the password',
+  updateSuccess: 'Updated successfully',
+  updateFailed: 'Failed to update',
+};
+
+export const PROMISE_STATUS = {
+  fulfilled: 'fulfilled',
+  rejected: 'rejected',
+  pending: 'pending',
 };
 
 export const SNACKBAR_STATUS = {
@@ -105,6 +133,16 @@ export const MENU_ITEM_ACTION_TYPES = {
   add: 'POST',
   update: 'PATCH',
   delete: 'DELETE',
+};
+
+export const FILE_TYPES = {
+  ...USER_TYPES,
+  menuItem: 'menuItem',
+};
+
+export const MODAL_TYPES = {
+  menuItem: 'Menu Item',
+  fileUpload: 'File Upload',
 };
 
 export const CUISINE_TYPES: DropDownMenuItem[] = [

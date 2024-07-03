@@ -8,7 +8,6 @@ interface InitialState {
 
 export const restaurantDataInitialState: InitialState = {
   menuItem: {
-    itemId: '',
     name: '',
     price: 0,
     isVeg: false,
@@ -28,6 +27,7 @@ export const restaurantDataInitialState: InitialState = {
     category: '',
     mainIngredients: '',
     rating: 0,
+    image: '',
   }]
 };
 

@@ -2,7 +2,7 @@
 'use client';
 import Button from '@/components/Button';
 import Layout from '@/components/Layout';
-import { Avatar, Badge, Card, Grid, Typography } from '@mui/material';
+import { Avatar, Badge, Card, CardActionArea, Grid, Typography } from '@mui/material';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import { useRouter } from 'next/navigation';
@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { fileUpload } from '@/thunks/fileUploadThunk';
 import Image from 'next/image';
+import { updateIdForFileUpload } from '@/store/slices/utilitySlice';
+import deleteApi from '@/thunks/deleteThunk';
 
 const MyAccount = () => {
   const router = useRouter();
@@ -21,6 +23,7 @@ const MyAccount = () => {
   const [filePreview, setFilePreview] = useState<any>(null);
   const [, setFile] = useState(null);
   const userType: string = useSelector((state: RootState) => state.centralDataSlice.userType);
+  const userId: string = useSelector((state: RootState) => state.centralDataSlice.userDetails.userId);
 
   const handleChange = (event: any) => {
     if(event.target.files && event.target.files.length > 0) {
@@ -41,6 +44,7 @@ const MyAccount = () => {
       
       form.append('file', fileData);
       form.append('type', userType);
+      dispatch(updateIdForFileUpload(userId));
       dispatch(fileUpload(form));
     }
   };
@@ -51,6 +55,14 @@ const MyAccount = () => {
 
   const logoutBtnClick = () => {
     router.push('login');
+  };
+
+  const deleteAccount = () => {
+    dispatch(deleteApi({type: userType, id: userId, router }));
+  };
+
+  const navigate = (route: string) => {
+    router.push(`my-account/${route}`);
   };
 
   return (
@@ -85,17 +97,21 @@ const MyAccount = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className='p-4'>
-            <Typography>
+          <Card>
+            <CardActionArea onClick={()=>navigate('/change-password')}>
+              <Typography className='p-4'>
                 Change password
-            </Typography>
+              </Typography>
+            </CardActionArea>
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className='p-4'>
-            <Typography>
+          <Card>
+            <CardActionArea onClick={()=>navigate('/update-account-details')}>
+              <Typography className='p-4'>
                 Update account details
-            </Typography>
+              </Typography>
+            </CardActionArea>
           </Card>
         </Grid>
         <Grid item xs={12} md={6}></Grid>
@@ -106,6 +122,7 @@ const MyAccount = () => {
             variant='contained'
             fullWidth
             color='error'
+            onClick={deleteAccount}
           />
         </Grid>
         <Grid item xs={12} md={6}>
