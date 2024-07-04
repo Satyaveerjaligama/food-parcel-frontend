@@ -94,6 +94,30 @@ export interface MenuItemList {
   restaurantId: string;
 }
 
+export interface FoodItems {
+  itemId: string;
+  itemName: string;
+  quantity: number;
+  itemPrice: number;
+}
+
+export interface ActiveOrders {
+  totalPrice: number;
+  paymentMode: string;
+  orderStatus: string;
+  orderId: string;
+  foodItems: FoodItems[];
+}
+
+export interface CartItems {
+  [key: string] : 
+    {
+      itemId: string;
+      itemName: string;
+      quantity: number;
+      itemPrice: number;
+    }
+}
 export interface CartInfo {
   restaurantId: string;
   allItemsPrice: number;

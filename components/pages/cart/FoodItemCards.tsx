@@ -6,12 +6,16 @@ import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { updateCartInfo, updateCartItemImages, updateCartItems } from '@/store/slices/customerDataSlice';
+import { CartInfo, CartItems } from '@/utilities/constants';
 
-const FoodItemCards = () => {
+interface FoodItemCardsProps {
+  cartItems: CartItems;
+  cartInfo: CartInfo;
+}
+const FoodItemCards = (props: FoodItemCardsProps) => {
+  const {cartItems, cartInfo} = props;
   const dispatch = useDispatch<AppDispatch>();
-  const cartItems = useSelector((state: RootState) => state.customerSlice.cartItems);
   const cartItemImages = useSelector((state: RootState) => state.customerSlice.cartItemImages);
-  const cartInfo = useSelector((state: RootState) => state.customerSlice.cartInfo);
 
   const editQuantity = (itemId: string, type: string) => {
     const cloneCartItems = {...cartItems};

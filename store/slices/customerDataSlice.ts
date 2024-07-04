@@ -1,4 +1,4 @@
-import { CartInfo } from '@/utilities/constants';
+import { CartInfo, CartItems } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CustomerSliceInitialState {
@@ -12,14 +12,7 @@ interface CustomerSliceInitialState {
     restaurantName: string;
     restaurantType: string[];
   };
-  cartItems: {[key: string] : 
-    {
-      itemId: string;
-      itemName: string;
-      quantity: number;
-      itemPrice: number;
-    }
-  };
+  cartItems: CartItems,
   cartItemImages: {[key: string]: string};
   cartInfo: CartInfo;
 }
