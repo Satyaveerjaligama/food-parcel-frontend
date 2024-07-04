@@ -51,6 +51,7 @@ export interface UserDetails {
   name: string;
   userId: string;
   pincode: string;
+  address: string;
 }
 
 export interface ChangePasswordDetails {
@@ -77,6 +78,30 @@ export interface MenuItem {
   mainIngredients: string;
   rating?: number;
   image?: string;
+}
+
+export interface MenuItemList {
+  itemId: string;
+  name: string;
+  price: number;
+  isVeg: boolean;
+  isAvailable: boolean;
+  type: string;
+  category: string;
+  mainIngredients: string;
+  rating?: number;
+  image?: string;
+  restaurantId: string;
+}
+
+export interface CartInfo {
+  restaurantId: string;
+  allItemsPrice: number;
+  paymentMode: string;
+  taxes: number;
+  deliveryFee: number;
+  discount: number;
+  totalPrice: number;
 }
 
 export interface DropDownMenuItem {

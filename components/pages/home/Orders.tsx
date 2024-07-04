@@ -4,7 +4,7 @@ const Orders = () => {
   return (
     <Box className='my-5 flex justify-center items-center'>
       <Typography variant='h4' className='text-red-500'>
-            No orders
+            No active orders
       </Typography>
     </Box>
   );

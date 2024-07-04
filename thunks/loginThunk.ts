@@ -2,6 +2,7 @@ import { updateAccountDetails, updateUserDetails } from '@/store/slices/centralD
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
+import routes from '@/utilities/routes';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
@@ -28,7 +29,8 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
     thunkAPI.dispatch(updateUserDetails({
       name: res.data?.name,
       userId: res.data?.userId,
-      pincode: res.data?.pincode
+      pincode: res.data?.pincode,
+      address: res.data?.address
     }));
     thunkAPI.dispatch(updateAccountDetails({
       name: res.data?.name,
@@ -36,7 +38,7 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
       phoneNumber: res.data?.phoneNumber,
       pincode: res.data?.pincode
     }));
-    router.push('/home');
+    router.push(`/${routes.home}`);
   }).catch((err)=>{
     thunkAPI.dispatch(openSnackbar({
       open: true,

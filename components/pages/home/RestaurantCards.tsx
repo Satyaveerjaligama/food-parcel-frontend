@@ -1,4 +1,5 @@
 import { RootState } from '@/store/store';
+import routes from '@/utilities/routes';
 import {
   Card,
   CardActionArea,
@@ -16,7 +17,7 @@ const RestaurantCards = () => {
   const restaurantsList = useSelector((state: RootState) => state.customerSlice.restaurantsList);
 
   const hotelCardOnClickHandler = (restaurantId: string) => {
-    router.push(`/customer/restaurant-view/${restaurantId}`);
+    router.push(routes.restaurantView(restaurantId));
   };
 
   return (
@@ -27,6 +28,7 @@ const RestaurantCards = () => {
             <CardActionArea className="flex justify-start" onClick={()=>hotelCardOnClickHandler(restaurant.restaurantId)}>
               <CardMedia>
                 <Image
+                  className='h-20 object-cover'
                   src={`data:image/png;base64,${restaurant.image}`}
                   alt="Restaurant image"
                   width={100}

@@ -15,6 +15,7 @@ import { fileUpload } from '@/thunks/fileUploadThunk';
 import Image from 'next/image';
 import { updateIdForFileUpload } from '@/store/slices/utilitySlice';
 import deleteApi from '@/thunks/deleteThunk';
+import routes from '@/utilities/routes';
 
 const MyAccount = () => {
   const router = useRouter();
@@ -54,7 +55,7 @@ const MyAccount = () => {
   };
 
   const logoutBtnClick = () => {
-    router.push('login');
+    router.push(`/${routes.login}`);
   };
 
   const deleteAccount = () => {
@@ -62,7 +63,7 @@ const MyAccount = () => {
   };
 
   const navigate = (route: string) => {
-    router.push(`my-account/${route}`);
+    router.push(`${routes.myAccount}/${route}`);
   };
 
   return (
@@ -98,7 +99,7 @@ const MyAccount = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardActionArea onClick={()=>navigate('/change-password')}>
+            <CardActionArea onClick={()=>navigate(routes.changePassword)}>
               <Typography className='p-4'>
                 Change password
               </Typography>
@@ -107,7 +108,7 @@ const MyAccount = () => {
         </Grid>
         <Grid item xs={12} md={6}>
           <Card>
-            <CardActionArea onClick={()=>navigate('/update-account-details')}>
+            <CardActionArea onClick={()=>navigate(routes.updateAccountDetails)}>
               <Typography className='p-4'>
                 Update account details
               </Typography>
