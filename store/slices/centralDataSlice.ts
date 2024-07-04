@@ -64,7 +64,8 @@ export const initialState: CentralSliceInitialState = {
   userDetails: {
     name: '',
     userId: '',
-    pincode: ''
+    pincode: '',
+    address: '',
   },
   changePasswordDetails: {
     oldPassword: '',

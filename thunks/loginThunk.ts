@@ -29,7 +29,8 @@ export const login = createAsyncThunk('login', async({router}:{router: AppRouter
     thunkAPI.dispatch(updateUserDetails({
       name: res.data?.name,
       userId: res.data?.userId,
-      pincode: res.data?.pincode
+      pincode: res.data?.pincode,
+      address: res.data?.address
     }));
     thunkAPI.dispatch(updateAccountDetails({
       name: res.data?.name,

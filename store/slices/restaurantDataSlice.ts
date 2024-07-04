@@ -1,9 +1,9 @@
-import { MenuItem } from '@/utilities/constants';
+import { MenuItem, MenuItemList } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface InitialState {
   menuItem: MenuItem,
-  menuItemsList: MenuItem [];
+  menuItemsList: MenuItemList [];
 }
 
 export const restaurantDataInitialState: InitialState = {
@@ -28,6 +28,7 @@ export const restaurantDataInitialState: InitialState = {
     mainIngredients: '',
     rating: 0,
     image: '',
+    restaurantId: ''
   }]
 };
 

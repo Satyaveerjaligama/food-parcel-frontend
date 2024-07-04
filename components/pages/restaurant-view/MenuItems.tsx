@@ -1,17 +1,71 @@
 import Button from '@/components/Button';
-import { RootState } from '@/store/store';
+import { AppDispatch, RootState } from '@/store/store';
 import {
+  Box,
   Card,
   CardContent,
   CardMedia,
   Grid,
+  IconButton,
   Typography,
 } from '@mui/material';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
+import { updateCartInfo, updateCartItemImages, updateCartItems } from '@/store/slices/customerDataSlice';
+import { MenuItemList } from '@/utilities/constants';
   
 const MenuItems = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const menuItemsList = useSelector((state: RootState) => state.restaurantSlice.menuItemsList);
+  const cartItems = useSelector((state: RootState) => state.customerSlice.cartItems);
+  const cartItemImages = useSelector((state: RootState) => state.customerSlice.cartItemImages);
+  const cartInfo = useSelector((state: RootState) => state.customerSlice.cartInfo);
+
+  const addItemHandler = (menuItem: MenuItemList) => {
+    dispatch(updateCartItems({...cartItems, [menuItem.itemId]: {
+      itemId: menuItem.itemId,
+      itemName: menuItem.name,
+      quantity: 1,
+      itemPrice: menuItem.price
+    }}));
+    dispatch(updateCartItemImages({...cartItemImages, [menuItem.itemId] : menuItem?.image}));
+    if(Object.keys(cartItems).length === 0) {
+      dispatch(updateCartInfo({
+        restaurantId: menuItem.restaurantId,
+        allItemsPrice: menuItem.price,
+      }));
+    } else {
+      dispatch(updateCartInfo({
+        allItemsPrice: cartInfo.allItemsPrice + menuItem.price,
+      }));
+    }
+  };
+
+  const editQuantity = (itemId: string, type: string) => {
+    const cloneCartItems = {...cartItems};
+    if(type === 'decrement' && cartItems[itemId].quantity === 1) {
+      delete cloneCartItems[itemId];
+      const cloneCartItemImages = {...cartItemImages};
+      delete cloneCartItemImages[itemId];
+      dispatch(updateCartItemImages(cloneCartItemImages));
+      dispatch(updateCartInfo({
+        allItemsPrice: cartInfo.allItemsPrice - cartItems[itemId].itemPrice
+      }));
+    } else if (type === 'decrement') {
+      cloneCartItems[itemId] = {...cloneCartItems[itemId], quantity: cloneCartItems[itemId].quantity - 1};
+      dispatch(updateCartInfo({
+        allItemsPrice: cartInfo.allItemsPrice - cartItems[itemId].itemPrice
+      }));
+    } else if (type === 'increment') {
+      cloneCartItems[itemId] = {...cloneCartItems[itemId], quantity: cloneCartItems[itemId].quantity + 1};
+      dispatch(updateCartInfo({
+        allItemsPrice: cartInfo.allItemsPrice + cartItems[itemId].itemPrice
+      }));
+    }
+    dispatch(updateCartItems(cloneCartItems));
+  };
 
   return (
     <Grid container columnSpacing={4} rowSpacing={2} className="mb-5">
@@ -29,13 +83,28 @@ const MenuItems = () => {
             <CardContent>
               <Typography>{menuItem.name}</Typography>
               <Typography className="text-gray-400 text-sm">
-                {menuItem.rating}
+                &#8377; {menuItem.price}
               </Typography>
-              <Button 
-                label='Add'
-                variant='outlined'
-                fullWidth
-              />
+              {cartItems?.[menuItem.itemId]?.quantity ? 
+                <Box className='flex items-center'>
+                  <IconButton onClick={()=>editQuantity(menuItem.itemId, 'decrement')}>
+                    <RemoveCircleRoundedIcon />
+                  </IconButton>
+                  <Typography>
+                    {cartItems?.[menuItem.itemId]?.quantity}
+                  </Typography>
+                  <IconButton onClick={()=>editQuantity(menuItem.itemId, 'increment')}>
+                    <AddCircleRoundedIcon />
+                  </IconButton>
+                </Box>
+                :
+                <Button 
+                  label='Add'
+                  variant='outlined'
+                  fullWidth
+                  onClick={()=>addItemHandler(menuItem)}
+                />
+              }
             </CardContent>
           </Card>
         </Grid>
