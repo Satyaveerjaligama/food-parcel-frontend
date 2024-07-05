@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
+import updateOrderStatusThunk from '@/thunks/updateOrderStatusThunk';
+import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
+import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
 
 const Orders = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,6 +19,35 @@ const Orders = () => {
     dispatch(getActiveOrdersThunk());
   }, []);
 
+  const changeOrderStatus = async(orderId: string, statusType: string, status: string) => {
+    const response = await dispatch(updateOrderStatusThunk({
+      orderId,
+      statusType,
+      status
+    }));
+    if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+      switch(status) {
+      case ORDER_STATUS.accepted: {
+        const updatedActiveOrders = activeOrders.map(order => {
+          if(order.orderId === orderId) {
+            return {...order, orderStatus: ORDER_STATUS.accepted};
+          }
+          return order;
+        });
+        dispatch(updateActiveOrders(updatedActiveOrders));
+        break;
+      }
+      case ORDER_STATUS.rejected:
+        dispatch(updateActiveOrders(activeOrders.filter(order => order.orderId !== orderId )));
+        break;
+      }
+    }
+  };
+
+  const getActiveOrders = () => {
+    dispatch(getActiveOrdersThunk());
+  };
+
   return (
     <Box className='my-5'>
       {/* <Typography variant='h4' className='text-red-500'>
@@ -23,7 +55,7 @@ const Orders = () => {
       </Typography> */}
       <Typography variant='h5' className='text-center mb-5 underline'>
         Active/In-coming orders{''}
-        <IconButton>
+        <IconButton onClick={getActiveOrders}>
           <ReplayRoundedIcon />
         </IconButton>
       </Typography>
@@ -46,10 +78,10 @@ const Orders = () => {
                 </Typography>
                 {order.orderStatus === 'Processing' &&
                 <Box className='flex justify-around'>
-                  <IconButton>
+                  <IconButton onClick={()=>changeOrderStatus(order.orderId, 'orderStatus', ORDER_STATUS.accepted)}>
                     <DoneRoundedIcon />
                   </IconButton>
-                  <IconButton>
+                  <IconButton onClick={()=>changeOrderStatus(order.orderId, 'orderStatus', ORDER_STATUS.rejected)}>
                     <CloseRoundedIcon />
                   </IconButton>
                 </Box>

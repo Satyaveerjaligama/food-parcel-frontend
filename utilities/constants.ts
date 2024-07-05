@@ -165,6 +165,15 @@ export const SNACKBAR_MESSAGES = {
   updateFailed: 'Failed to update',
 };
 
+export const ORDER_STATUS = {
+  processing: 'Processing',
+  accepted: 'Accepted',
+  rejected: 'Rejected',
+  reachedPickupLocation: 'Reached Pick-up location',
+  onTheWay: 'On the way',
+  delivered: 'delivered',
+};
+
 export const PROMISE_STATUS = {
   fulfilled: 'fulfilled',
   rejected: 'rejected',

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
+import { setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -14,12 +15,15 @@ const getActiveOrdersThunk = createAsyncThunk('getActiveOrdersThunk', async(_, t
   };
 
   try{
+    thunkAPI.dispatch(setLoader(true));
     const response = await axios(requestConfig);
     if(response.status === 200 && response?.data) {
       thunkAPI.dispatch(updateActiveOrders(response.data));
     }
   } catch(err) {
     console.log(err);
+  } finally {
+    thunkAPI.dispatch(setLoader(false));
   }
 });
 
