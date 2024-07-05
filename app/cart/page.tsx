@@ -9,19 +9,25 @@ import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import styles from '../../styles/Cart.module.css';
 import { camelToSentenceCase } from '@/utilities/utilityFunctions';
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store/store';
 import { CartInfo } from '@/utilities/constants';
 import { useRouter } from 'next/navigation';
 import routes from '@/utilities/routes';
+import orderThunk from '@/thunks/orderThunk';
 
 const Cart = () => {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const cartInfo = useSelector((state: RootState) => state.customerSlice.cartInfo);
   const cartItems = useSelector((state: RootState) => state.customerSlice.cartItems);
 
   const redirectToHomePage = () => {
     router.push(`/${routes.home}`);
+  };
+
+  const paymentHandler = () => {
+    dispatch(orderThunk());
   };
 
   return (
@@ -30,6 +36,7 @@ const Cart = () => {
         <Box className="flex flex-col h-screen w-1/3 mx-auto items-center my-auto">
           <Typography variant='h4' className='text-red-500'>Cart is EMPTY</Typography>
           <Button 
+            className='mt-3'
             label='Order Now'
             variant='contained'
             onClick={redirectToHomePage}
@@ -37,7 +44,7 @@ const Cart = () => {
         </Box>
         :
         <>
-          <FoodItemCards />
+          <FoodItemCards cartInfo={cartInfo} cartItems={cartItems}/>
           <Divider className='my-4'/>
           <Grid container className='my-5'>
             <Grid item md={8}>
@@ -87,6 +94,7 @@ const Cart = () => {
                 variant='contained'
                 fullWidth
                 endIcon={<EastRoundedIcon />}
+                onClick={paymentHandler}
               />
             </Grid>
           </Grid>

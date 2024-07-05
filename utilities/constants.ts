@@ -94,6 +94,30 @@ export interface MenuItemList {
   restaurantId: string;
 }
 
+export interface FoodItems {
+  itemId: string;
+  itemName: string;
+  quantity: number;
+  itemPrice: number;
+}
+
+export interface ActiveOrders {
+  totalPrice: number;
+  paymentMode: string;
+  orderStatus: string;
+  orderId: string;
+  foodItems: FoodItems[];
+}
+
+export interface CartItems {
+  [key: string] : 
+    {
+      itemId: string;
+      itemName: string;
+      quantity: number;
+      itemPrice: number;
+    }
+}
 export interface CartInfo {
   restaurantId: string;
   allItemsPrice: number;
@@ -139,6 +163,15 @@ export const SNACKBAR_MESSAGES = {
   passwordChangeFailed: 'Failed to change the password',
   updateSuccess: 'Updated successfully',
   updateFailed: 'Failed to update',
+};
+
+export const ORDER_STATUS = {
+  processing: 'Processing',
+  accepted: 'Accepted',
+  rejected: 'Rejected',
+  reachedPickupLocation: 'Reached Pick-up location',
+  onTheWay: 'On the way',
+  delivered: 'delivered',
 };
 
 export const PROMISE_STATUS = {

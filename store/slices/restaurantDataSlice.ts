@@ -1,9 +1,10 @@
-import { MenuItem, MenuItemList } from '@/utilities/constants';
+import { ActiveOrders, MenuItem, MenuItemList } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface InitialState {
   menuItem: MenuItem,
   menuItemsList: MenuItemList [];
+  activeOrders: ActiveOrders[];
 }
 
 export const restaurantDataInitialState: InitialState = {
@@ -29,7 +30,19 @@ export const restaurantDataInitialState: InitialState = {
     rating: 0,
     image: '',
     restaurantId: ''
-  }]
+  }],
+  activeOrders: [{
+    totalPrice: 0,
+    paymentMode: '',
+    orderStatus: '',
+    orderId: '',
+    foodItems: [{
+      itemId: '',
+      itemName: '',
+      quantity: 0,
+      itemPrice: 0,
+    }]
+  }],
 };
 
 const restaurantData = createSlice({
@@ -41,10 +54,13 @@ const restaurantData = createSlice({
     },
     updateMenuItemsList: (state, action) => {
       state.menuItemsList = action.payload;
+    },
+    updateActiveOrders: (state, action) => {
+      state.activeOrders = action.payload;
     }
   }
 });
 
 export default restaurantData.reducer;
 
-export const {updateMenuItem, updateMenuItemsList} = restaurantData.actions;
+export const {updateMenuItem, updateMenuItemsList, updateActiveOrders} = restaurantData.actions;
