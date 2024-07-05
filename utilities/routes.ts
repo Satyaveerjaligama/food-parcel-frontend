@@ -6,6 +6,7 @@ const routes = {
   updateAccountDetails: 'update-account-details',
   changePassword: 'change-password',
   cart: 'cart',
+  orders: 'orders',
   restaurantView:(restaurantId: string) => `/customer/restaurant-view/${restaurantId}`,
 };
 

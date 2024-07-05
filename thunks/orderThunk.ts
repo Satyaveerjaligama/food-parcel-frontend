@@ -10,6 +10,7 @@ const orderThunk = createAsyncThunk('orderThunk', async(_,thunkAPI: any) => {
   const cartItems = getState.customerSlice.cartItems;
   const customerId = getState.centralDataSlice.userDetails.userId;
   const deliveryLocation = getState.centralDataSlice.userDetails.address;
+  const pincode = getState.centralDataSlice.userDetails.pincode;
   const {totalPrice, paymentMode, restaurantId} = getState.customerSlice.cartInfo;
 
   const payload = {
@@ -18,7 +19,8 @@ const orderThunk = createAsyncThunk('orderThunk', async(_,thunkAPI: any) => {
     foodItems: Object.values(cartItems),
     totalPrice,
     paymentMode,
-    deliveryLocation
+    deliveryLocation,
+    pincode
   };
 
   const requestConfig = {

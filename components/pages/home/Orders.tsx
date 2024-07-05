@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import updateOrderStatusThunk from '@/thunks/updateOrderStatusThunk';
+import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
 import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
 import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
 
@@ -19,14 +19,14 @@ const Orders = () => {
     dispatch(getActiveOrdersThunk());
   }, []);
 
-  const changeOrderStatus = async(orderId: string, statusType: string, status: string) => {
-    const response = await dispatch(updateOrderStatusThunk({
+  const changeOrderStatus = async(orderId: string, key: string, value: string) => {
+    const response = await dispatch(updateOrderInfoThunk({
       orderId,
-      statusType,
-      status
+      key,
+      value
     }));
     if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
-      switch(status) {
+      switch(value) {
       case ORDER_STATUS.accepted: {
         const updatedActiveOrders = activeOrders.map(order => {
           if(order.orderId === orderId) {

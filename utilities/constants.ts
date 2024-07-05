@@ -128,6 +128,20 @@ export interface CartInfo {
   totalPrice: number;
 }
 
+export interface AvailableOrders {
+  orderId: string;
+  pickupLocation: string;
+  deliveryLocation: string;
+  orderStatus: string;
+}
+
+export interface CurrentOrderDetails {
+  orderId: string;
+  pickupLocation: string;
+  deliveryLocation: string;
+  phoneNumber: string;
+  orderStatus: string;
+}
 export interface DropDownMenuItem {
   label: string | number;
   value: string | number;
@@ -171,7 +185,7 @@ export const ORDER_STATUS = {
   rejected: 'Rejected',
   reachedPickupLocation: 'Reached Pick-up location',
   onTheWay: 'On the way',
-  delivered: 'delivered',
+  delivered: 'Delivered',
 };
 
 export const PROMISE_STATUS = {

@@ -91,10 +91,12 @@ const MyAccount = () => {
           </Badge>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Card className='p-4'>
-            <Typography>
+          <Card>
+            <CardActionArea onClick={()=>navigate(routes.orders)}>
+              <Typography className='p-4'>
                 Orders
-            </Typography>
+              </Typography>
+            </CardActionArea>
           </Card>
         </Grid>
         <Grid item xs={12} md={6}>
