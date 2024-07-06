@@ -16,7 +16,7 @@ const getOrdersInfoThunk = createAsyncThunk('getOrdersInfoThunk', async(_, thunk
 
   const requestConfig = {
     method: 'POST',
-    url: 'http://localhost:5000/delivery-agent/orders-info',
+    url: `${process.env.API_BASE_URL}/${process.env.ORDERS_INFO}`,
     data: payload
   };
 

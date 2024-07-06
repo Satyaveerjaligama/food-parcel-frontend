@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   USER_TYPES,
   UserType,
@@ -20,6 +21,7 @@ interface CentralSliceInitialState {
   userDetails: UserDetails;
   changePasswordDetails: ChangePasswordDetails;
   accountDetailsToUpdate: AccountDetailsToUpdate;
+  myOrders: any;
 }
 
 export const initialState: CentralSliceInitialState = {
@@ -77,7 +79,8 @@ export const initialState: CentralSliceInitialState = {
     emailId: '',
     phoneNumber: '',
     pincode: ''
-  }
+  },
+  myOrders:[],
 };
 
 const centralSlice = createSlice({
@@ -107,7 +110,10 @@ const centralSlice = createSlice({
     },
     updateAccountDetails: (state, action) => {
       state.accountDetailsToUpdate = action.payload;
-    }
+    },
+    updateMyOrders: (state, action) => {
+      state.myOrders = action.payload;
+    },
   },
 });
 
@@ -122,4 +128,5 @@ export const {
   updateUserDetails,
   updateChangePasswordDetails,
   updateAccountDetails,
+  updateMyOrders,
 } = centralSlice.actions;

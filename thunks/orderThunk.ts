@@ -25,7 +25,7 @@ const orderThunk = createAsyncThunk('orderThunk', async(_,thunkAPI: any) => {
 
   const requestConfig = {
     method: 'POST',
-    url: 'http://localhost:5000/order/create',
+    url: `${process.env.API_BASE_URL}/${process.env.CREATE_ORDER}`,
     data: payload,
   };
 

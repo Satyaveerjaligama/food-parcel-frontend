@@ -14,6 +14,10 @@ const nextConfig = {
     CHANGE_PASSWORD: process.env.CHANGE_PASSWORD,
     UPDATE_ACCOUNT_DETAILS: process.env.UPDATE_ACCOUNT_DETAILS,
     UPDATE_ORDER_INFO: process.env.UPDATE_ORDER_INFO,
+    ALL_ORDERS: process.env.ALL_ORDERS,
+    ACTIVE_ORDERS: process.env.ACTIVE_ORDERS,
+    CREATE_ORDER: process.env.CREATE_ORDER,
+    ORDERS_INFO: process.env.ORDERS_INFO,
   },
   basePath: '/food-parcel'
 };
