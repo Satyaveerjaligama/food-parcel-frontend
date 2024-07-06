@@ -128,6 +128,14 @@ export interface CartInfo {
   totalPrice: number;
 }
 
+export interface PaymentSuccessInfo {
+  orderId : string;
+  orderStatus: string;
+  deliveryLocation: string;
+  paymentMode: string;
+  totalPrice: number;
+}
+
 export interface AvailableOrders {
   orderId: string;
   pickupLocation: string;

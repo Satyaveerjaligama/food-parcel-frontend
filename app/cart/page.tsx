@@ -27,7 +27,7 @@ const Cart = () => {
   };
 
   const paymentHandler = () => {
-    dispatch(orderThunk());
+    dispatch(orderThunk(router));
   };
 
   return (

@@ -1,4 +1,4 @@
-import { CartInfo, CartItems } from '@/utilities/constants';
+import { CartInfo, CartItems, PaymentSuccessInfo } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CustomerSliceInitialState {
@@ -15,6 +15,7 @@ interface CustomerSliceInitialState {
   cartItems: CartItems,
   cartItemImages: {[key: string]: string};
   cartInfo: CartInfo;
+  paymentSuccessInfo: PaymentSuccessInfo;
 }
 
 const initialState: CustomerSliceInitialState = {
@@ -33,7 +34,14 @@ const initialState: CustomerSliceInitialState = {
     deliveryFee: 30,
     discount: 0,
     totalPrice: 0,
-  }
+  },
+  paymentSuccessInfo: {
+    orderId : '',
+    orderStatus: '',
+    deliveryLocation: '',
+    paymentMode: '',
+    totalPrice: 0
+  },
 };
 
 const customerData = createSlice({
@@ -58,7 +66,10 @@ const customerData = createSlice({
         state.cartInfo.totalPrice = state.cartInfo.taxes + state.cartInfo.discount + state.cartInfo.deliveryFee + action.payload.allItemsPrice;
       }
       state.cartInfo = {...state.cartInfo, ...action.payload};
-    }
+    },
+    updatePaymentSuccessInfo: (state, action) => {
+      state.paymentSuccessInfo = action.payload;
+    },
   },
 });
 
@@ -70,4 +81,5 @@ export const {
   updateCartItems,
   updateCartItemImages,
   updateCartInfo,
+  updatePaymentSuccessInfo,
 } = customerData.actions;
