@@ -150,6 +150,12 @@ export interface CurrentOrderDetails {
   phoneNumber: string;
   orderStatus: string;
 }
+
+export interface Earnings {
+  totalOrders: number;
+  totalEarnings: number;
+}
+
 export interface DropDownMenuItem {
   label: string | number;
   value: string | number;
@@ -185,6 +191,7 @@ export const SNACKBAR_MESSAGES = {
   passwordChangeFailed: 'Failed to change the password',
   updateSuccess: 'Updated successfully',
   updateFailed: 'Failed to update',
+  failedToGetEarnings: 'Failed to fetch Earnings',
 };
 
 export const ORDER_STATUS = {

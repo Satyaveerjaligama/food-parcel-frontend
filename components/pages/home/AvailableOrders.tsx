@@ -37,9 +37,6 @@ const AvailableOrders = () => {
 
   return (
     <Box className='my-5'>
-      {/* <Typography variant='h4' className='text-red-500'>
-            No active orders
-      </Typography> */}
       <Typography variant='h5' className='text-center mb-5 underline'>
         Available orders{''}
         <IconButton onClick={getAvailableOrders}>

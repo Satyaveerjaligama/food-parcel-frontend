@@ -7,18 +7,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import getOrdersInfoThunk from '@/thunks/delivery-agent/getOrdersInfoThunk';
 import AvailableOrders from '@/components/pages/home/AvailableOrders';
-import { getIdFromUserId } from '@/utilities/utilityFunctions';
-import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
+import { camelToSentenceCase, getIdFromUserId } from '@/utilities/utilityFunctions';
+import { Earnings, ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
 import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
-import { updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
+import { deliveryAgentInitialState, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
+import getEarningsThunk from '@/thunks/delivery-agent/getEarningsThunk';
 
 const DeliveryAgent = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentOrderDetails = useSelector((state: RootState) => state.deliveryAgentSlice.currentOrderDetails);
   const availableOrders = useSelector((state: RootState) => state.deliveryAgentSlice.availableOrders);
+  const earnings = useSelector((state: RootState) => state.deliveryAgentSlice.earnings);
 
   useEffect(()=> {
-    dispatch(getOrdersInfoThunk());
+    const hitApi = async() => {
+      const response = await dispatch(getOrdersInfoThunk());
+      if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+        dispatch(getEarningsThunk());
+      }
+    };
+    hitApi();
   }, []);
 
   const updateOrderStatus = async(status: string) => {
@@ -28,16 +36,23 @@ const DeliveryAgent = () => {
       value: status
     }));
     if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
-      dispatch(updateCurrentOrderDetails({
-        ...currentOrderDetails,
-        orderStatus: status
-      }));
+      if(status === ORDER_STATUS.delivered) {
+        dispatch(updateCurrentOrderDetails({
+          ...deliveryAgentInitialState.currentOrderDetails
+        }));
+        dispatch(getOrdersInfoThunk());
+      } else {
+        dispatch(updateCurrentOrderDetails({
+          ...currentOrderDetails,
+          orderStatus: status
+        }));
+      }
     }
   };
 
   return (
     <React.Fragment>
-      {availableOrders.length > 0 && 
+      {availableOrders.length > 0 || !currentOrderDetails.orderId && 
         <AvailableOrders />
       }
       <Grid container columnSpacing={3} rowSpacing={3} className='my-2'>
@@ -108,18 +123,12 @@ const DeliveryAgent = () => {
                 Earnings
               </Typography>
               <Divider className='my-2'/>
-              <Box className='flex justify-between'>
-                <Typography>Total orders</Typography>
-                <Typography>10</Typography>
-              </Box>
-              <Box className='flex justify-between'>
-                <Typography>Total orders</Typography>
-                <Typography>10</Typography>
-              </Box>
-              <Box className='flex justify-between'>
-                <Typography>Tip</Typography>
-                <Typography>200</Typography>
-              </Box>
+              {Object.keys(earnings).map((key) =>
+                <Box className='flex justify-between' key={key}>
+                  <Typography>{camelToSentenceCase(key)}</Typography>
+                  <Typography>{key === 'totalEarnings' ? '₹' : ''} {earnings[key as keyof Earnings]}</Typography>
+                </Box>
+              )}
             </CardContent>
           </Card>
         </Grid>

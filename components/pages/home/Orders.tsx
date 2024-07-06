@@ -50,9 +50,6 @@ const Orders = () => {
 
   return (
     <Box className='my-5'>
-      {/* <Typography variant='h4' className='text-red-500'>
-            No active orders
-      </Typography> */}
       <Typography variant='h5' className='text-center mb-5 underline'>
         Active/In-coming orders{''}
         <IconButton onClick={getActiveOrders}>
@@ -74,7 +71,7 @@ const Orders = () => {
                   </Typography>
                 )}
                 <Typography>
-                  Order Value: {order.totalPrice}
+                  Order Value:  &#8377; {(order.totalPrice).toLocaleString('en-IN')}
                 </Typography>
                 {order.orderStatus === 'Processing' &&
                 <Box className='flex justify-around'>

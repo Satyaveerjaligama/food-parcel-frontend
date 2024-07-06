@@ -18,6 +18,7 @@ const nextConfig = {
     ACTIVE_ORDERS: process.env.ACTIVE_ORDERS,
     CREATE_ORDER: process.env.CREATE_ORDER,
     ORDERS_INFO: process.env.ORDERS_INFO,
+    EARNINGS: process.env.EARNINGS,
   },
   basePath: '/food-parcel'
 };

@@ -1,12 +1,13 @@
-import { AvailableOrders, CurrentOrderDetails } from '@/utilities/constants';
+import { AvailableOrders, CurrentOrderDetails, Earnings } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface DeliveryAgentInitialState {
     availableOrders: AvailableOrders[];
     currentOrderDetails: CurrentOrderDetails;
+    earnings: Earnings;
 }
 
-const deliveryAgentInitialState: DeliveryAgentInitialState = {
+export const deliveryAgentInitialState: DeliveryAgentInitialState = {
   availableOrders: [],
   currentOrderDetails: {
     orderId: '',
@@ -14,7 +15,11 @@ const deliveryAgentInitialState: DeliveryAgentInitialState = {
     deliveryLocation: '',
     phoneNumber: '',
     orderStatus: '',
-  }
+  },
+  earnings: {
+    totalOrders: 0,
+    totalEarnings: 0
+  },
 };
 
 const deliveryAgentDataSlice = createSlice({
@@ -26,9 +31,13 @@ const deliveryAgentDataSlice = createSlice({
     },
     updateCurrentOrderDetails: (state, action) => {
       state.currentOrderDetails = action.payload;
-    }
+    },
+    updateEarnings: (state, action) => {
+      state.earnings = action.payload;
+    },
   }
 });
 
-export const {updateAvailableOrders, updateCurrentOrderDetails} = deliveryAgentDataSlice.actions;
+export const {updateAvailableOrders, updateCurrentOrderDetails, updateEarnings} = deliveryAgentDataSlice.actions;
+
 export default deliveryAgentDataSlice.reducer;
