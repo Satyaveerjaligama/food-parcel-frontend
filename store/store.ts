@@ -3,6 +3,7 @@ import centralDataSlice from './slices/centralDataSlice';
 import utilitySlice from './slices/utilitySlice';
 import customerSlice from './slices/customerDataSlice';
 import restaurantSlice from './slices/restaurantDataSlice';
+import deliveryAgentSlice from './slices/deliveryAgentDataSlice';
 
 const store = configureStore({
   reducer:{
@@ -10,6 +11,7 @@ const store = configureStore({
     utilitySlice: utilitySlice,
     customerSlice: customerSlice,
     restaurantSlice: restaurantSlice,
+    deliveryAgentSlice: deliveryAgentSlice,
   },
 });
 

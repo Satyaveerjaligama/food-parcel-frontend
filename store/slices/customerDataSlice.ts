@@ -1,4 +1,4 @@
-import { CartInfo, CartItems } from '@/utilities/constants';
+import { CartInfo, CartItems, PaymentSuccessInfo } from '@/utilities/constants';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface CustomerSliceInitialState {
@@ -15,6 +15,8 @@ interface CustomerSliceInitialState {
   cartItems: CartItems,
   cartItemImages: {[key: string]: string};
   cartInfo: CartInfo;
+  paymentSuccessInfo: PaymentSuccessInfo;
+  couponCode: string;
 }
 
 const initialState: CustomerSliceInitialState = {
@@ -33,7 +35,15 @@ const initialState: CustomerSliceInitialState = {
     deliveryFee: 30,
     discount: 0,
     totalPrice: 0,
-  }
+  },
+  paymentSuccessInfo: {
+    orderId : '',
+    orderStatus: '',
+    deliveryLocation: '',
+    paymentMode: '',
+    totalPrice: 0
+  },
+  couponCode: '',
 };
 
 const customerData = createSlice({
@@ -55,9 +65,18 @@ const customerData = createSlice({
     updateCartInfo: (state, action) => {
       if(action.payload?.allItemsPrice && state.cartInfo.allItemsPrice !== action.payload.allItemsPrice) {
         state.cartInfo.taxes = (9*action.payload.allItemsPrice)/100;
-        state.cartInfo.totalPrice = state.cartInfo.taxes + state.cartInfo.discount + state.cartInfo.deliveryFee + action.payload.allItemsPrice;
+        state.cartInfo.totalPrice = state.cartInfo.taxes - state.cartInfo.discount + state.cartInfo.deliveryFee + action.payload.allItemsPrice;
+      }
+      if (action.payload?.discount && state.cartInfo.discount !== action.payload.discount) {
+        state.cartInfo.totalPrice = state.cartInfo.taxes + state.cartInfo.deliveryFee + state.cartInfo.allItemsPrice + state.cartInfo.discount - action.payload?.discount;
       }
       state.cartInfo = {...state.cartInfo, ...action.payload};
+    },
+    updatePaymentSuccessInfo: (state, action) => {
+      state.paymentSuccessInfo = action.payload;
+    },
+    updateCouponCode: (state, action) => {
+      state.couponCode = action.payload;
     }
   },
 });
@@ -70,4 +89,6 @@ export const {
   updateCartItems,
   updateCartItemImages,
   updateCartInfo,
+  updatePaymentSuccessInfo,
+  updateCouponCode,
 } = customerData.actions;

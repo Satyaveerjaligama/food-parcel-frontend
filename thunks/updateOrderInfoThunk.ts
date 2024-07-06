@@ -6,14 +6,14 @@ import axios from 'axios';
 
 interface UpdateOrderStatusProps {
     orderId: string;
-    statusType: string;
-    status: string;
+    key: string;
+    value: string;
 }
 
-const updateOrderStatusThunk = createAsyncThunk('updateOrderStatusThunk', async(props: UpdateOrderStatusProps, thunkAPI: any) => {
+const updateOrderInfoThunk = createAsyncThunk('updateOrderInfoThunk', async(props: UpdateOrderStatusProps, thunkAPI: any) => {
   const requestConfig = {
     method: 'PATCH',
-    url: `${process.env.API_BASE_URL}/${process.env.UPDATE_ORDER_STATUS}`,
+    url: `${process.env.API_BASE_URL}/${process.env.UPDATE_ORDER_INFO}`,
     data: props,
   };
     
@@ -36,4 +36,4 @@ const updateOrderStatusThunk = createAsyncThunk('updateOrderStatusThunk', async(
   }
 });
 
-export default updateOrderStatusThunk;
+export default updateOrderInfoThunk;

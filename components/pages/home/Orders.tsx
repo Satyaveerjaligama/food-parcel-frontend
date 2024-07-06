@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import updateOrderStatusThunk from '@/thunks/updateOrderStatusThunk';
+import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
 import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
 import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
 
@@ -19,14 +19,14 @@ const Orders = () => {
     dispatch(getActiveOrdersThunk());
   }, []);
 
-  const changeOrderStatus = async(orderId: string, statusType: string, status: string) => {
-    const response = await dispatch(updateOrderStatusThunk({
+  const changeOrderStatus = async(orderId: string, key: string, value: string) => {
+    const response = await dispatch(updateOrderInfoThunk({
       orderId,
-      statusType,
-      status
+      key,
+      value
     }));
     if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
-      switch(status) {
+      switch(value) {
       case ORDER_STATUS.accepted: {
         const updatedActiveOrders = activeOrders.map(order => {
           if(order.orderId === orderId) {
@@ -50,9 +50,6 @@ const Orders = () => {
 
   return (
     <Box className='my-5'>
-      {/* <Typography variant='h4' className='text-red-500'>
-            No active orders
-      </Typography> */}
       <Typography variant='h5' className='text-center mb-5 underline'>
         Active/In-coming orders{''}
         <IconButton onClick={getActiveOrders}>
@@ -74,7 +71,7 @@ const Orders = () => {
                   </Typography>
                 )}
                 <Typography>
-                  Order Value: {order.totalPrice}
+                  Order Value:  &#8377; {(order.totalPrice).toLocaleString('en-IN')}
                 </Typography>
                 {order.orderStatus === 'Processing' &&
                 <Box className='flex justify-around'>

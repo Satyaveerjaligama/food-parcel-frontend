@@ -1,24 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
+import { updateMyOrders } from '@/store/slices/centralDataSlice';
 import { setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const getActiveOrdersThunk = createAsyncThunk('getActiveOrdersThunk', async(_, thunkAPI: any) => {
+const getAllOrdersThunk = createAsyncThunk('getAllOrdersThunk', async(_, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
-  const restaurantId = getState.centralDataSlice.userDetails.userId;
+  const userId = getState.centralDataSlice.userDetails.userId;
+  const userType = getState.centralDataSlice.userType;
 
   const requestConfig = {
-    method: 'GET',
-    url: `${process.env.API_BASE_URL}/${process.env.ACTIVE_ORDERS}/${restaurantId}`,
+    method: 'POST',
+    url: `${process.env.API_BASE_URL}/${process.env.ALL_ORDERS}`,
+    data: {
+      userId,
+      userType
+    }
   };
 
   try{
     thunkAPI.dispatch(setLoader(true));
     const response = await axios(requestConfig);
     if(response.status === 200 && response?.data) {
-      thunkAPI.dispatch(updateActiveOrders(response.data));
+      thunkAPI.dispatch(updateMyOrders(response.data));
     }
   } catch(err) {
     console.log(err);
@@ -27,4 +32,4 @@ const getActiveOrdersThunk = createAsyncThunk('getActiveOrdersThunk', async(_, t
   }
 });
 
-export default getActiveOrdersThunk;
+export default getAllOrdersThunk;
