@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import TextField from '@/components/TextField';
 import { updateChangePasswordDetails } from '@/store/slices/centralDataSlice';
 import { AppDispatch, RootState } from '@/store/store';
-import changePassword from '@/thunks/changePasswordThunk';
+import changePasswordThunk from '@/thunks/common/changePasswordThunk';
 import { ChangePasswordDetails } from '@/utilities/constants';
 import changePasswordSchema from '@/utilities/validations/changePasswordSchema';
 import { Box, Typography } from '@mui/material';
@@ -39,7 +39,7 @@ const ChangePassword = () => {
     const isValid = await changePasswordSchema.isValid(changePasswordDetails);
     if(isValid) {
       setErrors(errorsInitialState);
-      dispatch(changePassword(router));
+      dispatch(changePasswordThunk(router));
     } else {
       try {
         await changePasswordSchema.validate(changePasswordDetails, {abortEarly: false}); 

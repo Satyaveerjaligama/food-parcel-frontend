@@ -1,7 +1,7 @@
 import FoodTypes from '@/components/pages/home/FoodTypes';
 import RestaurantCards from '@/components/pages/home/RestaurantCards';
 import { AppDispatch, RootState } from '@/store/store';
-import { fetchRestaurants } from '@/thunks/fetchRestaurantsThunk';
+import { fetchRestaurantsThunk } from '@/thunks/restaurant/fetchRestaurantsThunk';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -10,7 +10,7 @@ const Customer = () => {
   const pincode = useSelector((state: RootState) => state.centralDataSlice.userDetails.pincode);
 
   useEffect(()=>{
-    dispatch(fetchRestaurants());
+    dispatch(fetchRestaurantsThunk());
   },[pincode]);
 
   return (

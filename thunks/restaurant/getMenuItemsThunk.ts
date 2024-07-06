@@ -4,7 +4,7 @@ import { setLoader } from '@/store/slices/utilitySlice';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const getMenuItems = createAsyncThunk('getMenuItems', async(restaurantId: string, thunkAPI: any) => {
+const getMenuItemsThunk = createAsyncThunk('getMenuItemsThunk', async(restaurantId: string, thunkAPI: any) => {
 
   const apiRequestData = {
     method: 'GET',
@@ -24,4 +24,4 @@ const getMenuItems = createAsyncThunk('getMenuItems', async(restaurantId: string
   }
 });
 
-export default getMenuItems;
+export default getMenuItemsThunk;

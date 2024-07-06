@@ -4,8 +4,8 @@ import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const fetchRestaurantDetails = createAsyncThunk(
-  'fetchRestaurantDetails',
+export const fetchRestaurantDetailsThunk = createAsyncThunk(
+  'fetchRestaurantDetailsThunk',
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async (restaurantId: string, thunkAPI: any) => {
     const apiData = {

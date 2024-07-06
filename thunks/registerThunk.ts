@@ -7,7 +7,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import routes from '@/utilities/routes';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const register = createAsyncThunk('register', async({router}: {router: AppRouterInstance}, thunkAPI: any) => {
+const registerThunk = createAsyncThunk('registerThunk', async({router}: {router: AppRouterInstance}, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
   const userType: UserType = getState.centralDataSlice.userType;
   const customerDetails: CustomerDetails = getState.centralDataSlice.customerDetails;
@@ -52,4 +52,4 @@ const register = createAsyncThunk('register', async({router}: {router: AppRouter
   thunkAPI.dispatch(setLoader(false));
 });
 
-export default register;
+export default registerThunk;

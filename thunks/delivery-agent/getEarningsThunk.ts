@@ -6,7 +6,7 @@ import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const getEarningsThunk = createAsyncThunk('getEarnings', async(_, thunkAPI: any) => {
+const getEarningsThunk = createAsyncThunk('getEarningsThunk', async(_, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
   const deliveryAgentId = getState.centralDataSlice.userDetails.userId;
 

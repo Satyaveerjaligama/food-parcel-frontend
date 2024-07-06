@@ -19,7 +19,7 @@ import Restaurant from '@/app/create-account/Restaurant';
 import DeliveryAgent from '@/app/create-account/DeliveryAgent';
 import Link from 'next/link';
 import { pacifico } from '@/utilities/fonts';
-import register from '@/thunks/registerThunk';
+import registerThunk from '@/thunks/registerThunk';
 import { AppDispatch, RootState } from '@/store/store';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
@@ -65,7 +65,7 @@ const CreateAccount = () => {
     const isDetailsValid = await schema.isValid(detailsToValidate);
     if (isDetailsValid) {
       setErrors({});
-      dispatch(register({ router }));
+      dispatch(registerThunk({ router }));
     } else {
       try {
         await schema.validate(detailsToValidate, { abortEarly: false });

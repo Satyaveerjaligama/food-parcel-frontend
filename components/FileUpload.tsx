@@ -5,7 +5,7 @@ import UploadIcon from '@mui/icons-material/Upload';
 import { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
-import { fileUpload } from '@/thunks/fileUploadThunk';
+import { fileUploadThunk } from '@/thunks/common/fileUploadThunk';
 import { setModal } from '@/store/slices/utilitySlice';
 import { PROMISE_STATUS } from '@/utilities/constants';
 
@@ -25,7 +25,7 @@ const FileUpload = (props: FileUploadProps) => {
       const form = new FormData();
       form.append('file', fileData);
       form.append('type', fileType);
-      const result = await dispatch(fileUpload(form));
+      const result = await dispatch(fileUploadThunk(form));
       if(result.meta.requestStatus === PROMISE_STATUS.fulfilled) {
         dispatch(setModal({
           open: false,

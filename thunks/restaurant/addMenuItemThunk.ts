@@ -6,7 +6,7 @@ import { MENU_ITEM_ACTION_TYPES, MODAL_TYPES, SNACKBAR_MESSAGES, SNACKBAR_STATUS
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const addMenuItem = createAsyncThunk('addMenuItem', async(type: string, thunkAPI: any) => {
+export const addMenuItemThunk = createAsyncThunk('addMenuItemThunk', async(type: string, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
   const menuItem = getState.restaurantSlice.menuItem;
   const userId = getState.centralDataSlice.userDetails.userId;

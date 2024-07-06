@@ -3,7 +3,7 @@ import { openSnackbar } from '@/store/slices/utilitySlice';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-export const getFile = createAsyncThunk('getFile', async(_, thunkAPI: any) => {
+export const getFileThunk = createAsyncThunk('getFileThunk', async(_, thunkAPI: any) => {
   const apiObj: any = {
     method: 'GET',
     url: 'http://localhost:5000/file/restaurant/restaurant_455223',

@@ -12,7 +12,7 @@ interface DeleteApiParams {
     router: AppRouterInstance;
 }
 
-const deleteApi = createAsyncThunk('deleteApi', async(params: DeleteApiParams,thunkAPI: any) => {
+const deleteThunk = createAsyncThunk('deleteThunk', async(params: DeleteApiParams,thunkAPI: any) => {
   const {type, id, router} = params;
 
   const requestConfig = {
@@ -40,4 +40,4 @@ const deleteApi = createAsyncThunk('deleteApi', async(params: DeleteApiParams,th
   }
 });
 
-export default deleteApi;
+export default deleteThunk;

@@ -9,7 +9,7 @@ import getOrdersInfoThunk from '@/thunks/delivery-agent/getOrdersInfoThunk';
 import AvailableOrders from '@/components/pages/home/AvailableOrders';
 import { camelToSentenceCase, getIdFromUserId } from '@/utilities/utilityFunctions';
 import { Earnings, ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
-import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
+import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
 import { deliveryAgentInitialState, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
 import getEarningsThunk from '@/thunks/delivery-agent/getEarningsThunk';
 

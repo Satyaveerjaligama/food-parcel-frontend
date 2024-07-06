@@ -14,7 +14,7 @@ import { AppDispatch, RootState } from '@/store/store';
 import { CartInfo } from '@/utilities/constants';
 import { useRouter } from 'next/navigation';
 import routes from '@/utilities/routes';
-import orderThunk from '@/thunks/orderThunk';
+import orderThunk from '@/thunks/order/orderThunk';
 import { updateCartInfo, updateCouponCode } from '@/store/slices/customerDataSlice';
 
 const Cart = () => {

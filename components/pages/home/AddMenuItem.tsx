@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
 import { updateMenuItem } from '@/store/slices/restaurantDataSlice';
 import addMenuItemSchema from '@/utilities/validations/addMenuItemSchema';
-import { addMenuItem } from '@/thunks/addMenuItemThunk';
+import { addMenuItemThunk } from '@/thunks/restaurant/addMenuItemThunk';
 import { restaurantDataInitialState } from '@/store/slices/restaurantDataSlice';
 import React, { useState } from 'react';
 
@@ -55,7 +55,7 @@ const AddMenuItem = () => {
 
   const hitMenuItemApi = async(type: string) => {
     setErrors(errorInitialState);
-    await dispatch(addMenuItem(type));
+    await dispatch(addMenuItemThunk(type));
     dispatch(updateMenuItem(restaurantDataInitialState.menuItem));
   };
 
