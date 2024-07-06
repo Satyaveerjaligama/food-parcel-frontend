@@ -8,7 +8,7 @@ import axios from 'axios';
 import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const login = createAsyncThunk('login', async({router}:{router: AppRouterInstance}, thunkAPI: any)=>{
+export const loginThunk = createAsyncThunk('loginThunk', async({router}:{router: AppRouterInstance}, thunkAPI: any)=>{
   const getState: RootState = thunkAPI.getState();
   const userType = getState.centralDataSlice.userType;
   const credentials = getState.centralDataSlice.credentials;

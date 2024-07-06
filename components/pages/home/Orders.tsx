@@ -1,5 +1,5 @@
 import { AppDispatch, RootState } from '@/store/store';
-import getActiveOrdersThunk from '@/thunks/getActiveOrdersThunk';
+import getActiveOrdersThunk from '@/thunks/restaurant/getActiveOrdersThunk';
 import { getIdFromUserId } from '@/utilities/utilityFunctions';
 import { Box, Card, CardContent, Divider, Grid, IconButton, Typography } from '@mui/material';
 import { useEffect } from 'react';
@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
+import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
 import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
 import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
 

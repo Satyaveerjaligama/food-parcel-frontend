@@ -9,7 +9,7 @@ import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.share
 import { initialState as centralDataInitialState } from '@/store/slices/centralDataSlice';
 import routes from '@/utilities/routes';
 
-const changePassword = createAsyncThunk('changePassword', async(router: AppRouterInstance,thunkAPI: any) => {
+const changePasswordThunk = createAsyncThunk('changePasswordThunk', async(router: AppRouterInstance,thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
   const userId = getState.centralDataSlice.userDetails.userId;
   const {oldPassword, newPassword} = getState.centralDataSlice.changePasswordDetails;
@@ -49,4 +49,4 @@ const changePassword = createAsyncThunk('changePassword', async(router: AppRoute
   }
 });
 
-export default changePassword;
+export default changePasswordThunk;

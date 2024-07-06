@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const fileUpload = createAsyncThunk('fileUpload', async(formData: any, thunkAPI: any) => {
+export const fileUploadThunk = createAsyncThunk('fileUploadThunk', async(formData: any, thunkAPI: any) => {
   const getState: RootState = thunkAPI.getState();
   const id: string = getState.utilitySlice.idForFileUpload;
 

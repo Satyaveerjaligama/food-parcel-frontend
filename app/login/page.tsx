@@ -21,7 +21,7 @@ import TextField from '@/components/TextField';
 import styles from '../../styles/LoginPage.module.css';
 import EastRoundedIcon from '@mui/icons-material/EastRounded';
 import { pacifico } from '../../utilities/fonts';
-import { login } from '@/thunks/loginThunk';
+import { loginThunk } from '@/thunks/common/loginThunk';
 import { AppDispatch } from '@/store/store';
 import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
@@ -57,7 +57,7 @@ const LoginPage = () => {
     const isCredentialsValid = await loginSchema.isValid(credentials);
     if(isCredentialsValid) {
       setErrors(errorInitialState);
-      dispatch(login({router}));
+      dispatch(loginThunk({router}));
     } else {
       try {
         await loginSchema.validate(credentials, { abortEarly: false });

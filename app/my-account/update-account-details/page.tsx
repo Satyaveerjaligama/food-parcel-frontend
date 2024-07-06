@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import TextField from '@/components/TextField';
 import { updateAccountDetails } from '@/store/slices/centralDataSlice';
 import { AppDispatch, RootState } from '@/store/store';
-import updateAccountDetailsThunk from '@/thunks/updateAccountDetailsThunk';
+import updateAccountDetailsThunk from '@/thunks/common/updateAccountDetailsThunk';
 import { AccountDetailsToUpdate } from '@/utilities/constants';
 import updateAccountDetailsSchema from '@/utilities/validations/updateAccountDetailsSchema';
 import { Box, Typography } from '@mui/material';

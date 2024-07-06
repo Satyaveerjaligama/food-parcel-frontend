@@ -11,10 +11,10 @@ import EditRoundedIcon from '@mui/icons-material/EditRounded';
 import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
-import { fileUpload } from '@/thunks/fileUploadThunk';
+import { fileUploadThunk } from '@/thunks/common/fileUploadThunk';
 import Image from 'next/image';
 import { updateIdForFileUpload } from '@/store/slices/utilitySlice';
-import deleteApi from '@/thunks/deleteThunk';
+import deleteThunk from '@/thunks/common/deleteThunk';
 import routes from '@/utilities/routes';
 
 const MyAccount = () => {
@@ -46,7 +46,7 @@ const MyAccount = () => {
       form.append('file', fileData);
       form.append('type', userType);
       dispatch(updateIdForFileUpload(userId));
-      dispatch(fileUpload(form));
+      dispatch(fileUploadThunk(form));
     }
   };
 
@@ -59,7 +59,7 @@ const MyAccount = () => {
   };
 
   const deleteAccount = () => {
-    dispatch(deleteApi({type: userType, id: userId, router }));
+    dispatch(deleteThunk({type: userType, id: userId, router }));
   };
 
   const navigate = (route: string) => {

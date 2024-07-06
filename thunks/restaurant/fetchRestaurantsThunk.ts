@@ -6,7 +6,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const fetchRestaurants = createAsyncThunk('fetchRestaurants', async(_, thunkAPI: any)=>{
+export const fetchRestaurantsThunk = createAsyncThunk('fetchRestaurantsThunk', async(_, thunkAPI: any)=>{
   const getState: RootState = thunkAPI.getState();
   const pincode: string = getState.centralDataSlice.userDetails.pincode;
 

@@ -4,7 +4,7 @@ import { Box, Card, CardContent, Divider, Grid, IconButton, Typography } from '@
 import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-import updateOrderInfoThunk from '@/thunks/updateOrderInfoThunk';
+import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
 import { AvailableOrders as AvailableOrdersInterface, PROMISE_STATUS } from '@/utilities/constants';
 import getAvailableOrdersThunk from '@/thunks/delivery-agent/getOrdersInfoThunk';
 import { updateAvailableOrders, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
