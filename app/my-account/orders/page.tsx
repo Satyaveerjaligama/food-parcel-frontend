@@ -3,7 +3,7 @@
 import Layout from '@/components/Layout';
 import { AppDispatch, RootState } from '@/store/store';
 import getAllOrdersThunk from '@/thunks/common/getAllOrdersThunk';
-import { Grid } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Customer from './Customer';
@@ -22,6 +22,7 @@ const Orders = () => {
 
   return (
     <Layout>
+      <Typography variant='h5' className='underline'>My orders</Typography>
       <Grid container rowSpacing={3} columnSpacing={3} className='mb-10 mt-1'>
         {userType === USER_TYPES.customer && <Customer myOrders={myOrders}/>}
         {userType === USER_TYPES.restaurant && <Restaurant myOrders={myOrders}/>}

@@ -21,7 +21,7 @@ const RestaurantCards = () => {
   };
 
   return (
-    <Grid container columnSpacing={4} rowSpacing={2} className="mb-5">
+    <Grid container columnSpacing={4} rowSpacing={2} className="mb-10">
       {restaurantsList && restaurantsList.map((restaurant) => (
         <Grid item xs={12} sm={6} md={4} key={restaurant.restaurantId}>
           <Card>

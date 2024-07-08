@@ -62,7 +62,7 @@ const UpdateAccountDetails = () => {
   return (
     <Layout>
       <Box className='flex flex-col w-1/3 mx-auto h-screen'>
-        <Typography variant='h5' className='text-center'>
+        <Typography variant='h5' className='text-center underline'>
           Update details
         </Typography>
         <TextField 
