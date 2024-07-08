@@ -60,7 +60,7 @@ const ChangePassword = () => {
   return (
     <Layout>
       <Box className='flex flex-col w-1/3 mx-auto h-screen'>
-        <Typography variant='h5' className='text-center'>
+        <Typography variant='h5' className='text-center underline'>
           Change Password
         </Typography>
         <TextField 

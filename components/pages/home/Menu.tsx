@@ -1,6 +1,7 @@
 import {
   Box,
   Card,
+  CardActionArea,
   CardContent,
   CardMedia,
   Grid,
@@ -43,15 +44,12 @@ const Menu = () => {
       <Typography variant='h5' className='text-center mt-4 underline'>Menu</Typography>
       <Grid container columnSpacing={3} rowSpacing={3} className="mb-4 mt-2">
         <Grid item xs={12} sm={4} md={3}>
-          <Card
-            onClick={() =>
-              openMenuItemModal(restaurantDataInitialState.menuItem)
-            }
-            className="cursor-pointer"
-          >
-            <CardContent>
-              <Typography>+ Add item</Typography>
-            </CardContent>
+          <Card>
+            <CardActionArea onClick={() =>openMenuItemModal(restaurantDataInitialState.menuItem)}>
+              <CardContent>
+                <Typography>+ Add item</Typography>
+              </CardContent>
+            </CardActionArea>
           </Card>
         </Grid>
         {menuItemsList.map((item) => (

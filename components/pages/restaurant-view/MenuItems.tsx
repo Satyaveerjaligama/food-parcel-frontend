@@ -68,11 +68,11 @@ const MenuItems = () => {
   };
 
   return (
-    <Grid container columnSpacing={4} rowSpacing={2} className="mb-5">
+    <Grid container columnSpacing={4} rowSpacing={2} className="mb-10">
       {menuItemsList.map((menuItem) => (
         <Grid item xs={12} sm={6} md={4} key={menuItem.itemId}>
           <Card className="flex justify-start items-center">
-            <CardMedia>
+            <CardMedia className='basis-1/3'>
               <Image
                 src={`data:image/png;base64,${menuItem.image}`}
                 alt="sample image"
@@ -80,13 +80,14 @@ const MenuItems = () => {
                 height={100}
               />
             </CardMedia>
-            <CardContent>
+            <CardContent className='basis-2/3 relative'>
+              <Image className='absolute top-2 right-2' src={`/food-parcel/${menuItem.isVeg ? 'vegIcon.png' : 'nonVegIcon.png'}`} width={15} height={15} alt='veg icon'/>
               <Typography>{menuItem.name}</Typography>
               <Typography className="text-gray-400 text-sm">
                 &#8377; {menuItem.price}
               </Typography>
               {cartItems?.[menuItem.itemId]?.quantity ? 
-                <Box className='flex items-center'>
+                <Box className='flex items-center mt-1'>
                   <IconButton onClick={()=>editQuantity(menuItem.itemId, 'decrement')}>
                     <RemoveCircleRoundedIcon />
                   </IconButton>
@@ -100,8 +101,9 @@ const MenuItems = () => {
                 :
                 <Button 
                   label='Add'
-                  variant='outlined'
+                  variant='contained'
                   fullWidth
+                  className='mt-2'
                   onClick={()=>addItemHandler(menuItem)}
                 />
               }

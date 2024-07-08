@@ -89,7 +89,7 @@ const CreateAccount = () => {
         <Card className={`${styles.createAccountCard} rounded-xl`}>
           <CardContent>
             <Typography
-              className={`text-center mb-4 text-2xl ${pacifico.className}`}
+              className={`text-center mb-3 text-2xl ${pacifico.className}`}
             >
               {PRODUCT_NAME}
             </Typography>

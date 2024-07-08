@@ -52,7 +52,7 @@ const DeliveryAgent = () => {
 
   return (
     <React.Fragment>
-      {availableOrders.length > 0 || !currentOrderDetails.orderId && 
+      {(availableOrders.length > 0 || !currentOrderDetails.orderId) && 
         <AvailableOrders />
       }
       <Grid container columnSpacing={3} rowSpacing={3} className='my-2'>
