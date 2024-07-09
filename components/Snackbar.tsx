@@ -34,7 +34,7 @@ const Snackbar = (props: SnackbarProps) => {
     <MuiSnackBar
       className={className}
       open={snackbar.open}
-      autoHideDuration={5000}
+      autoHideDuration={3000}
       onClose={handleClose}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
     >

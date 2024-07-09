@@ -23,10 +23,10 @@ export const fileUploadThunk = createAsyncThunk('fileUploadThunk', async(formDat
         message: SNACKBAR_MESSAGES.fileUploadSuccess,
         status: SNACKBAR_STATUS.success})
       );
-    }).catch(()=>{
+    }).catch((err)=>{
       thunkAPI.dispatch(openSnackbar({
         open: true,
-        message: SNACKBAR_MESSAGES.fileUploadFailed,
+        message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('upload the file'),
         status: SNACKBAR_STATUS.error}));
     }).finally(()=>{
       thunkAPI.dispatch(setLoader(false));

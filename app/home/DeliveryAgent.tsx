@@ -55,7 +55,7 @@ const DeliveryAgent = () => {
       {(availableOrders.length > 0 || !currentOrderDetails.orderId) && 
         <AvailableOrders />
       }
-      <Grid container columnSpacing={3} rowSpacing={3} className='my-2'>
+      <Grid container columnSpacing={3} rowSpacing={3} className='mt-2 mb-10'>
         <Grid item xs={12} sm={6} md={8}>
           <Card>
             <CardContent>

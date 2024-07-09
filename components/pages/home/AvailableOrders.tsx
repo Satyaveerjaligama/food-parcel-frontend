@@ -46,16 +46,18 @@ const AvailableOrders = () => {
       <Grid container columnSpacing={2} rowSpacing={2}>
         {availableOrders.map((order)=>
           <Grid item xs={12} sm={4} md={3} key={order.orderId}>
-            <Card>
-              <CardContent>
-                <Typography className='font-bold'>
-                  # {getIdFromUserId(order.orderId)}
-                </Typography>
-                <Divider className='my-2'/>
-                <Typography>Pickup Location</Typography>
-                <Typography className="text-gray-400 text-sm">{order.pickupLocation}</Typography>
-                <Typography className='mt-4'>Delivery Location</Typography>
-                <Typography className="text-gray-400 text-sm">{order.deliveryLocation}</Typography>
+            <Card className='h-full'>
+              <CardContent className='flex flex-col h-full justify-between'>
+                <Box>
+                  <Typography className='font-bold'>
+                    # {getIdFromUserId(order.orderId)}
+                  </Typography>
+                  <Divider className='my-2'/>
+                  <Typography>Pickup Location</Typography>
+                  <Typography className="text-gray-400 text-sm">{order.pickupLocation}</Typography>
+                  <Typography className='mt-4'>Delivery Location</Typography>
+                  <Typography className="text-gray-400 text-sm">{order.deliveryLocation}</Typography>
+                </Box>
                 <Box className='flex justify-center mt-4'>
                   <IconButton onClick={()=>acceptOrder(order)}>
                     <DoneRoundedIcon />

@@ -41,7 +41,7 @@ const changePasswordThunk = createAsyncThunk('changePasswordThunk', async(router
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.passwordChangeFailed,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('change the password'),
       status: SNACKBAR_STATUS.error
     }));
   } finally {

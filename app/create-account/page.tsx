@@ -25,7 +25,7 @@ import Loader from '@/components/Loader';
 import { useRouter } from 'next/navigation';
 import Snackbar from '@/components/Snackbar';
 import UserNavigation from '@/components/UserNavigation';
-import {customerRegistionSchema, deliveryAgentRegistrationSchema, restaurantRegistrationSchema} from '@/utilities/validations/registerSchema';
+import {customerRegistrationSchema, deliveryAgentRegistrationSchema, restaurantRegistrationSchema} from '@/utilities/validations/registerSchema';
 
 const CreateAccount = () => {
   const router = useRouter();
@@ -49,7 +49,7 @@ const CreateAccount = () => {
     let detailsToValidate;
     switch(userType) {
     case USER_TYPES.customer:
-      schema = customerRegistionSchema;
+      schema = customerRegistrationSchema;
       detailsToValidate = {...customerDetails};
       break;
     case USER_TYPES.restaurant:

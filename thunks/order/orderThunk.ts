@@ -2,7 +2,7 @@
 import { updatePaymentSuccessInfo } from '@/store/slices/customerDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { SNACKBAR_STATUS } from '@/utilities/constants';
+import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import routes from '@/utilities/routes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
@@ -48,7 +48,7 @@ const orderThunk = createAsyncThunk('orderThunk', async(router: AppRouterInstanc
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: 'Something went wrong',
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('order'),
       status: SNACKBAR_STATUS.error
     }));
   } finally {

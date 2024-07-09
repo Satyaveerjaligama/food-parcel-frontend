@@ -19,7 +19,7 @@ interface CustomerSliceInitialState {
   couponCode: string;
 }
 
-const initialState: CustomerSliceInitialState = {
+export const initialState: CustomerSliceInitialState = {
   restaurantsList: [],
   restaurantDetails: {
     restaurantName: '',

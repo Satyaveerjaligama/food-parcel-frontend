@@ -21,7 +21,7 @@ const SuccessPage = () => {
 
   return (
     <Layout>
-      <Box className='mb-10 w-2/5 mx-auto'>
+      <Box className='mb-10 sm:w-2/3 md:w-2/5 mx-auto'>
         <Card className='mb-5'>
           <CardContent>
             <Typography className='text-lg'>

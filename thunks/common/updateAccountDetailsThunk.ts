@@ -37,7 +37,7 @@ const updateAccountDetailsThunk = createAsyncThunk('updateAccountDetailsThunk', 
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.updateFailed,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('update'),
       status: SNACKBAR_STATUS.error
     }));
   } finally {

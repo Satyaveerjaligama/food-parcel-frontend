@@ -9,18 +9,20 @@ const Customer = (props: any) => {
   return (
     <React.Fragment>
       {myOrders.length > 0 && myOrders.map((order: any)=>
-        <Grid item xs={12} sm={4} md={3} key={order.orderId}>
-          <Card>
-            <CardActionArea>
-              <CardContent>
-                <Typography className='font-bold'>
-                    # {getIdFromUserId(order.orderId)}
-                </Typography>
-                <Typography 
-                  className={`mb-2 order-status order-${order.orderStatus}`}
-                >
-                  {order.orderStatus}
-                </Typography>
+        <Grid item xs={12} sm={6} md={4} lg={3} key={order.orderId}>
+          <Card className='h-full'>
+            <CardActionArea className='h-full'>
+              <CardContent className='flex flex-col h-full justify-between'>
+                <Box>
+                  <Typography className='font-bold'>
+                      # {getIdFromUserId(order.orderId)}
+                  </Typography>
+                  <Typography 
+                    className={`mb-2 order-status order-${order.orderStatus}`}
+                  >
+                    {order.orderStatus}
+                  </Typography>
+                </Box>
                 {order.foodItems.map((item: any)=>
                   <Typography className="text-gray-400 text-sm" key={item.itemId}>
                     {item.quantity} x {item.itemName}

@@ -59,7 +59,7 @@ const ChangePassword = () => {
 
   return (
     <Layout>
-      <Box className='flex flex-col w-1/3 mx-auto h-screen'>
+      <Box className='flex flex-col w-4/5 sm:w-1/2 md:w-1/3 mx-auto h-screen'>
         <Typography variant='h5' className='text-center underline'>
           Change Password
         </Typography>

@@ -57,8 +57,12 @@ export const addMenuItemThunk = createAsyncThunk('addMenuItemThunk', async(type:
       message: snackBarMessage,
       status: SNACKBAR_STATUS.success,
     }));
-  } catch(err) {
-    console.log('err', err);
+  } catch(err: any) {
+    thunkAPI.dispatch(openSnackbar({
+      open: true,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('add menu item'),
+      status: SNACKBAR_STATUS.error
+    }));
   } finally {
     thunkAPI.dispatch(setLoader(false));
   }

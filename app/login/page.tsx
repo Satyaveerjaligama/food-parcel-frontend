@@ -29,23 +29,13 @@ import Snackbar from '@/components/Snackbar';
 import UserNavigation from '@/components/UserNavigation';
 import loginSchema from '@/utilities/validations/loginSchema';
 
-interface Errors {
-  emailId: string;
-  password: string;
-}
-
-const errorInitialState: Errors = {
-  emailId: '',
-  password: '',
-};
-
 const LoginPage = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const credentials: Credentials = useSelector(
     (state: any) => state.centralDataSlice.credentials
   );
-  const [errors, setErrors] = useState<Errors>(errorInitialState);
+  const [errors, setErrors] = useState<any>({});
 
   const onChangeHandler = (event: any, type: string) => {
     dispatch(updateCredentials({ ...credentials, [type]: event.target.value }));
@@ -56,15 +46,15 @@ const LoginPage = () => {
   const loginBtnClick = async() => {
     const isCredentialsValid = await loginSchema.isValid(credentials);
     if(isCredentialsValid) {
-      setErrors(errorInitialState);
+      setErrors({});
       dispatch(loginThunk({router}));
     } else {
       try {
         await loginSchema.validate(credentials, { abortEarly: false });
       } catch(err: any) {
-        const formattedErrors: Errors = errorInitialState;
+        const formattedErrors: any = {};
         err.inner.forEach((error: any) => {
-          formattedErrors[error.path as keyof Errors] = error.message; 
+          formattedErrors[error.path] = error.message; 
         });
         setErrors(formattedErrors);
       }

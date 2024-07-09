@@ -25,11 +25,11 @@ body {
 }
 
 .MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-  border-color: #74c85d;
+  border-color: #ff7d29;
 }
 
 .MuiInputLabel-root.Mui-focused {
-  color: #74c85d;
+  color: #ff7d29;
 }
 
 .height-50vh {

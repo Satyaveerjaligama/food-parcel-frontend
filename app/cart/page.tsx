@@ -11,11 +11,12 @@ import { camelToSentenceCase } from '@/utilities/utilityFunctions';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
-import { CartInfo } from '@/utilities/constants';
+import { CartInfo, PROMISE_STATUS } from '@/utilities/constants';
 import { useRouter } from 'next/navigation';
 import routes from '@/utilities/routes';
 import orderThunk from '@/thunks/order/orderThunk';
-import { updateCartInfo, updateCouponCode } from '@/store/slices/customerDataSlice';
+import { updateCartInfo, updateCartItemImages, updateCartItems, updateCouponCode } from '@/store/slices/customerDataSlice';
+import { initialState as cutomerSliceInitialState } from '@/store/slices/customerDataSlice';
 
 const Cart = () => {
   const router = useRouter();
@@ -30,8 +31,14 @@ const Cart = () => {
     router.push(`/${routes.home}`);
   };
 
-  const paymentHandler = () => {
-    dispatch(orderThunk(router));
+  const paymentHandler = async() => {
+    const response = await dispatch(orderThunk(router));
+    if(response.meta.requestStatus === PROMISE_STATUS.fulfilled) {
+      // Once order is placed, we have to clear the cart info
+      dispatch(updateCartItems(cutomerSliceInitialState.cartItems));
+      dispatch(updateCartItemImages(cutomerSliceInitialState.cartItemImages));
+      dispatch(updateCartInfo(cutomerSliceInitialState.cartInfo));
+    }
   };
 
   const couponCodeOnChangeHandler = (event: any) => {
@@ -69,8 +76,8 @@ const Cart = () => {
         <>
           <FoodItemCards cartInfo={cartInfo} cartItems={cartItems}/>
           <Divider className='my-4'/>
-          <Grid container className='my-5'>
-            <Grid item md={8}>
+          <Grid container className='my-5' rowGap={4} columnSpacing={4}>
+            <Grid item xs={12} sm={6} md={8}>
               <Box className='flex items-center'>
                 <TextField
                   className={`${styles.inputFields}`}
@@ -89,7 +96,7 @@ const Cart = () => {
                   />
                 </Box>
               </Box>
-              <Card className='mr-8 mt-4'>
+              <Card className='mt-4'>
                 <CardContent>
                   <Typography>
                     Delivery Address
@@ -106,7 +113,7 @@ const Cart = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               {Object.keys(cartInfo).map((priceType: string) => 
                 <React.Fragment key={priceType}>
                   {priceType === 'totalPrice' && <Divider className='my-2' />}

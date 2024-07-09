@@ -24,10 +24,10 @@ const getEarningsThunk = createAsyncThunk('getEarningsThunk', async(_, thunkAPI:
         totalEarnings: response.data.totalEarnings,
       }));
     }
-  } catch(err) {
+  } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: SNACKBAR_MESSAGES.failedToGetEarnings,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('fetch Earnings'),
       status: SNACKBAR_STATUS.error,
     }));
   } finally {

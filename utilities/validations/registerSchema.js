@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const customerRegistionSchema = yup.object().shape({
+export const customerRegistrationSchema = yup.object().shape({
   fullName: yup.string().required('Full name is required'),
   emailId: yup.string().email('Invalid Email id').required('Email id is required'),
   phoneNumber: yup.string().matches(/^[6-9][0-9]{9}$/, 'Enter valid phone number').required('Phone number is required'),
