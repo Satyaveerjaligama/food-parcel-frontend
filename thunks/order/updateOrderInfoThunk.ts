@@ -25,10 +25,10 @@ const updateOrderInfoThunk = createAsyncThunk('updateOrderInfoThunk', async(prop
       message: SNACKBAR_MESSAGES.updateSuccess,
       status: SNACKBAR_STATUS.success
     }));
-  } catch(err) {
+  } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: SNACKBAR_MESSAGES.updateFailed,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('update'),
       status: SNACKBAR_STATUS.error
     }));
   } finally {

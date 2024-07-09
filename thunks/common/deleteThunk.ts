@@ -29,10 +29,10 @@ const deleteThunk = createAsyncThunk('deleteThunk', async(params: DeleteApiParam
       status: SNACKBAR_STATUS.success
     }));
     router.push(`/${routes.login}`);
-  } catch(err) {
+  } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: SNACKBAR_MESSAGES.deletionFailed,
+      message: err.response?.data?.message ?? SNACKBAR_MESSAGES.deletionFailed,
       status: SNACKBAR_STATUS.error
     }));
   } finally {

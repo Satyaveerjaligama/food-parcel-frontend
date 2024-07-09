@@ -9,10 +9,17 @@ const theme = createTheme({
     MuiCircularProgress: {
       styleOverrides: {
         root: {
-          color: '#74c85d',
+          color: '#ff7d29',
           position: 'absolute',
           top: '47%',
           left: '48%',
+        }
+      }
+    },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#0000001a',
         }
       }
     },

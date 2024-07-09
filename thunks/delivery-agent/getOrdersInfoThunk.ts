@@ -2,7 +2,7 @@
 import { updateAvailableOrders, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
 import { openSnackbar, setLoader } from '@/store/slices/utilitySlice';
 import { RootState } from '@/store/store';
-import { SNACKBAR_STATUS } from '@/utilities/constants';
+import { SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -34,7 +34,7 @@ const getOrdersInfoThunk = createAsyncThunk('getOrdersInfoThunk', async(_, thunk
   } catch(error: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,
-      message: error.response?.data?.message ?? 'Something went wrong while feting active order',
+      message: error.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('fetch active orders'),
       status: SNACKBAR_STATUS.error,
     }));
   } finally {

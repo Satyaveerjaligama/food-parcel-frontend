@@ -184,14 +184,12 @@ export const SNACKBAR_MESSAGES = {
   menuItemUpdated: 'Item updated successfully',
   menuItemDeleted: 'Item deleted successfully',
   fileUploadSuccess: 'File uploaded successfully',
-  fileUploadFailed: 'Failed to upload the file',
   deletionSuccess: 'Deleted successfully',
   deletionFailed: 'Deletion failed',
   passwordChangeSuccess: 'Password changed successfully',
-  passwordChangeFailed: 'Failed to change the password',
   updateSuccess: 'Updated successfully',
-  updateFailed: 'Failed to update',
-  failedToGetEarnings: 'Failed to fetch Earnings',
+  fetchedIncomingOrders: 'Fetch in-coming orders',
+  failedTo: (dynamicText: string) => `Failed to ${dynamicText}`
 };
 
 export const ORDER_STATUS = {
