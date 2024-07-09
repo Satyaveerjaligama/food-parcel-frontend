@@ -59,20 +59,22 @@ const Orders = () => {
       <Grid container columnSpacing={2} rowSpacing={2}>
         {activeOrders.map((order)=>
           <Grid item xs={12} sm={4} md={3} key={order.orderId}>
-            <Card>
-              <CardContent>
-                <Typography className='font-bold'>
-                  # {getIdFromUserId(order.orderId)}
-                </Typography>
-                <Divider className='my-2'/>
-                { order.foodItems.map((foodItem) => 
-                  <Typography key={foodItem.itemId}>
-                    {foodItem.itemName} - {foodItem.quantity}
+            <Card className='h-full'>
+              <CardContent className='flex flex-col h-full justify-between'>
+                <Box>
+                  <Typography className='font-bold'>
+                    # {getIdFromUserId(order.orderId)}
                   </Typography>
-                )}
-                <Typography>
-                  Order Value:  &#8377; {(order.totalPrice).toLocaleString('en-IN')}
-                </Typography>
+                  <Divider className='my-2'/>
+                  { order.foodItems.map((foodItem) => 
+                    <Typography key={foodItem.itemId}>
+                      {foodItem.itemName} - {foodItem.quantity}
+                    </Typography>
+                  )}
+                  <Typography>
+                    Order Value:  &#8377; {(order.totalPrice).toLocaleString('en-IN')}
+                  </Typography>
+                </Box>
                 {order.orderStatus === 'Processing' &&
                 <Box className='flex justify-around'>
                   <IconButton onClick={()=>changeOrderStatus(order.orderId, 'orderStatus', ORDER_STATUS.accepted)}>

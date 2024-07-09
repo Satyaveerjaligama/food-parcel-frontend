@@ -11,11 +11,12 @@ import { camelToSentenceCase } from '@/utilities/utilityFunctions';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store/store';
-import { CartInfo } from '@/utilities/constants';
+import { CartInfo, PROMISE_STATUS } from '@/utilities/constants';
 import { useRouter } from 'next/navigation';
 import routes from '@/utilities/routes';
 import orderThunk from '@/thunks/order/orderThunk';
-import { updateCartInfo, updateCouponCode } from '@/store/slices/customerDataSlice';
+import { updateCartInfo, updateCartItemImages, updateCartItems, updateCouponCode } from '@/store/slices/customerDataSlice';
+import { initialState as cutomerSliceInitialState } from '@/store/slices/customerDataSlice';
 
 const Cart = () => {
   const router = useRouter();
@@ -30,8 +31,14 @@ const Cart = () => {
     router.push(`/${routes.home}`);
   };
 
-  const paymentHandler = () => {
-    dispatch(orderThunk(router));
+  const paymentHandler = async() => {
+    const response = await dispatch(orderThunk(router));
+    if(response.meta.requestStatus === PROMISE_STATUS.fulfilled) {
+      // Once order is placed, we have to clear the cart info
+      dispatch(updateCartItems(cutomerSliceInitialState.cartItems));
+      dispatch(updateCartItemImages(cutomerSliceInitialState.cartItemImages));
+      dispatch(updateCartInfo(cutomerSliceInitialState.cartInfo));
+    }
   };
 
   const couponCodeOnChangeHandler = (event: any) => {

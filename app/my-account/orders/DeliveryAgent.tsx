@@ -10,22 +10,26 @@ const DeliveryAgent = (props: any) => {
   return (
     <React.Fragment>
       {myOrders.length > 0 && myOrders.map((order: any)=>
-        <Grid item xs={12} sm={4} md={3} key={order.orderId}>
-          <Card>
-            <CardActionArea>
-              <CardContent>
-                <Typography className='font-bold'>
-                    # {getIdFromUserId(order.orderId)}
-                </Typography>
-                <Typography 
-                  className={`mb-2 order-status order-${order.orderStatus}`}
-                >
-                  {order.orderStatus === ORDER_STATUS.delivered ? ORDER_STATUS.delivered : 'Current order'}
-                </Typography>
-                <Typography className='text-sm'>Pickup Location</Typography>
-                <Typography className='text-gray-400 text-sm'>{order.pickupLocation}</Typography>
-                <Typography className='mt-2 text-sm'>Delivery Location</Typography>
-                <Typography className='text-gray-400 text-sm'>{order.deliveryLocation}</Typography>
+        <Grid item xs={12} sm={6} md={4} lg={3} key={order.orderId}>
+          <Card className='h-full'>
+            <CardActionArea className='h-full'>
+              <CardContent className='flex flex-col h-full justify-between'>
+                <Box>
+                  <Typography className='font-bold'>
+                      # {getIdFromUserId(order.orderId)}
+                  </Typography>
+                  <Typography 
+                    className={`mb-2 order-status order-${order.orderStatus}`}
+                  >
+                    {order.orderStatus === ORDER_STATUS.delivered ? ORDER_STATUS.delivered : 'Current order'}
+                  </Typography>
+                </Box>
+                <Box>
+                  <Typography className='text-sm'>Pickup Location</Typography>
+                  <Typography className='text-gray-400 text-sm'>{order.pickupLocation}</Typography>
+                  <Typography className='mt-2 text-sm'>Delivery Location</Typography>
+                  <Typography className='text-gray-400 text-sm'>{order.deliveryLocation}</Typography>
+                </Box>
                 <Box className="flex justify-between mt-2 items-center">
                   <Typography className='text-gray-400 text-sm'>
                     {moment(order.date).format('DD MMM YY')}{' - '}{convertTo12HourFormat(order.time)}
