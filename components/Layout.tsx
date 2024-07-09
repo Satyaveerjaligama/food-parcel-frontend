@@ -9,7 +9,7 @@ const Layout = ({ children }: any) => {
       <Header />
       <Loader />
       <Snackbar />
-      <main className='px-6 pt-5'>{children}</main>
+      <main className='px-6 pt-5 mx-auto max-w-7xl'>{children}</main>
     </>
   );
 };

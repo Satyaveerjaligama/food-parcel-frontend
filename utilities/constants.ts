@@ -188,7 +188,10 @@ export const SNACKBAR_MESSAGES = {
   deletionFailed: 'Deletion failed',
   passwordChangeSuccess: 'Password changed successfully',
   updateSuccess: 'Updated successfully',
-  fetchedIncomingOrders: 'Fetch in-coming orders',
+  orderStatusUpdated: 'Updated order status',
+  orderAccepted: 'Order accepted',
+  orderRejected: 'Order rejected',
+  fetchedOrders: (ordersType: string) => `Fetched ${ordersType} orders`,
   failedTo: (dynamicText: string) => `Failed to ${dynamicText}`
 };
 

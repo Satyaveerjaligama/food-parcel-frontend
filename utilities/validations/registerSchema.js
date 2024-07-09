@@ -29,7 +29,7 @@ export const deliveryAgentRegistrationSchema = yup.object().shape({
   phoneNumber: yup.string().matches(/^[6-9][0-9]{9}$/, 'Enter valid phone number').required('Phone number is required'),
   aadhaarNumber: yup.string().matches(/^[0-9]{12}$/, 'Enter valid aadhaar number').required('Aadhaar number is required'),
   vehicleModel: yup.string().required('Vehicle model is required'),
-  vehicleNumber: yup.string().matches(/^[A-Z]{2}[0-9]{2}{A-Z}{2}[0-9]{4}$/, 'Enter valid Vehicle number').required('Vehicle model is required'),
+  vehicleNumber: yup.string().matches(/^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/, 'Enter valid Vehicle number').required('Vehicle model is required'),
   address: yup.string().required('Address is required'),
   availabilityPincode: yup.string().matches(/^[0-9]{6}$/, 'Pincode should have exactly 6 digits').required('Pincode is required'),
   password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is reqired'),

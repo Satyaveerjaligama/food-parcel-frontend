@@ -20,11 +20,6 @@ const updateOrderInfoThunk = createAsyncThunk('updateOrderInfoThunk', async(prop
   try {
     thunkAPI.dispatch(setLoader(true));
     await axios(requestConfig);
-    thunkAPI.dispatch(openSnackbar({
-      open: true,
-      message: SNACKBAR_MESSAGES.updateSuccess,
-      status: SNACKBAR_STATUS.success
-    }));
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({
       open: true,

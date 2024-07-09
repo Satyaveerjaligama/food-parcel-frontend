@@ -42,7 +42,7 @@ const Menu = () => {
   return (
     <React.Fragment>
       <Typography variant='h5' className='text-center mt-4 underline'>Menu</Typography>
-      <Grid container columnSpacing={3} rowSpacing={3} className="mb-4 mt-2">
+      <Grid container columnSpacing={3} rowSpacing={3} className="mt-2 mb-10">
         <Grid item xs={12} sm={4} md={3}>
           <Card>
             <CardActionArea onClick={() =>openMenuItemModal(restaurantDataInitialState.menuItem)}>
@@ -52,12 +52,12 @@ const Menu = () => {
             </CardActionArea>
           </Card>
         </Grid>
-        {menuItemsList.map((item) => (
+        {menuItemsList && menuItemsList[0]?.itemId !== '' && menuItemsList.map((item) => (
           <Grid item xs={12} sm={4} md={3} key={item.itemId}>
             <Card>
               <CardMedia>
                 <Image
-                  className='object-cover w-full h-36'
+                  className='object-cover w-full h-44'
                   src={`data:image/png;base64,${item.image}`}
                   alt="food item image"
                   width={200}

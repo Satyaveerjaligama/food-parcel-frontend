@@ -33,7 +33,7 @@ const Cart = () => {
 
   const paymentHandler = async() => {
     const response = await dispatch(orderThunk(router));
-    if(response.meta.requestStatus === PROMISE_STATUS.fulfilled) {
+    if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
       // Once order is placed, we have to clear the cart info
       dispatch(updateCartItems(cutomerSliceInitialState.cartItems));
       dispatch(updateCartItemImages(cutomerSliceInitialState.cartItemImages));

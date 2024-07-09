@@ -13,6 +13,7 @@ import manchurian from '@/assets/images/manchurian.jpeg';
 import dosa from '@/assets/images/dosa.jpeg';
 import idli from '@/assets/images/idli.jpeg';
 import waffles from '@/assets/images/waffles.jpeg';
+import styles from '@/styles/Home.module.css';
 
 const FoodTypes = () => {
 
@@ -68,7 +69,7 @@ const FoodTypes = () => {
   ];
   
   return (
-    <Grid container columnSpacing={6} rowSpacing={3} className="mb-5">
+    <Grid container columnGap={0} rowSpacing={3} className={`mb-5 pb-9 ${styles.foodTypesGrid}`}>
       {foodTypesList.map((foodType) => (
         <Grid item xs={6} sm={3} md={2} key={foodType.type} className='flex flex-col items-center'>
           <Image

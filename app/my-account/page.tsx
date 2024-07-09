@@ -68,7 +68,7 @@ const MyAccount = () => {
 
   return (
     <Layout>
-      <Grid container columnSpacing={2} rowSpacing={2} className='my-5 w-4/5 sm:w-3/5 md:w-2/4 mx-auto'>
+      <Grid container columnSpacing={2} rowSpacing={2} className='mb-5 mt-2 w-4/5 sm:w-3/5 md:w-2/4 mx-auto'>
         <Grid item xs={12} className='flex justify-center'>
           <Badge
             overlap='circular'

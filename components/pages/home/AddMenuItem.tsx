@@ -77,7 +77,7 @@ const AddMenuItem = () => {
   };
 
   return (
-    <Modal title="Add Menu Item" fullWidth maxWidth={'xs'} contentClassName='pb-0'>
+    <Modal title="Menu Item" fullWidth maxWidth={'xs'} contentClassName='pb-0'>
       <TextField 
         type='text'
         label='Item Name'
