@@ -20,13 +20,13 @@ const Header = () => {
 
   return (
     <Box className={`py-4 ${styles.mainDiv}`}>
-      <Grid container className="items-center px-4">
-        <Grid item sm={4}>
+      <Grid container className="items-center px-4" rowSpacing={1}>
+        <Grid item xs={12} sm={4}>
           <Typography className={`text-2xl cursor-pointer ${pacifico.className}`} onClick={()=>iconBtnClickHandler(`/${routes.home}`)}>
             {PRODUCT_NAME}
           </Typography>
         </Grid>
-        <Grid item sm={4}>
+        <Grid item xs={9} sm={4}>
           {userType === USER_TYPES.customer &&
           <TextField
             size="small"
@@ -35,7 +35,7 @@ const Header = () => {
           />
           }
         </Grid>
-        <Grid item sm={4} className="text-right">
+        <Grid item xs={3} sm={4} className="text-right">
           <IconButton onClick={()=>iconBtnClickHandler(`/${routes.myAccount}`)}>
             <AccountCircleRoundedIcon className="text-black text-4xl cursor-pointer" />
           </IconButton>

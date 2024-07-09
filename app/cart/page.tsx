@@ -69,8 +69,8 @@ const Cart = () => {
         <>
           <FoodItemCards cartInfo={cartInfo} cartItems={cartItems}/>
           <Divider className='my-4'/>
-          <Grid container className='my-5'>
-            <Grid item md={8}>
+          <Grid container className='my-5' rowGap={4} columnSpacing={4}>
+            <Grid item xs={12} sm={6} md={8}>
               <Box className='flex items-center'>
                 <TextField
                   className={`${styles.inputFields}`}
@@ -89,7 +89,7 @@ const Cart = () => {
                   />
                 </Box>
               </Box>
-              <Card className='mr-8 mt-4'>
+              <Card className='mt-4'>
                 <CardContent>
                   <Typography>
                     Delivery Address
@@ -106,7 +106,7 @@ const Cart = () => {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid item md={4}>
+            <Grid item xs={12} sm={6} md={4}>
               {Object.keys(cartInfo).map((priceType: string) => 
                 <React.Fragment key={priceType}>
                   {priceType === 'totalPrice' && <Divider className='my-2' />}

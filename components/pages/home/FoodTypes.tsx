@@ -6,7 +6,7 @@ const FoodTypes = () => {
   return (
     <Grid container columnSpacing={6} rowSpacing={3} className="mb-5">
       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((foodItem) => (
-        <Grid item key={foodItem}>
+        <Grid item xs={6} sm={3} md={2} key={foodItem} className='flex flex-col items-center'>
           <Image
             src="/next.svg"
             width={100}
