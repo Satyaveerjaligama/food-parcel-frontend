@@ -24,6 +24,7 @@ const getMenuItemsThunk = createAsyncThunk('getMenuItemsThunk', async(restaurant
       message: err.response?.data?.message ?? SNACKBAR_MESSAGES.failedTo('fetch menu items'),
       status: SNACKBAR_STATUS.error
     }));
+    thunkAPI.dispatch(updateMenuItemsList([]));
   } finally {
     thunkAPI.dispatch(setLoader(false));
   }

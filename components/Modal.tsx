@@ -25,7 +25,7 @@ const Modal = (props: any) => {
       maxWidth={maxWidth}
     >
       <DialogTitle className='flex justify-between items-center'>
-        <Typography className='text-xl'>{title}</Typography>
+        <Typography className='text-xl underline'>{title}</Typography>
         {!hideCloseButton &&
         <IconButton onClick={handleClose}>
           <CloseRoundedIcon className='text-rose-600 cursor-pointer' />

@@ -49,7 +49,7 @@ export const addMenuItemThunk = createAsyncThunk('addMenuItemThunk', async(type:
         open: true,
         type: MODAL_TYPES.fileUpload
       }));
-      snackBarMessage = SNACKBAR_MESSAGES.menuItemUpdated;
+      snackBarMessage = SNACKBAR_MESSAGES.menuItemAdded;
     }
     
     thunkAPI.dispatch(openSnackbar({

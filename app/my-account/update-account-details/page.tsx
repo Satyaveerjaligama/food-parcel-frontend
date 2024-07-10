@@ -104,7 +104,7 @@ const UpdateAccountDetails = () => {
           onClick={onCancel}
         />
         <Button 
-          label='Submit'
+          label='Update'
           variant='contained'
           className='mt-4'
           onClick={onSubmit}

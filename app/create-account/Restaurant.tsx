@@ -22,7 +22,7 @@ const Restaurant = (props: RestaurantProps) => {
   };
 
   return (
-    <Box className="height-50vh scroll-bar overflow-y-auto py-2">
+    <Box className="height-50vh scroll-bar overflow-y-auto py-2 pr-2">
       <TextField
         label="Restaurant name"
         size="small"

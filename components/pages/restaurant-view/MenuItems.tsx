@@ -72,15 +72,16 @@ const MenuItems = () => {
       {menuItemsList.map((menuItem) => (
         <Grid item xs={12} sm={6} md={4} key={menuItem.itemId}>
           <Card className="flex justify-start items-center">
-            <CardMedia className='basis-1/3'>
+            <CardMedia className='basis-2/5'>
               <Image
                 src={`data:image/png;base64,${menuItem.image}`}
                 alt="sample image"
                 width={100}
                 height={100}
+                className='w-full'
               />
             </CardMedia>
-            <CardContent className='basis-2/3 relative'>
+            <CardContent className='basis-3/5 relative'>
               <Image className='absolute top-2 right-2' src={`/food-parcel/${menuItem.isVeg ? 'vegIcon.png' : 'nonVegIcon.png'}`} width={15} height={15} alt='veg icon'/>
               <Typography>{menuItem.name}</Typography>
               <Typography className="text-gray-400 text-sm">

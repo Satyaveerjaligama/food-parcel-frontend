@@ -8,10 +8,11 @@ import { AppDispatch, RootState } from '@/store/store';
 import getOrdersInfoThunk from '@/thunks/delivery-agent/getOrdersInfoThunk';
 import AvailableOrders from '@/components/pages/home/AvailableOrders';
 import { camelToSentenceCase, getIdFromUserId } from '@/utilities/utilityFunctions';
-import { Earnings, ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
+import { Earnings, ORDER_STATUS, PROMISE_STATUS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
 import { deliveryAgentInitialState, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
 import getEarningsThunk from '@/thunks/delivery-agent/getEarningsThunk';
+import { openSnackbar } from '@/store/slices/utilitySlice';
 
 const DeliveryAgent = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -36,6 +37,11 @@ const DeliveryAgent = () => {
       value: status
     }));
     if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+      dispatch(openSnackbar({
+        open: true,
+        message: SNACKBAR_MESSAGES.orderStatusUpdated,
+        status: SNACKBAR_STATUS.success,
+      }));
       if(status === ORDER_STATUS.delivered) {
         dispatch(updateCurrentOrderDetails({
           ...deliveryAgentInitialState.currentOrderDetails
@@ -89,7 +95,7 @@ const DeliveryAgent = () => {
                   </Box>
                   <Box className='flex justify-between'>
                     <Typography>Earnings on this order</Typography>
-                    <Typography>10</Typography>
+                    <Typography>23</Typography>
                   </Box>
                   <Box className='flex justify-between items-center mt-3'>
                     <Typography>Update status</Typography>

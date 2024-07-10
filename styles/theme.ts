@@ -90,11 +90,14 @@ const theme = createTheme({
           borderColor: 'rgb(239 68 68) !important',
           color: 'rgb(239 68 68)',
           backgroundColor: 'white',
-          transition: 'transform 0.2s',
+          boxShadow: '3px 3px 0px #FCAEAE',
+          transition: 'transform 0.2s, box-shadow 0.2s',
           '&:hover': {
+            boxShadow: '3px 3px 0px #FCAEAE',
             backgroundColor: 'white',
           },
           '&:active' : {
+            boxShadow: '0px 0px 0px',
             transform: 'translateX(3px) translateY(3px)',
           }
         },

@@ -20,11 +20,6 @@ const getActiveOrdersThunk = createAsyncThunk('getActiveOrdersThunk', async(_, t
     const response = await axios(requestConfig);
     if(response.status === 200 && response?.data) {
       thunkAPI.dispatch(updateActiveOrders(response.data));
-      thunkAPI.dispatch(openSnackbar({
-        open: true,
-        message: SNACKBAR_MESSAGES.fetchedIncomingOrders,
-        status: SNACKBAR_STATUS.success
-      }));
     }
   } catch(err: any) {
     thunkAPI.dispatch(openSnackbar({

@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
-import { AvailableOrders as AvailableOrdersInterface, PROMISE_STATUS } from '@/utilities/constants';
+import { AvailableOrders as AvailableOrdersInterface, PROMISE_STATUS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import getAvailableOrdersThunk from '@/thunks/delivery-agent/getOrdersInfoThunk';
 import { updateAvailableOrders, updateCurrentOrderDetails } from '@/store/slices/deliveryAgentDataSlice';
+import { openSnackbar } from '@/store/slices/utilitySlice';
 
 const AvailableOrders = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,6 +22,11 @@ const AvailableOrders = () => {
       value: deliveryAgentId
     }));
     if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+      dispatch(openSnackbar({
+        open: true,
+        message: SNACKBAR_MESSAGES.orderAccepted,
+        status: SNACKBAR_STATUS.success,
+      }));
       dispatch(updateAvailableOrders([]));
       dispatch(updateCurrentOrderDetails({
         orderId: order.orderId,
@@ -31,8 +37,15 @@ const AvailableOrders = () => {
     }
   };
 
-  const getAvailableOrders = () => {
-    dispatch(getAvailableOrdersThunk());
+  const getAvailableOrders = async() => {
+    const response = await dispatch(getAvailableOrdersThunk());
+    if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+      dispatch(openSnackbar({
+        open: true,
+        message: SNACKBAR_MESSAGES.fetchedOrders('available'),
+        status: SNACKBAR_STATUS.success
+      }));
+    }
   };
 
   return (
@@ -43,6 +56,11 @@ const AvailableOrders = () => {
           <ReplayRoundedIcon />
         </IconButton>
       </Typography>
+      {availableOrders?.length === 0 &&
+      <Typography variant='h6' className='text-center mb-4 text-red-500'>
+        No orders to display
+      </Typography>
+      }
       <Grid container columnSpacing={2} rowSpacing={2}>
         {availableOrders.map((order)=>
           <Grid item xs={12} sm={4} md={3} key={order.orderId}>

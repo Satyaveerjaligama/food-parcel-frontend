@@ -1,0 +1,10 @@
+.foodTypesGrid {
+    background-color: #FFC96F;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.userName {
+    border-radius: 40px;
+    background-color: #FFC96F;
+}

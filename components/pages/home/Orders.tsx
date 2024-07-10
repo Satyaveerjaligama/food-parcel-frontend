@@ -8,8 +8,9 @@ import DoneRoundedIcon from '@mui/icons-material/DoneRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import updateOrderInfoThunk from '@/thunks/order/updateOrderInfoThunk';
-import { ORDER_STATUS, PROMISE_STATUS } from '@/utilities/constants';
+import { ORDER_STATUS, PROMISE_STATUS, SNACKBAR_MESSAGES, SNACKBAR_STATUS } from '@/utilities/constants';
 import { updateActiveOrders } from '@/store/slices/restaurantDataSlice';
+import { openSnackbar } from '@/store/slices/utilitySlice';
 
 const Orders = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -35,17 +36,34 @@ const Orders = () => {
           return order;
         });
         dispatch(updateActiveOrders(updatedActiveOrders));
+        dispatch(openSnackbar({
+          open: true,
+          message: SNACKBAR_MESSAGES.orderAccepted,
+          status: SNACKBAR_STATUS.success,
+        }));
         break;
       }
       case ORDER_STATUS.rejected:
         dispatch(updateActiveOrders(activeOrders.filter(order => order.orderId !== orderId )));
+        dispatch(openSnackbar({
+          open: true,
+          message: SNACKBAR_MESSAGES.orderRejected,
+          status: SNACKBAR_STATUS.success,
+        }));
         break;
       }
     }
   };
 
-  const getActiveOrders = () => {
-    dispatch(getActiveOrdersThunk());
+  const getActiveOrders = async() => {
+    const response = await dispatch(getActiveOrdersThunk());
+    if(response?.meta?.requestStatus === PROMISE_STATUS.fulfilled) {
+      dispatch(openSnackbar({
+        open: true,
+        message: SNACKBAR_MESSAGES.fetchedOrders('incoming'),
+        status: SNACKBAR_STATUS.success
+      }));
+    }
   };
 
   return (
@@ -56,6 +74,11 @@ const Orders = () => {
           <ReplayRoundedIcon />
         </IconButton>
       </Typography>
+      {activeOrders.length === 0 && 
+        <Typography variant='h6' className='text-center mb-4 text-red-500'>
+          No orders to display
+        </Typography>
+      }
       <Grid container columnSpacing={2} rowSpacing={2}>
         {activeOrders.map((order)=>
           <Grid item xs={12} sm={4} md={3} key={order.orderId}>
