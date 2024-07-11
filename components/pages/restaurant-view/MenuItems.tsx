@@ -15,6 +15,8 @@ import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RemoveCircleRoundedIcon from '@mui/icons-material/RemoveCircleRounded';
 import { updateCartInfo, updateCartItemImages, updateCartItems } from '@/store/slices/customerDataSlice';
 import { MenuItemList } from '@/utilities/constants';
+import vegIcon from '@/assets/images/vegIcon.png';
+import nonVegIcon from '@/assets/images/nonVegIcon.png';
   
 const MenuItems = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -82,7 +84,7 @@ const MenuItems = () => {
               />
             </CardMedia>
             <CardContent className='basis-3/5 relative'>
-              <Image className='absolute top-2 right-2' src={`/food-parcel/${menuItem.isVeg ? 'vegIcon.png' : 'nonVegIcon.png'}`} width={15} height={15} alt='veg icon'/>
+              <Image className='absolute top-2 right-2' src={menuItem.isVeg ? vegIcon : nonVegIcon} width={15} height={15} alt='veg/non-veg icon'/>
               <Typography>{menuItem.name}</Typography>
               <Typography className="text-gray-400 text-sm">
                 &#8377; {menuItem.price}

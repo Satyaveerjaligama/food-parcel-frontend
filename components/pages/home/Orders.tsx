@@ -74,7 +74,7 @@ const Orders = () => {
           <ReplayRoundedIcon />
         </IconButton>
       </Typography>
-      {activeOrders.length === 0 && 
+      {activeOrders?.length === 0 && 
         <Typography variant='h6' className='text-center mb-4 text-red-500'>
           No orders to display
         </Typography>
