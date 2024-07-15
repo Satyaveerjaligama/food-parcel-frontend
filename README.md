@@ -78,4 +78,4 @@ Below functionalities will be available for all the users
 ![Update account details](assets/readme-file-images/updateAccountDetails.png)
 
 ### Note
-Names and images used in this application are stored in the local DB and fetched based on the requirement. The Images are taken from various parts of internet for development purposes only, and all the rights are retailned by the original owners
+Names and images used in this application are stored in the local DB and fetched based on the requirement. The Images are taken from various parts of internet for development purposes only, and all the rights are retained by the original owners
